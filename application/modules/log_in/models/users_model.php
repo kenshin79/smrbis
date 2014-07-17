@@ -28,4 +28,27 @@ class Users_model extends CI_Model {
 		return $this->db->affected_rows();
 	}
 	
+	function getAllUsers(){
+		$this->db->select('u_id, uname, pword, access_type, pw_changed');
+		$query = $this->db->get('users');
+		return $query->result();
+	}
+	
+	function saveUserChanges($uid, $access){
+		$data = array('access_type'=>$access);
+		$this->db->where('u_id', $uid);
+		$this->db->update('users', $data);
+		return $this->db->affected_rows();
+	}
+	
+	function deleteUser($uid){
+			$this->db->where('u_id', $uid);
+			$this->db->delete('users');					
+	}
+	
+	function addUser($uname, $pword, $access){
+		$data = array('uname'=>$uname, 'pword'=>$pword, 'access_type'=>$access, 'pw_changed'=>0);
+		$this->db->insert('users', $data);
+		return $this->db->affected_rows();
+	}
 }	

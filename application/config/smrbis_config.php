@@ -11,3 +11,9 @@ $config['bootstrap_css'] = $config['app_root'].'/bootstrap/css/bootstrap.min.css
 $config['bootstrap_js'] = $config['app_root'].'/bootstrap/js/bootstrap.min.js';
 
 $config['logged_startpage'] = $config['app_root'].'/index.php/welcome';
+
+$config['access_type']['0'] = "Administrator";
+$config['access_type']['1'] = "Manager";
+
+$config['pw_changed']['0'] = "No";
+$config['pw_changed']['1'] = "Yes";

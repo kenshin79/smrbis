@@ -3,7 +3,7 @@
 	<head>
 		<link href="<?php echo $this->config->item('bootstrap_css');?>" rel="stylesheet">
 		<script src="<?php echo $this->config->item('jquery');?>"></script>
-		<script src="<?php echo $this->config->item('bootstrap_js');?>"></script>					
+		<script src="<?php echo $this->config->item('bootstrap_js');?>"></script>		
 		<title>Log-IN to <?php echo $this->config->item('app_name'); ?></title>		
 	</head>
 	<body>
@@ -40,17 +40,18 @@
 							<label class="control-label" for="pword">Password:</label>
 							<input type="password" class="form-control" id="pword" name="pword" />
 						</div>
-						<button class="btn btn-default" >Log IN</button>
-
+					<button class="btn btn-default" >Log IN</button>
 					</form>
+					
 					<br />
 					<div class="alert alert-warning hide" role="alert" id="logfail_alert">Log-in failed. Please try again.</div>
 					<?php
-					if($_SERVER["REQUEST_METHOD"] == "POST"){
+						//if page loaded from a post-method, and username and password did not match database entry
+						if($_SERVER["REQUEST_METHOD"] == "POST"){
 						echo "<script>";
 						echo "$('#logfail_alert').removeClass('hide')";
 						echo "</script>";
-					}
+						}
 					
 					?>
 				</div>

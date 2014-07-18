@@ -10,6 +10,10 @@ $config['bootstrap_css'] = $config['app_root'].'/bootstrap/css/bootstrap.min.css
 
 $config['bootstrap_js'] = $config['app_root'].'/bootstrap/js/bootstrap.min.js';
 
+$config['datatables_css'] = $config['app_root'].'/datatables/jquery.dataTables.min.css';
+
+$config['datatables_js'] = $config['app_root'].'/datatables/jquery.dataTables.min.js';
+
 $config['logged_startpage'] = $config['app_root'].'/index.php/welcome';
 
 $config['access_type']['0'] = "Administrator";

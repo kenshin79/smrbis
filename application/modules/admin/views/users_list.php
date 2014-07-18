@@ -51,27 +51,33 @@
 </form>
 
 <hr />
-<table class="table table-striped">
+<table id="users_table" class="display">
 	<thead>
-		<tr><th>No.</th><th>User Name</th><th>Access</th><th>Password Changed</th><th></th></tr>
+		<tr>
+			<th>No.</th>
+			<th>User Name</th>
+			<th>Access</th>
+			<th>Password Changed</th>
+			<th>Edit</th>
+		</tr>
 	</thead>
 	<tbody>	
 		<?php
 			$x = 1;
 			if($all_users){
 				foreach($all_users as $row){
-					echo "<tr><td>".$x."<td>".$row->uname."</td><td>".$this->config->item($row->access_type, 'access_type')."</td><td>".$this->config->item($row->pw_changed, 'pw_changed')."</td>";
-					echo "<td><button class=\"btn btn-default\" onclick = \"updateUser('".$row->u_id."','".$row->uname."',".$row->access_type.");\">Edit</button>";
-					echo "<button class=\"btn btn-default\" onclick=\"deleteUser('".$row->u_id."', '".$row->uname."')\">Delete</button>";
-					echo "</td></tr>";
+					echo "<tr>";
+					echo "<td>".$x."</td>";
+					echo "<td>".$row->uname."</td>";
+					echo "<td>".$this->config->item($row->access_type, 'access_type')."</td>";
+					echo "<td>".$this->config->item($row->pw_changed, 'pw_changed')."</td>";
+					echo "<td><button class=\"btn btn-default\" onclick = \"updateUser('".$row->u_id."','".$row->uname."',".$row->access_type.");\">Edit</button><button class=\"btn btn-default\" onclick=\"deleteUser('".$row->u_id."', '".$row->uname."')\">Delete</button></td>";
+					echo "</tr>";
 					$x++;
 				}
 			}
 		
 		?>
 	</tbody>
-	<tfoot>
-		
-	</tfoot>
 </table>
 

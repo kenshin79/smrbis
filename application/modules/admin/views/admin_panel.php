@@ -7,13 +7,17 @@
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
-	    <link href="<?php echo $this->config->item('bootstrap_css')?>" rel="stylesheet">    			
+	    <link href="<?php echo $this->config->item('bootstrap_css')?>" rel="stylesheet">    
+	    <link href="<?php echo $this->config->item('datatables_css')?>" rel="stylesheet">			
 		<script src="<?php echo $this->config->item('jquery');?>"></script>
+		<script src="<?php echo $this->config->item('datatables_js');?>"></script>
 		<script src="<?php echo $this->config->item('bootstrap_js');?>"></script>	
 		<script>
 			
 			$(document).ready(function(){
-				$('#users').load('<?php echo base_url()."index.php/admin/users_list";?>');
+				$('#users').load('<?php echo base_url()."index.php/admin/users_list";?>', function(){
+					$('#users_table').DataTable();
+				});
 			});
 			
 			function validateNewUser(uname, pword1, pword2){
@@ -100,9 +104,9 @@
 			</div>
 			<div class="row">
 				<div class="tab-content">
-				<div id="users" class="tab-pane active fade in">1</div>
-				<div id="ulog" class="tab-pane">2</div>
-				<div id="bb" class="tab-pane">3</div>
+				<div id="users" class="tab-pane active fade in"></div>
+				<div id="ulog" class="tab-pane"></div>
+				<div id="bb" class="tab-pane"></div>
 				</div>
 			</div>
 		</div>

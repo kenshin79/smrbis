@@ -12,6 +12,12 @@ class Admin extends CI_Controller {
 			$data['all_users'] = $this->Users_model->getAllUsers();
 			$this->load->view('users_list', $data);
 		}
+		
+		public function recent_log(){
+			$this->load->model('ActivityLog_model');
+			$data['recent_logs'] = $this->ActivityLog_model->getRecentLogs();
+			$this->load->view('activity_logview', $data);
+		}
 
 		public function editUser(){
 			$uid = $this->input->post('uid', TRUE);
@@ -23,11 +29,20 @@ class Admin extends CI_Controller {
 			$this->load->view('edit_user', $data);
 		}
 		
-		public function changeUser(){
-			$this->load->model('log_in/Users_model');			
+		public function changeUser(){	
 			$uid = $this->input->post('uid', TRUE);
-			$access = $this->input->post('access', TRUE);			
+			$uname = $this->input->post('uname', TRUE);
+			$access = $this->input->post('access', TRUE);		
+			$this->load->model('log_in/Users_model');						
 			$user_changed = $this->Users_model->saveUserChanges($uid, $access);
+			if($user_changed){
+				$activity = "Success: User access changed - ".$uname."/".$this->config->item($access, "access_type");
+			}
+			else{
+				$activity = "Failed: User access unchanged - ".$uname;
+			}
+			$this->load->model('Activitylog_model');
+			$this->Activitylog_model->recordActivity($this->session->userdata('session_user'), $activity);			
 			$data['all_users'] = $this->Users_model->getAllUsers();
 			$this->load->view('users_list', $data);			
 		}
@@ -35,7 +50,15 @@ class Admin extends CI_Controller {
 		public function deleteUser(){
 			$this->load->model('log_in/Users_model');			
 			$uid = $this->input->post('uid', TRUE);
-			$this->Users_model->deleteUser($uid);
+			$uname = $this->input->post('uname', TRUE);
+			if($this->Users_model->deleteUser($uid)){
+				$activity = "Success: Deleted user - ID ".$uid."/Uname ".$uname;
+			}
+			else{
+				$activity = "Failed: Delete user - ID ".$uid."/Uname ".$uname;
+			}
+			$this->load->model('Activitylog_model');
+			$this->Activitylog_model->recordActivity($this->session->userdata('session_user'), $activity);
 			$data['all_users'] = $this->Users_model->getAllUsers();
 			$this->load->view('users_list', $data);			
 			
@@ -47,6 +70,14 @@ class Admin extends CI_Controller {
 			$pword = crypt($this->input->post('pword', TRUE), $this->config->item('encryption_key'));
 			$access = $this->input->post('access', TRUE);
 			$user_added = $this->Users_model->addUser($uname, $pword, $access);
+			if($user_added){ 
+				$activity = "Success: Added user ID ".$user_added."/Uname ".$uname;
+			}
+			else{
+				$activity = "Failed: Add user Uname ".$uname;
+			}
+			$this->load->model('Activitylog_model');
+			$this->Activitylog_model->recordActivity($this->session->userdata('session_user'), $activity);			
 			$data['all_users'] = $this->Users_model->getAllUsers();
 			$this->load->view('users_list', $data);						
 			

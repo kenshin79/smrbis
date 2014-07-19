@@ -21,5 +21,5 @@
 	</div>
 </form>
        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       	<button type="button" class="btn btn-primary" onclick="saveUserChanges('<?php echo $uid;?>', document.getElementById('access').value)">Save changes</button>
+       	<button type="button" class="btn btn-primary" onclick="saveUserChanges('<?php echo $uid;?>', '<?php echo $uname;?>', document.getElementById('access').value)">Save changes</button>
       				

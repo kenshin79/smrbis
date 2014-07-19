@@ -22,10 +22,11 @@ class Users_model extends CI_Model {
 	}
 	
 	function updatePword($session_user, $pword){
-		$data = array("pword"=>$pword, "pw_changed"=>"1");
+		$data = array("pword"=>$pword, "pw_changed"=>1);
 		$this->db->where('uname', $session_user);
 		$this->db->update('users', $data);
-		return $this->db->affected_rows();
+		$changed = $this->db->affected_rows();
+		return $changed;
 	}
 	
 	function getAllUsers(){
@@ -43,12 +44,13 @@ class Users_model extends CI_Model {
 	
 	function deleteUser($uid){
 			$this->db->where('u_id', $uid);
-			$this->db->delete('users');					
+			$this->db->delete('users');		
+			return $this->db->affected_rows();			
 	}
 	
 	function addUser($uname, $pword, $access){
 		$data = array('uname'=>$uname, 'pword'=>$pword, 'access_type'=>$access, 'pw_changed'=>0);
 		$this->db->insert('users', $data);
-		return $this->db->affected_rows();
+		return $this->db->insert_id();
 	}
 }	

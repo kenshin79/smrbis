@@ -8,16 +8,27 @@
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 	    <link href="<?php echo $this->config->item('bootstrap_css')?>" rel="stylesheet">    
-	    <link href="<?php echo $this->config->item('datatables_css')?>" rel="stylesheet">			
+	    <link href="<?php echo $this->config->item('datatables_css')?>" rel="stylesheet">		
+		<link href="<?php echo $this->config->item('datepicker_css');?>" rel="stylesheet">				    	
 		<script src="<?php echo $this->config->item('jquery');?>"></script>
 		<script src="<?php echo $this->config->item('datatables_js');?>"></script>
 		<script src="<?php echo $this->config->item('bootstrap_js');?>"></script>	
+		<script src="<?php echo $this->config->item('datepicker_js');?>"></script>
+
 		<script>
-			
-			$(document).ready(function(){
+			function load_users(){
 				$('#users').load('<?php echo base_url()."index.php/admin/users_list";?>', function(){
 					$('#users_table').DataTable();
-				});
+				});				
+			}
+			function load_logs(){
+				$('#ulog').load('<?php echo base_url()."index.php/admin/recent_log";?>', function(){
+					$('#logs_table').DataTable();
+					$('.datepicker').datepicker();
+				})
+			}	
+			$(document).ready(function(){
+				load_users();
 			});
 			
 			function validateNewUser(uname, pword1, pword2){
@@ -43,9 +54,9 @@
 				$('#admin_modal').modal('show');	
 				
 			}
-			function saveUserChanges(uid, access){
+			function saveUserChanges(uid, uname, access){
 				$('#admin_modal').modal('hide');
-				$('#users').load('<?php echo base_url()."index.php/admin/changeUser";?>', {'uid':uid, 'access':access}, function(){
+				$('#users').load('<?php echo base_url()."index.php/admin/changeUser";?>', {'uid':uid, 'uname':uname, 'access':access}, function(){
 					$('#users_table').DataTable();
 					$('#admin_alert').removeClass('hide');
 					$('#alert_body').html('Successfully edited user access!');
@@ -56,7 +67,7 @@
 					return false;
 				}
 				else{
-					$('#users').load('<?php echo base_url()."index.php/admin/deleteUser"; ?>', {'uid':uid}, function(){
+					$('#users').load('<?php echo base_url()."index.php/admin/deleteUser"; ?>', {'uid':uid, 'uname':uname}, function(){
 					$('#users_table').DataTable();
 					$('#admin_alert').removeClass('hide');
 					$('#alert_body').html('Successfully deleted user - '+uname+'!');						
@@ -96,8 +107,8 @@
 			<div class="row">
 				<div class="col-md-10">
 				<ul class="nav nav-tabs" role="tablist">
-  					<li class="active" ><a href="#users" data-toggle="tab">Users</a></li>
-  					<li><a href="#ulog" data-toggle="tab">User Log</a></li>
+  					<li class="active" ><a href="#users" data-toggle="tab" onclick="load_users();">Users</a></li>
+  					<li><a href="#ulog" data-toggle="tab" onclick="load_logs();">User Log</a></li>
   					<li><a href="#bb" data-toggle="tab">Bulletin Board</a></li>
 				</ul>					
 				</div>

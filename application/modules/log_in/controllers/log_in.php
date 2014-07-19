@@ -15,13 +15,25 @@ class Log_in extends CI_Controller {
 		$username = $this->input->post('uname', TRUE);
 		$password = crypt($this->input->post('pword', TRUE), $this->config->item('encryption_key'));
 		$data['valid_user'] = $this->Users_model->checkUsername($username, $password);
+		if($data['valid_user']){
+			$activity = "Success: Log-IN";
+		}
+		else{
+			$activity = "Failed: Log-IN";
+		}
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);
 		$this->load->view('login_page', $data);		
 	}
 	
 	//logging out and return to main page
 	public function log_out(){
 		$this->load->helper('url');
+		$username = $this->session->userdata('session_user');
+		$activity = "Logged-Out";
 		$this->session->sess_destroy();
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);
 		header('Location:'.base_url());
 	}
 	
@@ -38,7 +50,14 @@ class Log_in extends CI_Controller {
 		$session_user = $this->input->post('uname', TRUE);
 		$pword = crypt($this->input->post('pword1', TRUE), $this->config->item('encryption_key'));
 		$changed_pw = $this->Users_model->updatePword($session_user, $pword);
-		$this->session->set_userdata('pwchanged', 1);
+		if($changed_pw){
+			$activity = "Success: Password changed";		
+		}
+		else{
+			$activity = "Failed: Password unchanged";
+		}
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($session_user, $activity);
 		header('Location:'.base_url());		
 		
 	}

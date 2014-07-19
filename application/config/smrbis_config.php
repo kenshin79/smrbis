@@ -14,6 +14,10 @@ $config['datatables_css'] = $config['app_root'].'/datatables/jquery.dataTables.m
 
 $config['datatables_js'] = $config['app_root'].'/datatables/jquery.dataTables.min.js';
 
+$config['datepicker_css'] = $config['app_root'].'/datepicker/datepicker.css';
+
+$config['datepicker_js'] = $config['app_root'].'/datepicker/bootstrap-datepicker.js';
+
 $config['logged_startpage'] = $config['app_root'].'/index.php/welcome';
 
 $config['access_type']['0'] = "Administrator";

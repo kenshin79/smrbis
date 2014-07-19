@@ -46,6 +46,7 @@
 			function saveUserChanges(uid, access){
 				$('#admin_modal').modal('hide');
 				$('#users').load('<?php echo base_url()."index.php/admin/changeUser";?>', {'uid':uid, 'access':access}, function(){
+					$('#users_table').DataTable();
 					$('#admin_alert').removeClass('hide');
 					$('#alert_body').html('Successfully edited user access!');
 				});
@@ -56,6 +57,7 @@
 				}
 				else{
 					$('#users').load('<?php echo base_url()."index.php/admin/deleteUser"; ?>', {'uid':uid}, function(){
+					$('#users_table').DataTable();
 					$('#admin_alert').removeClass('hide');
 					$('#alert_body').html('Successfully deleted user - '+uname+'!');						
 					});
@@ -65,6 +67,7 @@
 				if (validateNewUser(uname, pword1, pword2)){
 					$('#users').load('<?php echo base_url()."index.php/admin/addUser";?>', 
 						{'uname':uname, 'pword':pword1, 'access':access}, function(){
+							$('#users_table').DataTable();
 							$('#admin_alert').removeClass('hide');
 							$('#alert_body').html('Successfully added new user - '+uname+'!');										
 						})	

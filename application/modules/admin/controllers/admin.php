@@ -14,8 +14,16 @@ class Admin extends CI_Controller {
 		}
 		
 		public function recent_log(){
-			$this->load->model('ActivityLog_model');
-			$data['recent_logs'] = $this->ActivityLog_model->getRecentLogs();
+			$this->load->model('Activitylog_model');
+			$data['recent_logs'] = $this->Activitylog_model->getRecentLogs();
+			$this->load->view('activity_logview', $data);
+		}
+		
+		public function period_log(){
+			$sdate = $this->input->post('sdate', TRUE);
+			$edate = $this->input->post('edate', TRUE);
+			$this->load->model('Activitylog_model');
+			$data['recent_logs'] = $this->Activitylog_model->getPeriodLogs($sdate, $edate);
 			$this->load->view('activity_logview', $data);
 		}
 

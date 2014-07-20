@@ -1,22 +1,22 @@
 
 <div class="row">
-	<div class="col-md-1"></div>
+	<div class="col-md-2">Search Period:</div>
 	<div class="col-md-3">
-		<div class="input-append date" id="dp3" data-date="" data-date-format="yyyy-mm-dd">		
+		<div class="input-append date" id="dp1" data-date-format="yyyy-mm-dd">		
 			<label for="startdate">From: </label>
 			<input class="datepicker" type="text" id="startdate" />
 			<span class="add-on"><i class="icon-th"></i></span>			
 		</div>
 	</div>
 	<div class="col-md-3">
-		<div class="input-append date" id="dp3" data-date="" data-date-format="yyyy-mm-dd">		
+		<div class="input-append date" id="dp2" data-date-format="yyyy-mm-dd">		
 			<label for="enddate">To: </label>
 			<input class="datepicker" type="text" id="enddate" />
 			<span class="add-on"><i class="icon-th"></i></span>			
 		</div>
 	</div>	
 	<div class="col-md-2">
-		<button class="btn btn-default">Search By Date</button>
+		<button class="btn btn-default" onclick="periodLogs(startdate.value, enddate.value);">Submit</button>
 	</div>		
 </div>
 <hr />

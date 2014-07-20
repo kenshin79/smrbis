@@ -24,13 +24,22 @@
 			function load_logs(){
 				$('#ulog').load('<?php echo base_url()."index.php/admin/recent_log";?>', function(){
 					$('#logs_table').DataTable();
-					$('.datepicker').datepicker();
+					$('.datepicker').datepicker({'format':"yyyy-mm-dd"});
 				})
 			}	
 			$(document).ready(function(){
 				load_users();
 			});
 			
+			function periodLogs(sdate, edate){
+				$('#ulog').load('<?php echo base_url()."index.php/admin/period_log";?>',
+					{'sdate':sdate, 'edate':edate}, function(){
+					$('#admin_alert').removeClass('hide');
+					$('#alert_body').html('Showing user activity logs from '+sdate+' to '+edate);									
+					$('#logs_table').DataTable();
+					$('.datepicker').datepicker({'format':"yyyy-mm-dd"});	
+				})
+			}
 			function validateNewUser(uname, pword1, pword2){
 				if(uname.length<8 || pword1.length<8){
 					$('#admin_alert').removeClass('hide');

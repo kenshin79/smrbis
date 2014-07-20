@@ -32,23 +32,33 @@
 			});
 			
 			function periodLogs(sdate, edate){
-				$('#ulog').load('<?php echo base_url()."index.php/admin/period_log";?>',
-					{'sdate':sdate, 'edate':edate}, function(){
+				if(sdate==="" || edate===""){
 					$('#admin_alert').removeClass('hide');
-					$('#alert_body').html('Showing user activity logs from '+sdate+' to '+edate);									
-					$('#logs_table').DataTable();
-					$('.datepicker').datepicker({'format':"yyyy-mm-dd"});	
-				})
+					$('#alert_body').html('Start and End dates should not be empty!');
+					setInterval(function(){$('#admin_alert').addClass('hide');}, 5000)							
+				}
+				else{
+					$('#ulog').load('<?php echo base_url()."index.php/admin/period_log";?>',
+						{'sdate':sdate, 'edate':edate}, function(){
+						$('#admin_alert').removeClass('hide');
+						$('#alert_body').html('Showing user activity logs from '+sdate+' to '+edate);									
+						$('#logs_table').DataTable();
+						$('.datepicker').datepicker({'format':"yyyy-mm-dd"});	
+					})					
+				}
+
 			}
 			function validateNewUser(uname, pword1, pword2){
 				if(uname.length<8 || pword1.length<8){
 					$('#admin_alert').removeClass('hide');
 					$('#alert_body').html('Username and Password should be at least 8 characters long!');
+					setInterval(function(){$('#admin_alert').addClass('hide');}, 5000)
 					return false;
 				}
 				else if(pword1!=pword2){
 					$('#admin_alert').removeClass('hide');
 					$('#alert_body').html('Passwords do not match!');
+					setInterval(function(){$('#admin_alert').addClass('hide');}, 5000)					
 					return false;
 				}
 				else{
@@ -69,7 +79,9 @@
 					$('#users_table').DataTable();
 					$('#admin_alert').removeClass('hide');
 					$('#alert_body').html('Successfully edited user access!');
+					setInterval(function(){$('#admin_alert').addClass('hide');}, 5000)
 				});
+				
 			}
 			function deleteUser(uid, uname){
 				if(confirm("Delete this user: " + uname + "?")==false){
@@ -79,7 +91,8 @@
 					$('#users').load('<?php echo base_url()."index.php/admin/deleteUser"; ?>', {'uid':uid, 'uname':uname}, function(){
 					$('#users_table').DataTable();
 					$('#admin_alert').removeClass('hide');
-					$('#alert_body').html('Successfully deleted user - '+uname+'!');						
+					$('#alert_body').html('Successfully deleted user - '+uname+'!');				
+					setInterval(function(){$('#admin_alert').addClass('hide');}, 5000)							
 					});
 				}
 			}
@@ -89,7 +102,8 @@
 						{'uname':uname, 'pword':pword1, 'access':access}, function(){
 							$('#users_table').DataTable();
 							$('#admin_alert').removeClass('hide');
-							$('#alert_body').html('Successfully added new user - '+uname+'!');										
+							$('#alert_body').html('Successfully added new user - '+uname+'!');				
+							setInterval(function(){$('#admin_alert').addClass('hide');}, 5000)						
 						})	
 				}
 			}
@@ -97,7 +111,7 @@
 		<title>Admin Panel</title>
 	</head>
 	<body>
-		<div class="alert alert-success hide" id="admin_alert" role="alert">
+		<div class="alert alert-info hide" id="admin_alert" role="alert">
 			<button type="button" class="close" onclick="$('#admin_alert').addClass('hide');" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 			<div id="alert_body"></div>
 		</div>

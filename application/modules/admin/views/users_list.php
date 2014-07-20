@@ -51,6 +51,9 @@
 </form>
 
 <hr />
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
 <table id="users_table" class="display">
 	<thead>
 		<tr>
@@ -79,5 +82,10 @@
 		
 		?>
 	</tbody>
-</table>
+</table>			
+	</div>
+
+	
+</div>
+
 

@@ -1,6 +1,7 @@
 
 <div class="row">
-	<div class="col-md-2">Search Period:</div>
+	<div class="col-md-1"></div>
+	<div class="col-md-1"><h3>Period:</h3></div>
 	<div class="col-md-3">
 		<div class="input-append date" id="dp1" data-date-format="yyyy-mm-dd">		
 			<label for="startdate">From: </label>
@@ -21,6 +22,8 @@
 </div>
 <hr />
 <div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
 <table class="display" id="logs_table">
 	<thead>
 		<tr>
@@ -39,7 +42,9 @@
 	}
 ?>			
 	</tbody>
-</table>	
+</table>			
+	</div>
+
 </div>
 
 

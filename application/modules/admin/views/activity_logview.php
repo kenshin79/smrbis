@@ -1,4 +1,3 @@
-
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-1"><h3>Period:</h3></div>

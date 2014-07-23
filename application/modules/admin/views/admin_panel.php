@@ -1,9 +1,16 @@
+<?php
+		$this->load->helper('url');
+		$this->load->library('Smrbis');
+		//determine current session user if exists and show appropriate menu
+		$active_user = $this->smrbis->getCurrentUser();
+		
+		if(!$active_user){ //if no session user
+			header('Location:'.base_url().'index.php/log_in/log_out');		
+		}
+?>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<?php
-			$this->load->helper('url');
-		?>		
+	<head>	
     	<meta charset="utf-8">
     	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -111,6 +118,7 @@
 		<title>Admin Panel</title>
 	</head>
 	<body>
+
 		<div class="alert alert-info hide" id="admin_alert" role="alert">
 			<button type="button" class="close" onclick="$('#admin_alert').addClass('hide');" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 			<div id="alert_body"></div>
@@ -135,7 +143,7 @@
   					<li><a href="#bb" data-toggle="tab">Bulletin Board</a></li>
 				</ul>					
 				</div>
-				<div class="col-md-1"><a href="<?php echo base_url();?>"><img src="<?php echo base_url();?>/img/pricelist.png" width="50px" height="50px" title="Back to Pricelist Manager" /></a></div>
+				<div class="col-md-1"><a href="<?php echo base_url()."index.php/welcome/frontpage";?>"><img src="<?php echo base_url();?>/img/pricelist.png" width="50px" height="50px" title="Back to Pricelist Manager" /></a></div>
 				<div class="col-md-1"><a href="<?php echo base_url()."index.php/log_in/log_out"; ?>"><img src="<?php echo base_url();?>/img/log_out.png" width="50px" height="50px" title="Log out" /></a></div>
 				
 			</div>

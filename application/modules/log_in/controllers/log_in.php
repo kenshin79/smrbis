@@ -33,8 +33,8 @@ class Log_in extends CI_Controller {
 		$activity = "Logged-Out";
 		$this->session->sess_destroy();
 		$this->load->model('admin/Activitylog_model');
-		$this->Activitylog_model->recordActivity($username, $activity);
-		header('Location:'.base_url());
+		$this->Activitylog_model->recordActivity($username, $activity);	
+		$this->load->view('logout_page');		
 	}
 	
 	//go to change password form

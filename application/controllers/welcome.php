@@ -19,10 +19,13 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('main_search');
+		$data['success'] = 1;
+		$this->load->view('log_in/login_page', $data);
 	}
 	
-
+	public function frontpage(){
+		$this->load->view('main_search');
+	}
 }
 
 /* End of file welcome.php */

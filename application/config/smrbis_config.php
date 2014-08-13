@@ -22,6 +22,7 @@ $config['logged_startpage'] = $config['app_root'].'/index.php/welcome';
 
 $config['access_type']['0'] = "Administrator";
 $config['access_type']['1'] = "Manager";
+$config['access_type']['2'] = "Sales";
 
 $config['pw_changed']['0'] = "No";
 $config['pw_changed']['1'] = "Yes";

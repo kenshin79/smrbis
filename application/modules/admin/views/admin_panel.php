@@ -136,14 +136,15 @@
 		</div><!-- /.modal -->
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-10">
+				<div class="col-md-1"><img src="<?php echo base_url();?>img/admin.png" width="50px" height="50px" /></div>	
+				<div class="col-md-9">
 				<ul class="nav nav-tabs" role="tablist">
   					<li class="active" ><a href="#users" data-toggle="tab" onclick="load_users();">Users</a></li>
   					<li><a href="#ulog" data-toggle="tab" onclick="load_logs();">User Log</a></li>
   					<li><a href="#bb" data-toggle="tab">Bulletin Board</a></li>
 				</ul>					
 				</div>
-				<div class="col-md-1"><a href="<?php echo base_url()."index.php/welcome/frontpage";?>"><img src="<?php echo base_url();?>/img/pricelist.png" width="50px" height="50px" title="Back to Pricelist Manager" /></a></div>
+				<div class="col-md-1"><a href="<?php echo base_url()."index.php/welcome/frontpage";?>"><img src="<?php echo base_url();?>/img/edit_find.png" width="50px" height="50px" title="Back to Pricelist Manager" /></a></div>
 				<div class="col-md-1"><a href="<?php echo base_url()."index.php/log_in/log_out"; ?>"><img src="<?php echo base_url();?>/img/log_out.png" width="50px" height="50px" title="Log out" /></a></div>
 				
 			</div>

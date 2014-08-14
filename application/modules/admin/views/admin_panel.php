@@ -136,17 +136,27 @@
 		</div><!-- /.modal -->
 		<div class="container-fluid">
 			<div class="row">
-				<div class="col-md-1"><img src="<?php echo base_url();?>img/admin.png" width="50px" height="50px" /></div>	
-				<div class="col-md-9">
+				<div class="col-md-3">
+					<img src="<?php echo base_url();?>img/admin.png" width="50px" height="50px" />
+				<?php
+					echo "<img src=\"".base_url()."img/users.png\" width=\"30px\" height=\"30px\" />User: ".$this->session->userdata('session_user');				
+				?>		
+				</div>
+				<div class="col-md-7"></div>
+				<div class="col-md-1"><a href="<?php echo base_url()."index.php/welcome/frontpage";?>"><img src="<?php echo base_url();?>/img/edit_find.png" width="50px" height="50px" title="Back to Pricelist Manager" /></a></div>
+				<div class="col-md-1"><a href="<?php echo base_url()."index.php/log_in/log_out"; ?>"><img src="<?php echo base_url();?>/img/log_out.png" width="50px" height="50px" title="Log out" /></a></div>
+				
+			</div>
+			<div class="row">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
 				<ul class="nav nav-tabs" role="tablist">
   					<li class="active" ><a href="#users" data-toggle="tab" onclick="load_users();">Users</a></li>
   					<li><a href="#ulog" data-toggle="tab" onclick="load_logs();">User Log</a></li>
   					<li><a href="#bb" data-toggle="tab">Bulletin Board</a></li>
-				</ul>					
+				</ul>										
 				</div>
-				<div class="col-md-1"><a href="<?php echo base_url()."index.php/welcome/frontpage";?>"><img src="<?php echo base_url();?>/img/edit_find.png" width="50px" height="50px" title="Back to Pricelist Manager" /></a></div>
-				<div class="col-md-1"><a href="<?php echo base_url()."index.php/log_in/log_out"; ?>"><img src="<?php echo base_url();?>/img/log_out.png" width="50px" height="50px" title="Log out" /></a></div>
-				
+				<div class="col-md-1"></div>
 			</div>
 			<div class="row">
 				<div class="tab-content">

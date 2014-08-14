@@ -32,7 +32,7 @@
 			echo "</div>";
 			echo "<div class=\"col-md-1\">";
 			if(in_array($this->session->userdata('session_access'), array(0, 1))){
-				echo "<a href=\"\" ><img src=\"".base_url()."img/pricelist.png\" width=\"50px\" height=\"50px\" /></a>";
+				echo "<a href=\"".base_url()."index.php/pricelist\" ><img src=\"".base_url()."img/pricelist.png\" width=\"50px\" height=\"50px\" /></a>";
 				echo "<br />Records";
 			}
 			echo "</div>";

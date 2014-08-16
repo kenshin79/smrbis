@@ -1,5 +1,5 @@
 <?php
-	include '/application/views/includes/check_login.php';
+	include 'application/views/includes/check_login.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

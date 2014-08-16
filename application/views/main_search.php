@@ -1,5 +1,6 @@
 <?php
-	include '/application/views/includes/check_login.php';
+	$this->load->helper('url');
+	include 'application/views/includes/check_login.php';
 ?>
 
 <!DOCTYPE html>

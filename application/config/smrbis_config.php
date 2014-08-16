@@ -26,3 +26,10 @@ $config['access_type']['2'] = "Sales";
 
 $config['pw_changed']['0'] = "No";
 $config['pw_changed']['1'] = "Yes";
+
+$config['icon']['admin'] = $config['app_root'].'/img/admin.png';
+$config['icon']['pricelist'] = $config['app_root'].'/img/pricelist.png';
+$config['icon']['search'] = $config['app_root'].'/img/edit_find.png';
+$config['icon']['user'] = $config['app_root'].'/img/users.png';
+$config['icon']['logout'] = $config['app_root'].'/img/log_out.png';
+

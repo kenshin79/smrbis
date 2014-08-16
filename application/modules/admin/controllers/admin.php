@@ -3,8 +3,12 @@
 class Admin extends CI_Controller {
 		
 		public function index(){
-			
-			$this->load->view('admin_panel');
+			$data['icon1'] = $this->config->item('admin', 'icon');
+			$data['icon2'] = $this->config->item('user', 'icon');
+			$data['icon3'] = "";
+			$data['icon4'] = $this->config->item('search', 'icon');
+			$data['icon5'] = $this->config->item('log_out', 'icon');
+			$this->load->view('admin_panel', $data);
 		}
 		
 		public function users_list(){

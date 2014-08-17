@@ -128,18 +128,9 @@
   			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 		<div class="container-fluid">
-			<div class="row">
-				<div class="col-md-3">
-					<img src="<?php echo base_url();?>img/admin.png" width="50px" height="50px" />
-				<?php
-					echo "<img src=\"".base_url()."img/users.png\" width=\"30px\" height=\"30px\" />User: ".$this->session->userdata('session_user');				
-				?>		
-				</div>
-				<div class="col-md-7"></div>
-				<div class="col-md-1"><a href="<?php echo base_url()."index.php/welcome/frontpage";?>"><img src="<?php echo base_url();?>/img/edit_find.png" width="50px" height="50px" title="Back to Pricelist Manager" /></a></div>
-				<div class="col-md-1"><a href="<?php echo base_url()."index.php/log_in/log_out"; ?>"><img src="<?php echo base_url();?>/img/log_out.png" width="50px" height="50px" title="Log out" /></a></div>
-				
-			</div>
+		<?php
+			include 'application/views/includes/header.php';
+		?>
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10">

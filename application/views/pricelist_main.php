@@ -13,15 +13,22 @@
 	<body>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-3">
-				<img src="<?php echo base_url()."img/pricelist.png"; ?>" width="50px" height="50px" />
-				<?php
-					echo "<img src=\"".base_url()."img/users.png\" width=\"30px\" height=\"30px\" />User: ".$this->session->userdata('session_user');				
-				?>		
-			</div>
-			<div class="col-md-7"></div>
-			<div class="col-md-1"><a href="<?php echo base_url()."index.php/welcome/frontpage";?>"><img src="<?php echo base_url();?>/img/edit_find.png" width="50px" height="50px" title="Back to Pricelist Manager" /></a></div>
-			<div class="col-md-1"><a href="<?php echo base_url()."index.php/log_in/log_out"; ?>"><img src="<?php echo base_url();?>/img/log_out.png" width="50px" height="50px" title="Log out" /></a></div>
+		<?php
+			include 'application/views/includes/headers/currentpage_header.php';
+			include 'application/views/includes/headers/username_header.php';
+		?>				
+		<div class="col-md-5"></div>
+		<?php
+			if($this->session->userdata('session_access') == 0){
+				include 'application/views/includes/headers/search_header.php';
+				include 'application/views/includes/headers/admin_header.php';
+			}
+			else{
+				echo "<div class=\"col-md-1\"></div>";
+				include 'application/views/includes/headers/search_header.php';
+			}
+			include 'application/views/includes/headers/logout_header.php';
+		?>
 		</div>
 		<div class="row">
 			<div class="col-md-1"></div>

@@ -5,10 +5,9 @@ class Admin extends CI_Controller {
 		public function index(){
 			$data['icon1'] = $this->config->item('admin', 'icon');
 			$data['icon2'] = $this->config->item('user', 'icon');
-			$data['icon3'] = "";
-			$data['icon4'] = $this->config->item('search', 'icon');
+			$data['icon3'] = $this->config->item('search', 'icon');
+			$data['icon4'] = $this->config->item('pricelist', 'icon');
 			$data['icon5'] = $this->config->item('log_out', 'icon');
-			$data['link'] = "search";
 			$this->load->view('admin_panel', $data);
 		}
 		
@@ -95,5 +94,6 @@ class Admin extends CI_Controller {
 			$this->load->view('users_list', $data);						
 			
 		}
+		
 }		
 	

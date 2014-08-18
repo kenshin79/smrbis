@@ -16,21 +16,32 @@
 		<script src="<?php echo $this->config->item('datepicker_js');?>"></script>
 
 		<script>
+			function checkAccess(){
+				var access;
+				$.ajax({
+					url:'welcome/checkAccess',
+					dataType:'text'
+				}).done(function(data){
+					access = data;
+					return access;
+				})
+				
+			}
+
 			function load_users(){
+				
 				$('#users').load('<?php echo base_url()."index.php/admin/users_list";?>', function(){
 					$('#users_table').DataTable();
 				});				
 			}
 			function load_logs(){
-				$('#ulog').load('<?php echo base_url()."index.php/admin/recent_log";?>', function(){
-					$('#logs_table').DataTable();
-					$('.datepicker').datepicker({'format':"yyyy-mm-dd"});
-				})
-			}	
-			$(document).ready(function(){
-				load_users();
-			});
+				var access1;
+				access1 = checkAccess();
+				alert(access1);
+
+			}
 			
+
 			function periodLogs(sdate, edate){
 				if(sdate==="" || edate===""){
 					$('#admin_alert').removeClass('hide');
@@ -107,6 +118,10 @@
 						})	
 				}
 			}
+			$(document).ready(function(){
+				load_users();
+			});				
+			
 		</script>	
 		<title>Admin Panel</title>
 	</head>
@@ -128,9 +143,20 @@
   			</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
 		<div class="container-fluid">
+			<div class="row">
 		<?php
-			include 'application/views/includes/header.php';
-		?>
+			include 'application/views/includes/headers/currentpage_header.php';
+			include 'application/views/includes/headers/username_header.php';
+		?>				
+			<div class="col-md-6"></div>
+		<?php
+			include 'application/views/includes/headers/search_header.php';
+			include 'application/views/includes/headers/manager_header.php';
+			include 'application/views/includes/headers/logout_header.php';
+		?>	
+			</div>
+
+			
 			<div class="row">
 				<div class="col-md-1"></div>
 				<div class="col-md-10">

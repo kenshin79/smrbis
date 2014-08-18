@@ -16,31 +16,20 @@
 		<script src="<?php echo $this->config->item('datepicker_js');?>"></script>
 
 		<script>
-			function checkAccess(){
-				var access;
-				$.ajax({
-					url:'welcome/checkAccess',
-					dataType:'text'
-				}).done(function(data){
-					access = data;
-					return access;
-				})
-				
-			}
+			function load_logs(){
+				$('#ulog').load('<?php echo base_url()."index.php/admin/recent_log";?>', function(){
+						$('#logs_table').DataTable();
+						$('.datepicker').datepicker({'format':"yyyy-mm-dd"});	
+				})		
+
+			}		
 
 			function load_users(){
 				
 				$('#users').load('<?php echo base_url()."index.php/admin/users_list";?>', function(){
 					$('#users_table').DataTable();
 				});				
-			}
-			function load_logs(){
-				var access1;
-				access1 = checkAccess();
-				alert(access1);
-
-			}
-			
+			}		
 
 			function periodLogs(sdate, edate){
 				if(sdate==="" || edate===""){
@@ -118,6 +107,69 @@
 						})	
 				}
 			}
+
+
+			function checkAccess(admin_fxn){
+				$.ajax({
+					url:'welcome/checkAccess',
+					dataType:'text'
+				}).done(function(data){
+					if(data == 0){
+						admin_fxn();
+					}
+					else{
+						alert('Please log in again with the proper privileges.');
+						window.location.replace('log_in/log_out');
+					}
+				})
+				
+			}
+			function checkAccess2(var1, var2, admin_fxn){
+				$.ajax({
+					url:'welcome/checkAccess',
+					dataType:'text'
+				}).done(function(data){
+					if(data == 0){
+						admin_fxn(var1, var2);
+					}
+					else{
+						alert('Please log in again with the proper privileges.');
+						window.location.replace('log_in/log_out');
+					}
+				})			
+			}
+			
+			function checkAccess3(var1, var2, var3, admin_fxn){
+				$.ajax({
+					url:'welcome/checkAccess',
+					dataType:'text'
+				}).done(function(data){
+					if(data == 0){
+						admin_fxn(var1, var2, var3);
+					}
+					else{
+						alert('Please log in again with the proper privileges.');
+						window.location.replace('log_in/log_out');
+					}
+				})					
+			}
+
+			function checkAccess4(var1, var2, var3, var4, admin_fxn){
+				$.ajax({
+					url:'welcome/checkAccess',
+					dataType:'text'
+				}).done(function(data){
+					if(data == 0){
+						admin_fxn(var1, var2, var3, var4);
+					}
+					else{
+						alert('Please log in again with the proper privileges.');
+						window.location.replace('log_in/log_out');
+					}
+				})					
+			}			
+
+
 			$(document).ready(function(){
 				load_users();
 			});				
@@ -161,8 +213,8 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-10">
 				<ul class="nav nav-tabs" role="tablist">
-  					<li class="active" ><a href="#users" data-toggle="tab" onclick="load_users();">Users</a></li>
-  					<li><a href="#ulog" data-toggle="tab" onclick="load_logs();">User Log</a></li>
+  					<li class="active" ><a href="#users" data-toggle="tab" onclick="checkAccess(load_users);">Users</a></li>
+  					<li><a href="#ulog" data-toggle="tab" onclick="checkAccess(load_logs);">User Log</a></li>
   					<li><a href="#bb" data-toggle="tab">Bulletin Board</a></li>
 				</ul>										
 				</div>

@@ -44,7 +44,7 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-4">
-				<span class="btn btn-default" onclick="addUser(document.getElementById('uname').value, document.getElementById('pword1').value, document.getElementById('pword2').value, document.getElementById('access').value )">Save</span>						
+				<span class="btn btn-default" onclick="checkAccess4(document.getElementById('uname').value, document.getElementById('pword1').value, document.getElementById('pword2').value, document.getElementById('access').value, addUser )">Save</span>						
 			</div>
 		</div>		
 	</div>
@@ -74,7 +74,16 @@
 					echo "<td>".$row->uname."</td>";
 					echo "<td>".$this->config->item($row->access_type, 'access_type')."</td>";
 					echo "<td>".$this->config->item($row->pw_changed, 'pw_changed')."</td>";
-					echo "<td><button class=\"btn btn-default\" onclick = \"updateUser('".$row->u_id."','".$row->uname."',".$row->access_type.");\">Edit</button><button class=\"btn btn-default\" onclick=\"deleteUser('".$row->u_id."', '".$row->uname."')\">Delete</button></td>";
+					echo "<td><button class=\"btn btn-default\" ";
+					if(!strcmp($row->uname, $this->session->userdata('session_user'))){
+						echo "disabled";
+					}
+					echo " onclick = \"checkAccess3('".$row->u_id."','".$row->uname."',".$row->access_type.", updateUser);\">Edit</button>";
+					echo "<button class=\"btn btn-default\" ";
+					if(!strcmp($row->uname, $this->session->userdata('session_user'))){
+						echo "disabled";
+					}
+					echo " onclick=\"checkAccess2('".$row->u_id."', '".$row->uname."', deleteUser)\">Delete</button></td>";
 					echo "</tr>";
 					$x++;
 				}

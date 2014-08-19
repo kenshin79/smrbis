@@ -75,6 +75,9 @@ class Admin extends CI_Controller {
 			$this->load->view('users_list', $data);			
 			
 		}
+		public function newUser(){
+			$this->load->view('users/newUser_form');
+		}
 		
 		public function addUser(){
 			$this->load->model('log_in/Users_model');				

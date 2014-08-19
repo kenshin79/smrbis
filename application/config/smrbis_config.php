@@ -18,6 +18,10 @@ $config['datepicker_css'] = $config['app_root'].'/datepicker/datepicker.css';
 
 $config['datepicker_js'] = $config['app_root'].'/datepicker/bootstrap-datepicker.js';
 
+$config['admin_js'] = $config['app_root'].'/js/admin.js';
+
+$config['pricelist_js'] = $config['app_root'].'/js/pricelist.js';
+
 $config['logged_startpage'] = $config['app_root'].'/index.php/welcome';
 
 $config['access_type']['0'] = "Administrator";

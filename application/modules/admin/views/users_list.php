@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-		<button class="btn btn-default" onclick="checkAccess(newUser);" title="add new user">New User</button>		
+		<button class="btn btn-default" onclick="checkAccess([], newUser);" title="add new user">New User</button>		
 	</div>
 	<div class="col-md-1"></div>
 </div>
@@ -34,12 +34,12 @@
 					if(!strcmp($row->uname, $this->session->userdata('session_user'))){
 						echo "disabled";
 					}
-					echo " onclick = \"checkAccess3('".$row->u_id."','".$row->uname."',".$row->access_type.", updateUser);\">Edit</button>";
+					echo " onclick = \"checkAccess(['".$row->u_id."','".$row->uname."','".$row->access_type."'], updateUser);\">Edit</button>";
 					echo "<button class=\"btn btn-default\" ";
 					if(!strcmp($row->uname, $this->session->userdata('session_user'))){
 						echo "disabled";
 					}
-					echo " onclick=\"checkAccess2('".$row->u_id."', '".$row->uname."', deleteUser)\">Delete</button></td>";
+					echo " onclick=\"checkAccess(['".$row->u_id."', '".$row->uname."'], deleteUser)\">Delete</button></td>";
 					echo "</tr>";
 					$x++;
 				}

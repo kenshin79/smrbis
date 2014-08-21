@@ -26,6 +26,18 @@ class Sku_model extends CI_Model {
 		$query = $this->db->get('sku');
 		return $query->result();
 	}
-	
+	function deleteSku($skuId){
+		$this->db->where('sku_id', $skuId);
+		$this->db->delete('sku');
+		$deleted = $this->db->affected_rows();
+		return $deleted;
+	}
+	function updateSku($skuId, $skuCount, $skuDesc){
+		$data = array('sku_count'=>$skuCount, 'description'=>$skuDesc);
+		$this->db->where('sku_id', $skuId);
+		$this->db->update('sku', $data);
+		$updated = $this->db->affected_rows();		
+		return $updated;
+	}
 	
 }	

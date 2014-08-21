@@ -22,6 +22,8 @@ $config['admin_js'] = $config['app_root'].'/js/admin.js';
 
 $config['pricelist_js'] = $config['app_root'].'/js/pricelist.js';
 
+$config['common_js'] = $config['app_root'].'/js/common.js';
+
 $config['logged_startpage'] = $config['app_root'].'/index.php/welcome';
 
 $config['access_type']['0'] = "Administrator";

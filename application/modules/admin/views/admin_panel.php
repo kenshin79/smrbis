@@ -14,6 +14,7 @@
 		<script src="<?php echo $this->config->item('datatables_js');?>"></script>
 		<script src="<?php echo $this->config->item('bootstrap_js');?>"></script>	
 		<script src="<?php echo $this->config->item('datepicker_js');?>"></script>
+		<script src="<?php echo $this->config->item('common_js');?>"></script>
 		<script src="<?php echo $this->config->item('admin_js');?>"></script>
 		<script>
 			$(document).ready(function(){
@@ -23,12 +24,12 @@
 		<title>Admin Panel</title>
 	</head>
 	<body>
-		<div class="alert alert-info hide" id="admin_alert" role="alert">
-			<button type="button" class="close" onclick="$('#admin_alert').addClass('hide');" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<div id="alert_body"></div>
+		<div class="alert alert-info hide" id="main_alert" role="alert">
+			<button type="button" class="close" onclick="$('#main_alert').addClass('hide');" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<div id="mainalert_body"></div>
 		</div>
 
-		<div class="modal" id="admin_modal">
+		<div class="modal" id="main_modal">
   			<div class="modal-dialog">
     			<div class="modal-content">
       				<div class="modal-header">
@@ -36,7 +37,7 @@
         				<h4 class="modal-title"></h4>
       				</div>
 		<div class="alert alert-info hide" id="modal_alert" role="alert">
-			<button type="button" class="close" onclick="$('#admin_alert').addClass('hide');" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<button type="button" class="close" onclick="$('#modal_alert').addClass('hide');" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 			<div id="modalalert_body"></div>
 		</div>
       				<div class="modal-body"></div>
@@ -62,8 +63,8 @@
 				<div class="col-md-1"></div>
 				<div class="col-md-10">
 				<ul class="nav nav-tabs" role="tablist">
-  					<li class="active" ><a href="#users" data-toggle="tab" onclick="checkAccess(load_users);">Users</a></li>
-  					<li><a href="#ulog" data-toggle="tab" onclick="checkAccess(load_logs);">User Log</a></li>
+  					<li class="active" ><a href="#users" data-toggle="tab" onclick="checkAccess([], load_users);">Users</a></li>
+  					<li><a href="#ulog" data-toggle="tab" onclick="checkAccess([], load_logs);">User Log</a></li>
   					<li><a href="#bb" data-toggle="tab">Bulletin Board</a></li>
 				</ul>										
 				</div>

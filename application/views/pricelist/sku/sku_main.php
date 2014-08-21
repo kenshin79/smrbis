@@ -2,7 +2,7 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
 		<br />
-		<button class="btn btn-default" onclick="checkAccess(newSku_form);">Add SKU</button>
+		<button class="btn btn-default" onclick="checkAccess([], newSku_form);">Add SKU</button>
 	</div>
 	<div class="col-md-1"></div>
 </div>
@@ -23,8 +23,8 @@
 				echo "<td>".$row->sku_name."</td>";
 				echo "<td>".$row->sku_count."</td>";
 				echo "<td>".$row->description."</td>";
-				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess4('".$row->sku_id."', '".$row->sku_name."', '".$row->sku_count."', '".$row->description."', editSku );\" >Edit</button>";
-				echo "<button class=\"btn btn-default\">Delete</button></td>";
+				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->sku_id."', '".$row->sku_name."', '".$row->sku_count."', '".$row->description."'], editSku );\" >Edit</button>";
+				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->sku_id."', '".$row->sku_name."'], deleteSku);\">Delete</button></td>";
 				echo "</tr>";
 				$x++;
 			}

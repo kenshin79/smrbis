@@ -16,7 +16,7 @@
 		</div>
 	</div>	
 	<div class="col-md-2">
-		<button class="btn btn-default" onclick="checkAccess2(startdate.value, enddate.value, periodLogs);">Submit</button>
+		<button class="btn btn-default" onclick="checkAccess([startdate.value, enddate.value], periodLogs);">Submit</button>
 	</div>		
 </div>
 <hr />

@@ -14,6 +14,7 @@
 		<script src="<?php echo $this->config->item('bootstrap_js');?>"></script>						
 		<script src="<?php echo $this->config->item('datatables_js');?>"></script>
 		<script src="<?php echo $this->config->item('datepicker_js');?>"></script>			
+		<script src="<?php echo $this->config->item('common_js');?>"></script>		
 	    <script src="<?php echo $this->config->item('pricelist_js');?>"></script>			    
 	    <script>
 
@@ -21,11 +22,11 @@
 		<title>Manage Pricelist</title>
 	</head>
 	<body>
-		<div class="alert alert-info hide" id="pricelist_alert" role="alert">
+		<div class="alert alert-info hide" id="main_alert" role="alert">
 			<button type="button" class="close" onclick="$('#admin_alert').addClass('hide');" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<div id="alert_body"></div>
+			<div id="mainalert_body"></div>
 		</div>
-		<div class="modal" id="pricelist_modal">
+		<div class="modal" id="main_modal">
   			<div class="modal-dialog">
     			<div class="modal-content">
       				<div class="modal-header">
@@ -65,7 +66,9 @@
 				<ul class="nav nav-tabs" role="tablist">
   					<li class="active" ><a href="#items" data-toggle="tab" onclick="">Items</a></li>
   					<li><a href="#price" data-toggle="tab" onclick="">Price</a></li>
-  					<li><a href="#sku" data-toggle="tab" onclick = "checkAccess(showSku);">SKU</a></li>
+  					<li><a href="#sku" data-toggle="tab" onclick = "checkAccess([], showSku);">SKU</a></li>
+  					<li><a href="#categories" data-toggle="tab" onclick = "">Categories</a></li>
+  					<li><a href="#brands" data-toggle="tab" onclick = "checkAccess([], showBrands);">Brands</a></li>
 				</ul>							
 			</div>
 			<div class="col-md-1"></div>
@@ -75,6 +78,8 @@
 				<div id="items" class="tab-pane active fade in"></div>
 				<div id="price" class="tab-pane"></div>
 				<div id="sku" class="tab-pane"></div>
+				<div id="categories" class="tab-pane"></div>
+				<div id="brands" class="tab-pane"></div>
 			</div>
 		</div>		
 	</div>

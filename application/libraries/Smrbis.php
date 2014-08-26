@@ -8,7 +8,11 @@ class Smrbis{
 		$session_user = $CI->session->userdata('session_user');
 		return $session_user;
 	}	
-	
+
+	public function cleanString($string){
+		$cleaned = str_replace("'", "", $string);
+		return $cleaned;
+	}
 
 	
 }

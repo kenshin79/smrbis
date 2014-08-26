@@ -1,7 +1,7 @@
 <form role="form">
 	<div class="form-group">
 		<label for="skuName">SKU:</label>
-		<input class="form-control" type="text" id="skuName" value="<?php echo $skuName; ?>" disabled />
+		<input class="form-control" type="text" id="skuName" value="<?php echo $skuName; ?>" />
 		<br />
 		<label for="skuCount">Quantity:</label>
 		<input class="form-control" type="text" id="skuCount" value="<?php echo $skuCount; ?>" />

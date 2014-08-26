@@ -32,8 +32,8 @@ class Sku_model extends CI_Model {
 		$deleted = $this->db->affected_rows();
 		return $deleted;
 	}
-	function updateSku($skuId, $skuCount, $skuDesc){
-		$data = array('sku_count'=>$skuCount, 'description'=>$skuDesc);
+	function updateSku($skuId, $skuName, $skuCount, $skuDesc){
+		$data = array('sku_count'=>$skuCount, 'sku_name'=>$skuName, 'description'=>$skuDesc);
 		$this->db->where('sku_id', $skuId);
 		$this->db->update('sku', $data);
 		$updated = $this->db->affected_rows();		

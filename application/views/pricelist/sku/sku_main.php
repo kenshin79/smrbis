@@ -2,7 +2,7 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
 		<br />
-		<button class="btn btn-default" onclick="checkAccess([], newSku_form);">Add SKU</button>
+		<button class="btn btn-default" onclick="checkAccess(['Add SKU','sku', 'newSku_form'], newEntry_form);">Add SKU</button>
 	</div>
 	<div class="col-md-1"></div>
 </div>

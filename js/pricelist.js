@@ -3,16 +3,10 @@
 					$(table).DataTable();
 				});
 			}
+			function newEntry_form(title, folder, view){
+				modalOn(title, 'pricelist/newForm/'+folder+'/'+view);
+			}
 
-	    	function newSku_form(){
-	    		modalOn("Add SKU","pricelist/newSkuForm");
-	    	}
-	    	function newCategory_form(){
-	    		modalOn("Add Category", "pricelist/newCategoryForm");
-	    	}
-	    	function newSupplier_form(){
-	    		modalOn("Add Supplier", "pricelist/newSupplierForm");
-	    	}
 	    	function editSku(skuId, skuName, skuCount, skuDesc){
 				$('#main_modal .modal-title').html("Edit SKU");
 				$('#main_modal .modal-body').load('pricelist/editSku', 

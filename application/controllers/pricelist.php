@@ -50,15 +50,10 @@ class Pricelist extends CI_Controller {
 		$deleted = $this->Suppliers_model->deleteSupplier($supplierId);
 		echo $deleted;
 	}
-	public function newSkuForm(){
-		$this->load->view('pricelist/sku/newSku_form');
+	public function newForm($folder, $view){
+		$this->load->view("pricelist/".$folder."/".$view);
 	}
-	public function newCategoryForm(){
-		$this->load->view('pricelist/categories/newCategory_form');
-	}
-	public function newSupplierForm(){
-		$this->load->view('pricelist/suppliers/newSupplier_form');
-	}
+
 	public function addSku(){
 		$this->load->library('Smrbis');
 		$skuName = $this->smrbis->cleanString($this->input->post('skuName', TRUE));

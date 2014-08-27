@@ -181,10 +181,10 @@
 	    		}
 	    		else{
 	    		$.ajax({
-	    			url: 'pricelist/skuUnique',
+	    			url: 'pricelist/nameUnique',
 	    			type:'post',
 	    			dataType:'text',
-	    			data:{'skuName': skuName}
+	    			data:{'name': skuName, 'model':"Sku_model"}
 	    		}).done(function(duplicate){
 	    			if(duplicate==0){
 	    				modalAlert("Sku - '"+skuName+"' exists in database!");
@@ -220,10 +220,10 @@
 	    		}
 	    		else{
 	    		$.ajax({
-	    			url: 'pricelist/categoryUnique',
+	    			url: 'pricelist/nameUnique',
 	    			type:'post',
 	    			dataType:'text',
-	    			data:{'categoryName': categoryName}
+	    			data:{'name': categoryName, 'model':"Categories_model"}
 	    		}).done(function(duplicate){
 	    			if(duplicate==0){
 	    				modalAlert("Category - '"+categoryName+"' exists in database!");
@@ -259,10 +259,10 @@
 	    		}
 	    		else{
 	    		$.ajax({
-	    			url: 'pricelist/supplierUnique',
+	    			url: 'pricelist/nameUnique',
 	    			type:'post',
 	    			dataType:'text',
-	    			data:{'supplierName':supplierName}
+	    			data:{'name':supplierName, 'model':"Suppliers_model"}
 	    		}).done(function(duplicate){
 	    			if(duplicate==0){
 	    				modalAlert("Supplier - '"+supplierName+"' exists in database!");

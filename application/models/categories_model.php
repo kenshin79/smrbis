@@ -16,9 +16,9 @@ class Categories_model extends CI_Model {
 		$deleted = $this->db->affected_rows();
 		return $deleted;
 	}
-	function checkCategoryName($categoryName){
+	function checkName($name){
 		$this->db->select('category_id');
-		$this->db->where('category_name', $categoryName);
+		$this->db->where('category_name', $name);
 		$query = $this->db->get('categories');
 		return $query->result();
 	}	

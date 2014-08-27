@@ -10,9 +10,9 @@ class Sku_model extends CI_Model {
         parent::__construct();
     }
 	
-	function checkSkuName($skuName){
+	function checkName($name){
 		$this->db->select('sku_id');
-		$this->db->where('sku_name', $skuName);
+		$this->db->where('sku_name', $name);
 		$query = $this->db->get('sku');
 		return $query->result();
 	}

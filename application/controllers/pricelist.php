@@ -10,39 +10,19 @@ class Pricelist extends CI_Controller {
 		$data['icon5'] = $this->config->item('log_out', 'icon');
 		$this->load->view('pricelist/pricelist_main', $data);
 	} 		
-	public function skuUnique(){
-		$skuName = $this->input->post('skuName', TRUE);
-		$this->load->model('Sku_model');
-		$duplicate = $this->Sku_model->checkSkuName($skuName);
+	public function nameUnique(){
+		$name = $this->input->post('name', TRUE);
+		$model = $this->input->post('model', TRUE);
+		$this->load->model($model);
+		$duplicate = $this->{$model}->checkName($name);
 		if($duplicate){
-				echo "0";
+			echo "0";
 		}
 		else{
 			echo "1";
 		}
 	}
-	public function categoryUnique(){
-		$categoryName = $this->input->post('categoryName', TRUE);
-		$this->load->model('Categories_model');
-		$duplicate = $this->Categories_model->checkCategoryName($categoryName);
-		if($duplicate){
-				echo "0";
-		}
-		else{
-			echo "1";
-		}
-	}	
-	public function supplierUnique(){
-		$supplierName = $this->input->post('supplierName', TRUE);
-		$this->load->model('Suppliers_model');
-		$duplicate = $this->Suppliers_model->checkSupplierName($supplierName);
-		if($duplicate){
-				echo "0";
-		}
-		else{
-			echo "1";
-		}
-	}	
+
 	public function showSku(){
 		$this->load->model('Sku_model');
 		$data['all_sku'] = $this->Sku_model->getAllSku();

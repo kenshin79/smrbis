@@ -21,7 +21,7 @@ class Sku_model extends CI_Model {
 		$this->db->insert('sku', $data);
 		return $this->db->insert_id();
 	}
-	function getAllSku(){
+	function getAll(){
 		$this->db->select('sku_id, sku_name, sku_count, description');
 		$query = $this->db->get('sku');
 		return $query->result();

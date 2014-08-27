@@ -66,9 +66,9 @@
 				<ul class="nav nav-tabs" role="tablist">
   					<li class="active" ><a href="#items" data-toggle="tab" onclick="">Items</a></li>
   					<li><a href="#price" data-toggle="tab" onclick="">Price</a></li>
-  					<li><a href="#sku" data-toggle="tab" onclick = "checkAccess([], showSku);">SKU</a></li>
-  					<li><a href="#categories" data-toggle="tab" onclick = "checkAccess([], showCategories);">Categories</a></li>
-  					<li><a href="#suppliers"data-toggle="tab" onclick="checkAccess([], showSuppliers);">Suppliers</a></li>
+  					<li><a href="#sku" data-toggle="tab" onclick = "checkAccess(['#sku', '#sku_table', 'sku/sku_main', 'Sku_model'], showMain);">SKU</a></li>
+  					<li><a href="#categories" data-toggle="tab" onclick = "checkAccess(['#categories', '#categories_table', 'categories/categories_main', 'Categories_model'], showMain);">Categories</a></li>
+  					<li><a href="#suppliers"data-toggle="tab" onclick="checkAccess(['#suppliers', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model'], showMain);">Suppliers</a></li>
 				</ul>							
 			</div>
 			<div class="col-md-1"></div>

@@ -22,21 +22,15 @@ class Pricelist extends CI_Controller {
 			echo "1";
 		}
 	}
-
-	public function showSku(){
-		$this->load->model('Sku_model');
-		$data['all_sku'] = $this->Sku_model->getAllSku();
-		$this->load->view('pricelist/sku/sku_main', $data);
-	}	
-	public function showCategories(){
-		$this->load->model('Categories_model');
-		$data['all_categories'] = $this->Categories_model->getAllCategories();
-		$this->load->view('pricelist/categories/categories_main', $data);		
+	public function showMain(){
+		$model = $this->input->post('model', TRUE);
+		$main_page = $this->input->post('main_page');
+		$this->load->model($model);
+		$data['all_list'] = $this->{$model}->getAll();
+		$this->load->view('pricelist/'.$main_page, $data);
 	}
-	public function showSuppliers(){
-		$this->load->model('Suppliers_model');
-		$data['all_suppliers'] = $this->Suppliers_model->getAllSuppliers();
-		$this->load->view('pricelist/suppliers/suppliers_main', $data);
+	public function deleteEntry(){
+		
 	}
 	public function deleteSku(){
 		$skuId = $this->input->post('skuId', TRUE);

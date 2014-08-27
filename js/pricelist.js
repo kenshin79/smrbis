@@ -1,19 +1,9 @@
+			function showMain(tab, table, main_page, model){
+				$(tab).load('pricelist/showMain', {'main_page':main_page, 'model':model}, function(){
+					$(table).DataTable();
+				});
+			}
 
-	    	function showSku(){
-	    		$("#sku").load('pricelist/showSku', function(){
-	    			$("#sku_table").DataTable();
-	    		});
-	    	}
-	    	function showCategories(){
-	    		$("#categories").load('pricelist/showCategories', function(){
-	    			$("#categories_table").DataTable();
-	    		});
-	    	}
-	    	function showSuppliers(){
-	    		$('#suppliers').load('pricelist/showSuppliers', function(){
-	    			$("#suppliers_table").DataTable();
-	    		});
-	    	}
 	    	function newSku_form(){
 	    		modalOn("Add SKU","pricelist/newSkuForm");
 	    	}
@@ -57,7 +47,7 @@
 	    			}).done(function(data){
 	    				if(data){
 	    					$("#main_modal").modal('hide');
-	    					showSku();
+	    					showMain('#sku', '#sku_table', 'sku/sku_main', 'Sku_model');
 	    					mainAlert("Successfully updated SKU - '"+skuName+"'!");
 	    				}
 	    				else{
@@ -79,7 +69,7 @@
 	    			}).done(function(data){
 	    				if(data){
 	    					$("#main_modal").modal('hide');
-	    					showCategories();
+	    					showMain('#categories', '#categories_table', 'categories/categories_main', 'Categories_model');
 	    					mainAlert("Successfully updated Category - '"+categoryName+"'!");
 	    				}
 	    				else{
@@ -101,7 +91,7 @@
 	    			}).done(function(data){
 	    				if(data){
 	    					$("#main_modal").modal('hide');
-	    					showSuppliers();
+	    					showMain('#suppliers', '#suppliers_table', 'suppliers_main', 'Suppliers_model');
 	    					mainAlert("Successfully updated Supplier - '"+supplierName+"'!");
 	    				}
 	    				else{
@@ -111,6 +101,7 @@
 	    		}	
 	    	}	    	    	    	
 	    	
+
 	    	function deleteSku(skuId, skuName){
 	    		if(confirm("Delete this SKU '"+skuName+"'?") == false){
 	    			return false;
@@ -122,7 +113,7 @@
 	    					data: {'skuId': skuId}
 	    					}).done(function(data){
 	    						if(data){
-	    							showSku();
+	    							showMain('#sku', '#sku_table', 'sku/sku_main', 'Sku_model');
 	    							mainAlert("Successfully deleted SKU - '"+skuName+"'!");
 	    						}
 	    						else{
@@ -142,7 +133,7 @@
 	    					data: {'categoryId': categoryId}
 	    					}).done(function(data){
 	    						if(data){
-	    							showCategories();
+	    							showMain('#categories', '#categories_table', 'categories/categories_main', 'Categories_model');
 	    							mainAlert("Successfully deleted Category - '"+categoryName+"'!");
 	    						}
 	    						else{
@@ -162,7 +153,7 @@
 	    					data: {'supplierId': supplierId}
 	    					}).done(function(data){
 	    						if(data){
-	    							showSuppliers();
+	    							showMain('#suppliers', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model');
 	    							mainAlert("Successfully deleted Supplier - '"+supplierName+"'!");
 	    						}
 	    						else{
@@ -198,9 +189,7 @@
 	    				}).done(function(data){
 	    					if(data){
 	    						$("#main_modal").modal('hide');
-	    						$("#sku").load('pricelist/showSku', function(){
-	    							$("#sku_table").DataTable();
-	    						});
+	    						showMain('#sku', '#sku_table', 'sku/sku_main', 'Sku_model');
 	    						mainAlert("Success added SKU - '"+skuName+"'!");    						
 	    					}
 	    					else{
@@ -237,9 +226,7 @@
 	    				}).done(function(data){
 	    					if(data){
 	    						$("#main_modal").modal('hide');
-	    						$("#categories").load('pricelist/showCategories', function(){
-	    							$("#categories_table").DataTable();
-	    						});
+	    						showMain('#categories', '#categories_table', 'categories/categories_main', 'Categories_model');
 	    						mainAlert("Success added Category - '"+categoryName+"'!");    						
 	    					}
 	    					else{
@@ -276,9 +263,7 @@
 	    				}).done(function(data){
 	    					if(data){
 	    						$("#main_modal").modal('hide');
-	    						$("#suppliers").load('pricelist/showSuppliers', function(){
-	    							$("#suppliers_table").DataTable();
-	    						});
+	    						showMain('#suppliers', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model');
 	    						mainAlert("Success added Supplier - '"+supplierName+"'!");    						
 	    					}
 	    					else{

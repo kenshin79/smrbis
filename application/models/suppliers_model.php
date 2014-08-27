@@ -9,7 +9,7 @@ class Suppliers_model extends CI_Model {
 	var $supplier_mobile="";
 	var $supplier_email="";
 	
-	function getAllSuppliers(){
+	function getAll(){
 		$this->db->select('supplier_id, supplier_name, supplier_address, supplier_telephone, supplier_mobile, supplier_email');
 		$query = $this->db->get('suppliers');
 		return $query->result();

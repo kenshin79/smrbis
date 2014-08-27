@@ -17,7 +17,7 @@
 			<tbody>
 		<?php
 			$x = 1;
-			foreach($all_categories as $row){
+			foreach($all_list as $row){
 				echo "<tr>";
 				echo "<td>".$x."</td>";
 				echo "<td>".$row->category_name."</td>";

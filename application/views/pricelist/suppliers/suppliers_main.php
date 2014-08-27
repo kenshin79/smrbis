@@ -21,7 +21,7 @@
 			<tbody>
 				<?php
 					$x = 1;
-					foreach($all_suppliers as $row){
+					foreach($all_list as $row){
 						echo "<tr>";
 						echo "<td>".$x."</td>";
 						echo "<td>".$row->supplier_name."</td>";

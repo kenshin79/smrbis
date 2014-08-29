@@ -50,10 +50,15 @@ class Pricelist extends CI_Controller {
 		$deleted = $this->Suppliers_model->deleteSupplier($supplierId);
 		echo $deleted;
 	}
+	public function deleteCustomer(){
+		$customerId = $this->input->post('customerId', TRUE);
+		$this->load->model('Customers_model');
+		$deleted = $this->Customers_model->deleteCustomer($customerId);
+		echo $deleted;
+	}	
 	public function newForm($folder, $view){
 		$this->load->view("pricelist/".$folder."/".$view);
 	}
-
 	public function addSku(){
 		$this->load->library('Smrbis');
 		$skuName = $this->smrbis->cleanString($this->input->post('skuName', TRUE));
@@ -82,6 +87,17 @@ class Pricelist extends CI_Controller {
 		$supplierAdded = $this->Suppliers_model->insertSupplier($supplierName, $supplierAddress, $supplierTelephone, $supplierMobile, $supplierEmail);
 		echo $supplierAdded;
 	}
+	public function addCustomer(){
+		$this->load->library('Smrbis');
+		$customerName = $this->smrbis->cleanString($this->input->post('customerName', TRUE));
+		$customerAddress = $this->smrbis->cleanString($this->input->post('customerAddress', TRUE));
+		$customerTelephone = $this->smrbis->cleanString($this->input->post('customerTelephone', TRUE));
+		$customerMobile = $this->smrbis->cleanString($this->input->post('customerMobile', TRUE));
+		$customerEmail = $this->smrbis->cleanString($this->input->post('customerEmail', TRUE));
+		$this->load->model('Customers_model');
+		$customerAdded = $this->Customers_model->insertCustomer($customerName, $customerAddress, $customerTelephone, $customerMobile, $customerEmail);
+		echo $customerAdded;
+	}	
 	public function editSku(){
 		$data['skuId'] = $this->input->post('skuId', TRUE);
 		$data['skuName'] = $this->input->post('skuName', TRUE);
@@ -104,6 +120,15 @@ class Pricelist extends CI_Controller {
 		$data['supplierEmail'] = $this->input->post('supplierEmail', TRUE);
 		$this->load->view('pricelist/suppliers/editSupplier_form', $data);
 	}
+	public function editCustomer(){
+		$data['customerId'] = $this->input->post('customerId', TRUE);
+		$data['customerName'] = $this->input->post('customerName', TRUE);
+		$data['customerAddress'] = $this->input->post('customerAddress', TRUE);
+		$data['customerTelephone'] = $this->input->post('customerTelephone', TRUE);
+		$data['customerMobile'] = $this->input->post('customerMobile', TRUE);
+		$data['customerEmail'] = $this->input->post('customerEmail', TRUE);
+		$this->load->view('pricelist/customers/editCustomer_form', $data);
+	}	
 	public function updateSku(){
 		$this->load->library('Smrbis');
 		$skuId = $this->input->post('skuId', TRUE);
@@ -135,5 +160,17 @@ class Pricelist extends CI_Controller {
 		$updated = $this->Suppliers_model->updateSupplier($supplierId, $supplierName, $supplierAddress, $supplierTelephone, $supplierMobile, $supplierEmail);
 		echo $updated;
 	}	
+	public function updateCustomer(){
+		$this->load->library('Smrbis');
+		$customerId = $this->input->post('customerId', TRUE);
+		$customerName = $this->smrbis->cleanString($this->input->post('customerName', TRUE));
+		$customerAddress = $this->smrbis->cleanString($this->input->post('customerAddress', TRUE));
+		$customerTelephone = $this->smrbis->cleanString($this->input->post('customerTelephone', TRUE));
+		$customerMobile = $this->smrbis->cleanString($this->input->post('customerMobile', TRUE));
+		$customerEmail = $this->smrbis->cleanString($this->input->post('customerEmail', TRUE));
+		$this->load->model('Customers_model');
+		$updated = $this->Customers_model->updateCustomer($customerId, $customerName, $customerAddress, $customerTelephone, $customerMobile, $customerEmail);
+		echo $updated;
+	}		
 }		
 	

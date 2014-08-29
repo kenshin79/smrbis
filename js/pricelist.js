@@ -24,7 +24,13 @@
 				$('#main_modal .modal-body').load('pricelist/editSupplier', 
 					{'supplierId':supplierId, 'supplierName':supplierName, 'supplierAddress':supplierAddress, 'supplierTelephone':supplierTelephone, 'supplierMobile':supplierMobile, 'supplierEmail':supplierEmail});
 				$('#main_modal').modal('show');			    		
-	    	}	    	
+	    	}	 
+	    	function editCustomer(customerId, customerName, customerAddress, customerTelephone, customerMobile, customerEmail){
+				$('#main_modal .modal-title').html("Edit Customer");
+				$('#main_modal .modal-body').load('pricelist/editCustomer', 
+					{'customerId':customerId, 'customerName':customerName, 'customerAddress':customerAddress, 'customerTelephone':customerTelephone, 'customerMobile':customerMobile, 'customerEmail':customerEmail});
+				$('#main_modal').modal('show');			    		
+	    	}		    	   	
 	    	function updateSku(skuId, skuName, skuCount, skuDesc){
 				if(skuName=="" || skuCount==""){
 					modalAlert("SKU and Quantity cannot be empty!");
@@ -85,7 +91,7 @@
 	    			}).done(function(data){
 	    				if(data){
 	    					$("#main_modal").modal('hide');
-	    					showMain('#suppliers', '#suppliers_table', 'suppliers_main', 'Suppliers_model');
+	    					showMain('#suppliers', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model');
 	    					mainAlert("Successfully updated Supplier - '"+supplierName+"'!");
 	    				}
 	    				else{
@@ -93,8 +99,30 @@
 	    				}
 	    			});
 	    		}	
-	    	}	    	    	    	
-	    	
+	    	}	   
+	    	 	    	    	
+	    	function updateCustomer(customerId, customerName, customerAddress, customerTelephone, customerMobile, customerEmail){
+				if(customerName == ""){
+					modalAlert("Customer name should not be empty!");
+				}
+	    		else{
+	    			$.ajax({
+	    				url: 'pricelist/updateCustomer',
+	    				type: 'post',
+	    				dataType: 'text',
+	    				data:{'customerId':customerId, 'customerName':customerName, 'customerAddress':customerAddress, 'customerTelephone':customerTelephone, 'customerMobile':customerMobile, 'customerEmail':customerEmail}
+	    			}).done(function(data){
+	    				if(data){
+	    					$("#main_modal").modal('hide');
+	    					showMain('#customers', '#customers_table', 'customers/customers_main', 'Customers_model');
+	    					mainAlert("Successfully updated Customer - '"+customerName+"'!");
+	    				}
+	    				else{
+	    					modalAlert("Failed updating Customer -"+customerName+"!");
+	    				}
+	    			});
+	    		}	
+	    	}		    	
 
 	    	function deleteSku(skuId, skuName){
 	    		if(confirm("Delete this SKU '"+skuName+"'?") == false){
@@ -155,7 +183,27 @@
 	    						}	    					
 	    			});
 	    		}
-	    	}		    		    	
+	    	}	
+	    	function deleteCustomer(customerId, customerName){
+	    		if(confirm("Delete this Customer '"+customerName+"'?") == false){
+	    			return false;
+	    		}
+	    		else{
+	    			$.ajax({url:'pricelist/deleteCustomer',
+	    					type:'post',
+	    					dataType: 'text',
+	    					data: {'customerId': customerId}
+	    					}).done(function(data){
+	    						if(data){
+	    							showMain('#customers', '#customers_table', 'customers/customers_main', 'Customers_model');
+	    							mainAlert("Successfully deleted Customer - '"+customerName+"'!");
+	    						}
+	    						else{
+	    							mainAlert("Error deleting Customer - '"+customerName+"'!");
+	    						}	    					
+	    			});
+	    		}
+	    	}			    		    		    	
 	    	function addSku(skuName, skuCount, skuDesc){
 	    		
 	    		if(skuName=="" || skuCount==""){
@@ -269,3 +317,39 @@
 	    			
 	    		}
 	    	}
+	    	function addCustomer(customerName, customerAddress, customerTelephone, customerMobile, customerEmail){
+	    		
+	    		if(customerName==""){
+	    			modalAlert("Please enter Customer's Name!");	    			
+	    		}
+	    		else{
+	    		$.ajax({
+	    			url: 'pricelist/nameUnique',
+	    			type:'post',
+	    			dataType:'text',
+	    			data:{'name':customerName, 'model':"Customers_model"}
+	    		}).done(function(duplicate){
+	    			if(duplicate==0){
+	    				modalAlert("Customer - '"+customerName+"' exists in database!");
+	    			}	    		
+	    			else{
+	    				$.ajax({
+	    					url:'pricelist/addCustomer',
+	    					type:'post',
+	    					dataType:'text',
+	    					data:{'customerName':customerName, 'customerAddress':customerAddress, 'customerTelephone':customerTelephone, 'customerMobile':customerMobile, 'customerEmail':customerEmail}
+	    				}).done(function(data){
+	    					if(data){
+	    						$("#main_modal").modal('hide');
+	    						showMain('#customers', '#customers_table', 'customers/customers_main', 'Customers_model');
+	    						mainAlert("Success added Customer - '"+customerName+"'!");    						
+	    					}
+	    					else{
+	    						modalAlert("Failed to add Customer - "+customerName+"!");    								
+							}	
+	    				});
+	    			}
+	    		});	    			
+	    			
+	    		}
+	    	}	    	

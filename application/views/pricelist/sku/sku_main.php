@@ -24,7 +24,7 @@
 				echo "<td>".$row->sku_count."</td>";
 				echo "<td>".$row->description."</td>";
 				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->sku_id."', '".$row->sku_name."', '".$row->sku_count."', '".$row->description."'], editSku );\" >Edit</button>";
-				echo "<button class=\"btn btn-default\" disabled onclick=\"checkAccess(['".$row->sku_id."', '".$row->sku_name."'], deleteSku);\">Delete</button></td>";
+				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->sku_id."', '".$row->sku_name."'], deleteSku);\">Delete</button></td>";
 				echo "</tr>";
 				$x++;
 			}

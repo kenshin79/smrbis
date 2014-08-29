@@ -23,6 +23,7 @@ class Sku_model extends CI_Model {
 	}
 	function getAll(){
 		$this->db->select('sku_id, sku_name, sku_count, description');
+		$this->db->order_by('sku_name ASC');		
 		$query = $this->db->get('sku');
 		return $query->result();
 	}

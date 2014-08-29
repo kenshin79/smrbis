@@ -64,7 +64,7 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<ul class="nav nav-tabs" role="tablist">
-  					<li class="active" ><a href="#items" data-toggle="tab" onclick="">Items</a></li>
+  					<li class="active" ><a href="#items" data-toggle="tab" onclick="checkAccess(['#items', '#items_table', 'items/items_main', 'Items_model'], showMain)">Items</a></li>
   					<li><a href="#price" data-toggle="tab" onclick="">Price</a></li>
   					<li><a href="#sku" data-toggle="tab" onclick = "checkAccess(['#sku', '#sku_table', 'sku/sku_main', 'Sku_model'], showMain);">SKU</a></li>
   					<li><a href="#categories" data-toggle="tab" onclick = "checkAccess(['#categories', '#categories_table', 'categories/categories_main', 'Categories_model'], showMain);">Categories</a></li>

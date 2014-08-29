@@ -11,6 +11,7 @@ class Suppliers_model extends CI_Model {
 	
 	function getAll(){
 		$this->db->select('supplier_id, supplier_name, supplier_address, supplier_telephone, supplier_mobile, supplier_email');
+		$this->db->order_by('supplier_name ASC');
 		$query = $this->db->get('suppliers');
 		return $query->result();
 	}	

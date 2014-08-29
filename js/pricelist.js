@@ -7,6 +7,11 @@
 				modalOn(title, 'pricelist/newForm/'+folder+'/'+view);
 			}
 
+
+			function addDropdown(myArray, title, folder, view){
+				checkAccess(myArray, newEntry_form);
+				modalOn(title, 'pricelist/newForm/'+folder+'/'+view);				
+			}
 	    	function editSku(skuId, skuName, skuCount, skuDesc){
 				$('#main_modal .modal-title').html("Edit SKU");
 				$('#main_modal .modal-body').load('pricelist/editSku', 

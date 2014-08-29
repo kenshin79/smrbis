@@ -9,6 +9,7 @@ class Customers_model extends CI_Model{
 		
 	function getAll(){
 		$this->db->select('customer_id, customer_name, customer_address, customer_telephone, customer_mobile, customer_email');
+		$this->db->order_by('customer_name ASC');
 		$query = $this->db->get('customers');
 		return $query->result();
 	}			

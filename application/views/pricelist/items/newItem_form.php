@@ -15,7 +15,7 @@
 			}
 ?>
 				</select>	
-				Category not in dropdown list? <span class="btn btn-default small" onclick="addDropdown(['Add Category', 'categories', 'newCategory_form'], 'Add Item', 'items', 'newItem_form');">Add Category</span>
+				Category not in dropdown list? <span class="btn btn-default small" onclick="checkAccess(['Add New Category', 'categories', 'newCategory_form'], newEntry_form);">Add Category</span>
 				<br />
 				<label for="itemDesc">Description:</label>
 				<input class="form-control" type="text" id="itemDesc" placeholder="Item Description (optional)"/>	

@@ -11,5 +11,16 @@ Class Items_model extends CI_Model{
 		$query = $this->db->get('items');
 		return $query->result();
 	}	
+	function insertitem($itemName, $itemCategory, $itemDesc){
+		$data = array('item_name'=>$itemName, 'item_category'=>$itemCategory, 'description'=>$itemDesc);
+		$this->db->insert('items', $data);
+		return $this->db->insert_id();
+	}	
+	function deleteItem($itemId){
+		$this->db->where('item_id', $itemId);
+		$this->db->delete('items');
+		$deleted = $this->db->affected_rows();
+		return $deleted;
+	}
 	
 }

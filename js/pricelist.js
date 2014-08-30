@@ -7,11 +7,6 @@
 				modalOn(title, 'pricelist/newForm/'+folder+'/'+view);
 			}
 
-
-			function addDropdown(myArray, title, folder, view){
-				checkAccess(myArray, newEntry_form);
-				modalOn(title, 'pricelist/newForm/'+folder+'/'+view);				
-			}
 	    	function editSku(skuId, skuName, skuCount, skuDesc){
 				$('#main_modal .modal-title').html("Edit SKU");
 				$('#main_modal .modal-body').load('pricelist/editSku', 
@@ -169,6 +164,26 @@
 	    			});
 	    		}
 	    	}
+	    	function deleteItem(itemId, itemName){
+	    		if(confirm("Delete this Item '"+itemName+"'?") == false){
+	    			return false;
+	    		}
+	    		else{
+	    			$.ajax({url:'pricelist/deleteItem',
+	    					type:'post',
+	    					dataType: 'text',
+	    					data: {'itemId': itemId}
+	    					}).done(function(data){
+	    						if(data){
+	    							showMain('#items', '#items_table', 'items/items_main', 'Items_model');
+	    							mainAlert("Successfully deleted Item - '"+itemName+"'!");
+	    						}
+	    						else{
+	    							mainAlert("Error deleting Item - '"+itemName+"'!");
+	    						}	    					
+	    			});
+	    		}
+	    	}	    	
 	    	function deleteSupplier(supplierId, supplierName){
 	    		if(confirm("Delete this Supplier '"+supplierName+"'?") == false){
 	    			return false;
@@ -357,4 +372,40 @@
 	    		});	    			
 	    			
 	    		}
-	    	}	    	
+	    	}
+	    	function addItem(itemName, itemCategory, itemDesc){
+	    		
+	    		if(itemName==""){
+	    			modalAlert("Please enter Item Name!");	    			
+	    		}
+	    		else{
+	    		$.ajax({
+	    			url: 'pricelist/nameUnique',
+	    			type:'post',
+	    			dataType:'text',
+	    			data:{'name':itemName, 'model':"Items_model"}
+	    		}).done(function(duplicate){
+	    			if(duplicate==0){
+	    				modalAlert("Item - '"+itemName+"' exists in database!");
+	    			}	    		
+	    			else{
+	    				$.ajax({
+	    					url:'pricelist/addItem',
+	    					type:'post',
+	    					dataType:'text',
+	    					data:{'itemName':itemName, 'itemCategory':itemCategory, 'itemDesc':itemDesc}
+	    				}).done(function(data){
+	    					if(data){
+	    						$("#main_modal").modal('hide');
+	    						showMain('#items', '#items_table', 'items/items_main', 'Items_model');
+	    						mainAlert("Success added Item - '"+itemName+"'!");    						
+	    					}
+	    					else{
+	    						modalAlert("Failed to add Item - "+itemName+"!");    								
+							}	
+	    				});
+	    			}
+	    		});	    			
+	    			
+	    		}
+	    	}	  	    		    	

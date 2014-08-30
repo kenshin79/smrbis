@@ -17,8 +17,10 @@
 		<script src="<?php echo $this->config->item('common_js');?>"></script>		
 	    <script src="<?php echo $this->config->item('pricelist_js');?>"></script>			    
 	    <script>
-
-	    </script>	
+	    	$(document).ready(function(){
+	    		showMain('#items', '#items_table', 'items/items_main', 'Items_model');
+	    	});
+	    </script>
 		<title>Manage Pricelist</title>
 	</head>
 	<body>
@@ -76,7 +78,7 @@
 		</div>
 		<div class="row">
 			<div class="tab-content">
-				<div id="items" class="tab-pane active fade in"></div>
+				<div id="items" class="tab-pane active"></div>
 				<div id="price" class="tab-pane"></div>
 				<div id="sku" class="tab-pane"></div>
 				<div id="categories" class="tab-pane"></div>

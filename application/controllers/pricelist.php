@@ -44,6 +44,12 @@ class Pricelist extends CI_Controller {
 		$deleted = $this->Categories_model->deleteCategory($categoryId);
 		echo $deleted;
 	}
+	public function deleteItem(){
+		$itemId = $this->input->post('itemId', TRUE);
+		$this->load->model('Items_model');
+		$deleted = $this->Items_model->deleteItem($itemId);
+		echo $deleted;
+	}
 	public function deleteSupplier(){
 		$supplierId = $this->input->post('supplierId', TRUE);
 		$this->load->model('Suppliers_model');
@@ -98,6 +104,16 @@ class Pricelist extends CI_Controller {
 		$customerAdded = $this->Customers_model->insertCustomer($customerName, $customerAddress, $customerTelephone, $customerMobile, $customerEmail);
 		echo $customerAdded;
 	}	
+	public function addItem(){
+		$this->load->library('Smrbis');
+		$itemName = $this->smrbis->cleanString($this->input->post('itemName', TRUE));
+		$itemCategory = $this->smrbis->cleanString($this->input->post('itemCategory', TRUE));
+		$itemDesc = $this->smrbis->cleanString($this->input->post('itemDesc', TRUE));
+		$this->load->model('Items_model');
+		$itemAdded = $this->Items_model->insertItem($itemName, $itemCategory, $itemDesc);
+		echo $itemAdded;
+	}	
+
 	public function editSku(){
 		$data['skuId'] = $this->input->post('skuId', TRUE);
 		$data['skuName'] = $this->input->post('skuName', TRUE);

@@ -145,6 +145,13 @@ class Pricelist extends CI_Controller {
 		$data['customerEmail'] = $this->input->post('customerEmail', TRUE);
 		$this->load->view('pricelist/customers/editCustomer_form', $data);
 	}	
+	public function editItem(){
+		$data['itemId'] = $this->input->post('itemId', TRUE);
+		$data['itemName'] = $this->input->post('itemName', TRUE);
+		$data['itemCategory'] = $this->input->post('itemCategory', TRUE);
+		$data['itemDesc'] = $this->input->post('itemDesc', TRUE);
+		$this->load->view('pricelist/items/editItem_form', $data);
+	}
 	public function updateSku(){
 		$this->load->library('Smrbis');
 		$skuId = $this->input->post('skuId', TRUE);
@@ -187,6 +194,21 @@ class Pricelist extends CI_Controller {
 		$this->load->model('Customers_model');
 		$updated = $this->Customers_model->updateCustomer($customerId, $customerName, $customerAddress, $customerTelephone, $customerMobile, $customerEmail);
 		echo $updated;
-	}		
+	}	
+	public function updateItem(){
+		$this->load->library('Smrbis');
+		$itemId = $this->input->post('itemId', TRUE);
+		$itemName = $this->smrbis->cleanString($this->input->post('itemName', TRUE));
+		$itemCategory = $this->smrbis->cleanString($this->input->post('itemCategory', TRUE));
+		$itemDesc = $this->smrbis->cleanString($this->input->post('itemDesc', TRUE));
+		$this->load->model('Items_model');
+		$updated = $this->Items_model->updateItem($itemId, $itemName, $itemCategory, $itemDesc);
+		echo $updated;
+	}			
+	public function showCostPrice($itemId){
+		$this->load->model('Items_model');
+		$data['itemCostPrice'] = $this->Items_model->getItemCostPrice($itemId);
+		$this->load->view('pricelist/items/itemCostPrice_form', $data);
+	}
 }		
 	

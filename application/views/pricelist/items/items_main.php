@@ -23,7 +23,9 @@
 				echo "<td>".$row->item_name."</td>";
 				echo "<td>".$row->item_category."</td>";
 				echo "<td>".$row->description."</td>";
-				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->item_name."','".$row->item_category.'", '.$row->description."'], editItem );\" >Edit</button>";
+				echo "<td>";
+				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."'], showCostPrice);\" >Cost/Price</button>";
+				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->item_name."','".$row->item_category."', '".$row->description."'], editItem );\" >Edit</button>";
 				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->item_name."'], deleteItem);\">Delete</button></td>";
 				echo "</tr>";
 				$x++;

@@ -6,7 +6,7 @@
 			function newEntry_form(title, folder, view){
 				modalOn(title, 'pricelist/newForm/'+folder+'/'+view);
 			}
-
+	
 	    	function editSku(skuId, skuName, skuCount, skuDesc){
 				$('#main_modal .modal-title').html("Edit SKU");
 				$('#main_modal .modal-body').load('pricelist/editSku', 
@@ -30,7 +30,13 @@
 				$('#main_modal .modal-body').load('pricelist/editCustomer', 
 					{'customerId':customerId, 'customerName':customerName, 'customerAddress':customerAddress, 'customerTelephone':customerTelephone, 'customerMobile':customerMobile, 'customerEmail':customerEmail});
 				$('#main_modal').modal('show');			    		
-	    	}		    	   	
+	    	}		    
+	    	function editItem(itemId, itemName, itemCategory, itemDesc){
+				$('#main_modal .modal-title').html("Edit Item");
+				$('#main_modal .modal-body').load('pricelist/editItem', 
+					{'itemId':itemId, 'itemName':itemName, 'itemCategory':itemCategory, 'itemDesc':itemDesc});
+				$('#main_modal').modal('show');			    		
+	    	}	    		   	
 	    	function updateSku(skuId, skuName, skuCount, skuDesc){
 				if(skuName=="" || skuCount==""){
 					modalAlert("SKU and Quantity cannot be empty!");
@@ -124,6 +130,28 @@
 	    		}	
 	    	}		    	
 
+			function updateItem(itemId, itemName, itemCategory, itemDesc){
+				if(itemName == ""){
+					modalAlert("Item should not be empty!");
+				}
+	    		else{
+	    			$.ajax({
+	    				url: 'pricelist/updateItem',
+	    				type: 'post',
+	    				dataType: 'text',
+	    				data:{'itemId':itemId, 'itemName':itemName, 'itemCategory':itemCategory, 'itemDesc':itemDesc}
+	    			}).done(function(data){
+	    				if(data){
+	    					$("#main_modal").modal('hide');
+	    					showMain('#items', '#items_table', 'items/items_main', 'Items_model');
+	    					mainAlert("Successfully updated Item - '"+itemName+"'!");
+	    				}
+	    				else{
+	    					modalAlert("Failed updating Item -"+itemName+"!");
+	    				}
+	    			});
+	    		}					
+			}
 	    	function deleteSku(skuId, skuName){
 	    		if(confirm("Delete this SKU '"+skuName+"'?") == false){
 	    			return false;
@@ -408,4 +436,8 @@
 	    		});	    			
 	    			
 	    		}
+	    	}
+	    	
+	    	function showCostPrice(itemId){
+	    		$("#items").load('pricelist/showCostPrice/'+itemId);
 	    	}	  	    		    	

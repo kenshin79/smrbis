@@ -22,5 +22,13 @@ Class Items_model extends CI_Model{
 		$deleted = $this->db->affected_rows();
 		return $deleted;
 	}
-	
+	function updateItem($itemId, $itemName, $itemCategory, $itemDesc){
+		$data = array('item_name'=>$itemName, 'item_category'=>$itemCategory, 'description'=>$itemDesc);
+		$this->db->where('item_id', $itemId);
+		$this->db->update('items', $data);
+		return $this->db->affected_rows();
+	}
+	function getItemCostPrice($itemId){
+		
+	}
 }

@@ -6,7 +6,9 @@
 			function newEntry_form(title, folder, view){
 				modalOn(title, 'pricelist/newForm/'+folder+'/'+view);
 			}
-	
+			function newItemCost_form(itemId, itemName){
+				modalOn('Add cost for \''+itemName+'\'', 'pricelist/newItemCost_form/'+itemId+'/'+itemName.replace(" ", "_"));
+			}
 	    	function editSku(skuId, skuName, skuCount, skuDesc){
 				$('#main_modal .modal-title').html("Edit SKU");
 				$('#main_modal .modal-body').load('pricelist/editSku', 
@@ -438,6 +440,11 @@
 	    		}
 	    	}
 	    	
-	    	function showCostPrice(itemId){
-	    		$("#items").load('pricelist/showCostPrice/'+itemId);
-	    	}	  	    		    	
+	    	function showCostPrice(itemId, itemName){
+	    		$("#items").load('pricelist/showCostPrice', {'itemId':itemId, 'itemName':itemName}, function(){
+	    			$("#costs_table").DataTable();
+	    		});
+	    	}	  	    	
+	    	function addItemCost(itemId){
+	    		
+	    	}	    	

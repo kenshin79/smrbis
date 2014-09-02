@@ -28,7 +28,5 @@ Class Items_model extends CI_Model{
 		$this->db->update('items', $data);
 		return $this->db->affected_rows();
 	}
-	function getItemCostPrice($itemId){
-		
-	}
+
 }

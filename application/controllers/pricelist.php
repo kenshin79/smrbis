@@ -65,6 +65,15 @@ class Pricelist extends CI_Controller {
 	public function newForm($folder, $view){
 		$this->load->view("pricelist/".$folder."/".$view);
 	}
+	public function newItemCost_form($itemId, $itemName){
+		$data['itemId'] = $itemId;
+		$data['itemName'] = $itemName;
+		$this->load->model('Suppliers_model');
+		$data['all_suppliers'] = $this->Suppliers_model->getAll();
+		$this->load->model('Sku_model');
+		$data['all_sku'] = $this->Sku_model->getAll();
+		$this->load->view('pricelist/items/newItemCost_form', $data);
+	}
 	public function addSku(){
 		$this->load->library('Smrbis');
 		$skuName = $this->smrbis->cleanString($this->input->post('skuName', TRUE));
@@ -205,9 +214,12 @@ class Pricelist extends CI_Controller {
 		$updated = $this->Items_model->updateItem($itemId, $itemName, $itemCategory, $itemDesc);
 		echo $updated;
 	}			
-	public function showCostPrice($itemId){
-		$this->load->model('Items_model');
-		$data['itemCostPrice'] = $this->Items_model->getItemCostPrice($itemId);
+	public function showCostPrice(){
+		$itemId = $this->input->post('itemId', TRUE);
+		$data['itemId'] = $itemId;
+		$data['itemName'] = $this->input->post('itemName', TRUE);
+		$this->load->model('Costs_model');
+		$data['item_costs'] = $this->Costs_model->getItemCosts($itemId);
 		$this->load->view('pricelist/items/itemCostPrice_form', $data);
 	}
 }		

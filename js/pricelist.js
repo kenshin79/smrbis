@@ -6,9 +6,7 @@
 			function newEntry_form(title, folder, view){
 				modalOn(title, 'pricelist/newForm/'+folder+'/'+view);
 			}
-			function newItemCost_form(itemId, itemName){
-				modalOn('Add cost for \''+itemName+'\'', 'pricelist/newItemCost_form/'+itemId+'/'+itemName.replace(" ", "_"));
-			}
+
 	    	function editSku(skuId, skuName, skuCount, skuDesc){
 				$('#main_modal .modal-title').html("Edit SKU");
 				$('#main_modal .modal-body').load('pricelist/editSku', 
@@ -444,7 +442,42 @@
 	    		$("#items").load('pricelist/showCostPrice', {'itemId':itemId, 'itemName':itemName}, function(){
 	    			$("#costs_table").DataTable();
 	    		});
-	    	}	  	    	
-	    	function addItemCost(itemId){
-	    		
+	    	}	  
+			function newItemCost_form(itemId, itemName){
+				$("#main_modal .modal-body").load('pricelist/newItemCost_form', {'itemId':itemId, 'itemName':itemName}, function(){
+					$("#main_modal .modal-title").html("Add cost for '"+itemName+"'");
+					$(".datepicker").datepicker();
+					$("#main_modal").modal('show');		
+				});			
+								
+			}	    		    	
+	    	function addItemCost(itemId, itemName, skuId, supplierId, cost, costDate, notes){
+	    		$.ajax({
+	    			url:'pricelist/itemCostUnique',
+	    			type:'post',
+	    			dataType:'text',
+	    			data: {'itemId':itemId, 'skuId':skuId, 'supplierId':supplierId, 'costDate':costDate}
+	    		}).done(function(duplicate){
+	    			if(duplicate!=0){
+	    				modalAlert("Item cost is duplicate!");	    				
+	    			}
+	    			else{
+	    				$.ajax({
+	    					url: 'pricelist/addItemCost',
+	    					type: 'post',
+	    					dataType: 'text',
+	    					data: {'itemId':itemId, 'skuId':skuId, 'supplierId':supplierId, 'cost':cost, 'costDate':costDate, 'notes':notes}
+	    				}).done(function(data){
+	    					if(data){
+	    						showCostPrice(itemId, itemName);
+	    						mainAlert("Success added Item cost for '"+itemName+"'!");    		    						
+	    					}
+	    					else{
+	    						modalAlert("Failed to add Item cost for '"+itemName+"'!");    				    						
+	    					}
+	    				});
+				
+	    			}
+	    		});
+
 	    	}	    	

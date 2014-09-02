@@ -19,6 +19,24 @@ Class Costs_model extends CI_Model{
 		return $query->result();		
 	}
 	
-	
+	function insertCost($itemId){
+		$skuId = $this->smrbis->cleanString($this->input->post('skuId', TRUE));
+		$supplierId = $this->smrbis->cleanString($this->input->post('supplierId', TRUE));
+		$cost = $this->smrbis->cleanString($this->input->post('cost', TRUE));
+		$costDate = $this->smrbis->cleanString($this->input->post('costDate', TRUE));
+		$notes = $this->smrbis->cleanString($this->input->post('notes', TRUE));
+		$data = array('item_id'=>$itemId, 'sku_id'=>$skuId, 'supplier_id'=>$supplierId, 'cost'=>$cost, 'cost_date'=>$costDate, 'notes'=>$notes);
+		$this->db->insert('costs', $data);
+		return $insert_id();		
+	}	
+	function itemCostUnique($itemId, $skuId, $supplierId, $costDate){
+		$this->db->select('item_id');
+		$this->db->where('item_id', $itemId);
+		$this->db->where('sku_id', $skuId);
+		$this->db->where('supplier_id', $supplierId);
+		$this->db->where('cost_date', $costDate);
+		$query = $this->db->get('costs');
+		return $query->result();
+	}
 }	
 

@@ -22,6 +22,15 @@ class Pricelist extends CI_Controller {
 			echo "1";
 		}
 	}
+	public function itemCostUnique(){
+		$itemId = $this->input->post('itemId', TRUE);
+		$skuId = $this->input->post('skuId', TRUE);
+		$supplierId = $this->input->post('supplierId', TRUE);
+		$costDate = $this->input->post('costDate', TRUE);
+		$this->load->model('Costs_model');
+		$unique = $this->Costs_model->itemCostUnique($itemId, $skuId, $supplierId, $costDate);
+		
+	}
 	public function showMain(){
 		$model = $this->input->post('model', TRUE);
 		$main_page = $this->input->post('main_page');
@@ -65,9 +74,9 @@ class Pricelist extends CI_Controller {
 	public function newForm($folder, $view){
 		$this->load->view("pricelist/".$folder."/".$view);
 	}
-	public function newItemCost_form($itemId, $itemName){
-		$data['itemId'] = $itemId;
-		$data['itemName'] = $itemName;
+	public function newItemCost_form(){
+		$data['itemId'] = $this->input->post('itemId', TRUE);
+		$data['itemName'] = $this->input->post('itemName', TRUE);
 		$this->load->model('Suppliers_model');
 		$data['all_suppliers'] = $this->Suppliers_model->getAll();
 		$this->load->model('Sku_model');
@@ -122,7 +131,13 @@ class Pricelist extends CI_Controller {
 		$itemAdded = $this->Items_model->insertItem($itemName, $itemCategory, $itemDesc);
 		echo $itemAdded;
 	}	
-
+	public function addItemCost(){
+		$this->load->library('Smrbis');
+		$itemId = $this->smrbis->cleanString($this->input->post('itemId', TRUE));
+		$this->load->model('Costs_model');
+		$costAdded = $this->Costs_model->insertCost($itemId);
+		echo $costAdded;
+	}
 	public function editSku(){
 		$data['skuId'] = $this->input->post('skuId', TRUE);
 		$data['skuName'] = $this->input->post('skuName', TRUE);

@@ -16,7 +16,7 @@ Class Costs_model extends CI_Model{
 				costs.item_id = ? AND costs.sku_id = sku.sku_id 
 				AND costs.supplier_id = suppliers.supplier_id 
 				ORDER BY supplier_name ASC, 
-				cost_date DESC";
+				cost_date ASC";
 		$query = $this->db->query($sql, array($itemId));		
 		return $query->result();		
 	}

@@ -25,7 +25,7 @@
 			<?php
 			foreach($item_costs as $row){
 				echo "<tr><td>".$row->cost_date."</td>";
-				echo "<td>".number_format($row->cost, 2, ".", "")." / ".$row->sku_name."</td>";
+				echo "<td> P".number_format($row->cost, 2, ".", "")." / ".$row->sku_name."</td>";
 				echo "<td>".$row->supplier_name."</td>";
 				echo "<td><button class=\"btn btn-default\" >Notes</button></td>";
 				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->supplier_id."', '".$row->sku_id."', '".$row->cost_date."'], editItemCost);\" >Edit</button></td>";

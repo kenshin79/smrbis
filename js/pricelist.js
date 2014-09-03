@@ -452,6 +452,7 @@
 								
 			}	    		    	
 	    	function addItemCost(itemId, itemName, skuId, supplierId, cost, costDate, notes){
+	    		if($.isNumeric(cost)){
 	    		$.ajax({
 	    			url:'pricelist/itemCostUnique',
 	    			type:'post',
@@ -469,6 +470,7 @@
 	    					data: {'itemId':itemId, 'skuId':skuId, 'supplierId':supplierId, 'cost':cost, 'costDate':costDate, 'notes':notes}
 	    				}).done(function(data){
 	    					if(data){
+	    						$("#main_modal").modal('hide');	    						
 	    						showCostPrice(itemId, itemName);
 	    						mainAlert("Success added Item cost for '"+itemName+"'!");    		    						
 	    					}
@@ -478,6 +480,11 @@
 	    				});
 				
 	    			}
-	    		});
+	    		});	    			
+	    		}
+	    		else{
+	    				modalAlert("Cost is not valid!");	    		    			
+	    		}
+
 
 	    	}	    	

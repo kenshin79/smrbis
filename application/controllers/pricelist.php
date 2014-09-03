@@ -28,8 +28,13 @@ class Pricelist extends CI_Controller {
 		$supplierId = $this->input->post('supplierId', TRUE);
 		$costDate = $this->input->post('costDate', TRUE);
 		$this->load->model('Costs_model');
-		$unique = $this->Costs_model->itemCostUnique($itemId, $skuId, $supplierId, $costDate);
-		
+		$duplicate = $this->Costs_model->itemCostUnique($itemId, $skuId, $supplierId, $costDate);
+		if($duplicate){
+			echo "1";
+		}
+		else{
+			echo "0";
+		}
 	}
 	public function showMain(){
 		$model = $this->input->post('model', TRUE);
@@ -71,6 +76,12 @@ class Pricelist extends CI_Controller {
 		$deleted = $this->Customers_model->deleteCustomer($customerId);
 		echo $deleted;
 	}	
+	public function deleteCost(){
+		$costId = $this->input->post('costId', TRUE);
+		$this->load->model('Costs_model');
+		$deleted = $this->Costs_model->deleteCost($costId);
+		echo $deleted;
+	}
 	public function newForm($folder, $view){
 		$this->load->view("pricelist/".$folder."/".$view);
 	}
@@ -133,9 +144,8 @@ class Pricelist extends CI_Controller {
 	}	
 	public function addItemCost(){
 		$this->load->library('Smrbis');
-		$itemId = $this->smrbis->cleanString($this->input->post('itemId', TRUE));
 		$this->load->model('Costs_model');
-		$costAdded = $this->Costs_model->insertCost($itemId);
+		$costAdded = $this->Costs_model->insertCost();
 		echo $costAdded;
 	}
 	public function editSku(){

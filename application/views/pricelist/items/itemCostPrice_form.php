@@ -27,8 +27,10 @@
 				echo "<tr><td>".$row->cost_date."</td>";
 				echo "<td> P".number_format($row->cost, 2, ".", "")." / ".$row->sku_name."</td>";
 				echo "<td>".$row->supplier_name."</td>";
-				echo "<td><button class=\"btn btn-default\" >Notes</button></td>";
-				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->supplier_id."', '".$row->sku_id."', '".$row->cost_date."'], editItemCost);\" >Edit</button></td>";
+				echo "<td><textarea readonly>".$row->notes."</textarea></td>";
+				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->supplier_id."', '".$row->sku_id."', '".$row->cost_date."'], editItemCost);\" >Edit</button>";
+				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->cost_id."', '".$row->item_id."', '".$itemName."'], deleteCost);\">Delete</button>";
+				echo "</td>";
 				echo "</tr>";
 			}	
 			?>

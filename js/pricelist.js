@@ -251,7 +251,8 @@
 	    						}	    					
 	    			});
 	    		}
-	    	}			    		    		    	
+	    	}		
+ 		    		    	
 	    	function addSku(skuName, skuCount, skuDesc){
 	    		
 	    		if(skuName=="" || skuCount==""){
@@ -459,7 +460,7 @@
 	    			dataType:'text',
 	    			data: {'itemId':itemId, 'skuId':skuId, 'supplierId':supplierId, 'costDate':costDate}
 	    		}).done(function(duplicate){
-	    			if(duplicate!=0){
+	    			if(duplicate == 1){
 	    				modalAlert("Item cost is duplicate!");	    				
 	    			}
 	    			else{
@@ -487,4 +488,25 @@
 	    		}
 
 
-	    	}	    	
+	    	}
+	    	function deleteCost(costId, itemId, itemName){
+	    		if(confirm("Delete this entry?") == false){
+	    			return false;
+	    		}
+	    		else{
+	    			$.ajax({url:'pricelist/deleteCost',
+	    					type:'post',
+	    					dataType: 'text',
+	    					data: {'costId':costId}
+	    					}).done(function(data){
+	    						if(data){
+	    							showCostPrice(itemId, itemName);
+	    							mainAlert("Success deleted Item cost entry!");    	
+	    						}
+	    						else{
+	    							mainAlert("Error deleting item cost entry!");
+	    						}	    					
+	    			});
+	    		}	    		
+	    	}	   	    	
+	    		    	

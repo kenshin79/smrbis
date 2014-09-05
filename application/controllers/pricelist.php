@@ -247,5 +247,10 @@ class Pricelist extends CI_Controller {
 		$data['item_costs'] = $this->Costs_model->getItemCosts($itemId);
 		$this->load->view('pricelist/items/itemCostPrice_form', $data);
 	}
+	public function editCostNotes(){
+		$data['costId'] = $this->input->post('costId', TRUE);
+		$data['notes'] = $this->input->post('notes', TRUE);
+		$this->load->view('items/editCostNotes_form', $data);
+	}
 }		
 	

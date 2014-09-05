@@ -36,7 +36,13 @@
 				$('#main_modal .modal-body').load('pricelist/editItem', 
 					{'itemId':itemId, 'itemName':itemName, 'itemCategory':itemCategory, 'itemDesc':itemDesc});
 				$('#main_modal').modal('show');			    		
-	    	}	    		   	
+	    	}	    	
+	    	function editCostNotes(costId, notes){
+				$('#main_modal .modal-title').html("Edit Cost Notes");
+				$('#main_modal .modal-body').load('pricelist/editCostNotes', 
+					{'costId':costId, 'notes':notes});
+				$('#main_modal').modal('show');		    		
+	    	}	   	
 	    	function updateSku(skuId, skuName, skuCount, skuDesc){
 				if(skuName=="" || skuCount==""){
 					modalAlert("SKU and Quantity cannot be empty!");

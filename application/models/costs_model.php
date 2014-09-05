@@ -14,11 +14,12 @@ Class Costs_model extends CI_Model{
 				item_name, supplier_name, sku_name, 
 				cost, cost_date, notes FROM
 				costs, items, suppliers, sku WHERE
-				costs.item_id = ? AND costs.sku_id = sku.sku_id 
+				costs.item_id = ? AND items.item_id = ? 
+				AND costs.sku_id = sku.sku_id 
 				AND costs.supplier_id = suppliers.supplier_id 
 				ORDER BY supplier_name ASC, 
 				cost_date ASC";
-		$query = $this->db->query($sql, array($itemId));		
+		$query = $this->db->query($sql, array($itemId, $itemId));		
 		return $query->result();		
 	}
 	

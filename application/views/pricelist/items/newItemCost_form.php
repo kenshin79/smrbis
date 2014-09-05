@@ -4,15 +4,17 @@
 		<div class="col-md-4"><input class="form-control" id="cost" placeholder="0.00" /></div>
 		<div class="col-md-1">/</div>
 		<div class="col-md-5">
-	<select class="form-control" id="skuId">
-		<?php
-		foreach($all_sku as $row){
+			<select class="form-control" id="skuId">
+			<?php
+			foreach($all_sku as $row){
 			echo "<option value=\"".$row->sku_id."\">".$row->sku_name."</option>";
-		}	
-		?>
-	</select>			
+			}	
+			?>
+			</select>			
 		</div>
 	</div>
+	<br />
+	SKU not in list? <span class="btn btn-default" onclick="checkAccess(['Add New SKU', 'sku', 'newSku_form'], newEntry_form);">Add SKU</span>
 	<br />
 	<label for="supplierId">Supplier:</label>
 	<select class="form-control" id="supplierId">
@@ -22,7 +24,9 @@
 		}
 		?>
 	</select>
-	<br />		
+	<br />	
+	Supplier not in list? <span class="btn btn-default" onclick="checkAccess(['Add New Supplier', 'suppliers', 'newSupplier_form'], newEntry_form)">Add Supplier</span>	
+	<br />
 	<label for="costDate">Date:</label>
 	<input class="form-control" type="date" value="<?php echo date('Y-m-d');?>" id="costDate" />
 	<br />

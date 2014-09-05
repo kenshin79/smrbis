@@ -12,7 +12,7 @@
 	<div class="col-md-10">
 		<table id="items_table" class="display">
 			<thead>
-				<tr><th>No.</th><th>Item</th><th>Category</th><th>Description</th><th>Edit</th></tr>
+				<tr><th>No.</th><th>Item</th><th>Category</th><th>Description</th><th>Edit Item</th><th>Cost/Price</th></tr>
 			</thead>
 			<tbody>
 		<?php
@@ -24,9 +24,9 @@
 				echo "<td>".$row->item_category."</td>";
 				echo "<td>".$row->description."</td>";
 				echo "<td>";
-				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->item_name."'], showCostPrice);\" >Cost/Price</button>";
 				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->item_name."','".$row->item_category."', '".$row->description."'], editItem );\" >Edit</button>";
 				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->item_name."'], deleteItem);\">Delete</button></td>";
+				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->item_id."', '".$row->item_name."'], showCostPrice);\" >Cost/Price</button></td>";					
 				echo "</tr>";
 				$x++;
 			}

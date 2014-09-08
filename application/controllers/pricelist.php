@@ -96,7 +96,7 @@ class Pricelist extends CI_Controller {
 	}
 	public function addSku(){
 		$this->load->library('Smrbis');
-		$skuName = $this->smrbis->cleanString($this->input->post('skuName', TRUE));
+		$skuName = strtoupper($this->smrbis->cleanString($this->input->post('skuName', TRUE)));
 		$skuCount = $this->input->post('skuCount', TRUE);
 		$skuDesc = $this->smrbis->cleanString($this->input->post('skuDesc', TRUE));
 		$this->load->model('Sku_model');
@@ -105,7 +105,7 @@ class Pricelist extends CI_Controller {
 	}
 	public function addCategory(){
 		$this->load->library('Smrbis');
-		$categoryName = $this->smrbis->cleanString($this->input->post('categoryName', TRUE));
+		$categoryName = strtoupper($this->smrbis->cleanString($this->input->post('categoryName', TRUE)));
 		$categoryDesc = $this->smrbis->cleanString($this->input->post('categoryDesc', TRUE));
 		$this->load->model('Categories_model');
 		$categoryAdded = $this->Categories_model->insertCategory($categoryName, $categoryDesc);
@@ -143,7 +143,6 @@ class Pricelist extends CI_Controller {
 		echo $itemAdded;
 	}	
 	public function addItemCost(){
-		$this->load->library('Smrbis');
 		$this->load->model('Costs_model');
 		$costAdded = $this->Costs_model->insertCost();
 		echo $costAdded;
@@ -189,7 +188,7 @@ class Pricelist extends CI_Controller {
 	public function updateSku(){
 		$this->load->library('Smrbis');
 		$skuId = $this->input->post('skuId', TRUE);
-		$skuName = $this->smrbis->cleanString($this->input->post('skuName', TRUE));
+		$skuName = strtoupper($this->smrbis->cleanString($this->input->post('skuName', TRUE)));
 		$skuCount = $this->input->post('skuCount', TRUE);
 		$skuDesc = $this->smrbis->cleanString($this->input->post('skuDesc', TRUE));
 		$this->load->model('Sku_model');
@@ -199,7 +198,7 @@ class Pricelist extends CI_Controller {
 	public function updateCategory(){
 		$this->load->library('Smrbis');
 		$categoryId = $this->input->post('categoryId', TRUE);
-		$categoryName = $this->smrbis->cleanString($this->input->post('categoryName', TRUE));
+		$categoryName = strtoupper($this->smrbis->cleanString($this->input->post('categoryName', TRUE)));
 		$categoryDesc = $this->smrbis->cleanString($this->input->post('categoryDesc', TRUE));
 		$this->load->model('Categories_model');
 		$updated = $this->Categories_model->updateCategory($categoryId, $categoryName, $categoryDesc);

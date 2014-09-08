@@ -11,7 +11,7 @@ Class Costs_model extends CI_Model{
 	
 	function getItemCosts($itemId){
 		$sql = "SELECT cost_id, costs.item_id, costs.supplier_id, costs.sku_id,
-				item_name, supplier_name, sku_name, 
+				item_name, supplier_name, sku_name, sku_count,
 				cost, cost_date, notes FROM
 				costs, items, suppliers, sku WHERE
 				costs.item_id = ? AND items.item_id = ? 
@@ -24,7 +24,8 @@ Class Costs_model extends CI_Model{
 	}
 	
 	function insertCost(){
-		$itemId = $this->smrbis->cleanString($this->input->post('itemId', TRUE));		
+		$this->load->library('Smrbis');
+		$itemId = $this->input->post('itemId', TRUE);		
 		$skuId = $this->smrbis->cleanString($this->input->post('skuId', TRUE));
 		$supplierId = $this->smrbis->cleanString($this->input->post('supplierId', TRUE));
 		$cost = $this->smrbis->cleanString($this->input->post('cost', TRUE));
@@ -48,6 +49,12 @@ Class Costs_model extends CI_Model{
 		$this->db->delete('costs');
 		$deleted = $this->db->affected_rows();
 		return $deleted;
+	}
+	function updateCostNotes($costId, $notes){
+		$data = array('notes'=>$notes);
+		$this->db->where('cost_id', $costId);
+		$this->db->update('costs', $data);
+		return $this->db->affected_rows();
 	}
 }	
 

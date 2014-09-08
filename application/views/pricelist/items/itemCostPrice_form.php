@@ -16,6 +16,7 @@
 				<tr>
 					<th>Date</th>
 					<th>Cost per SKU</th>
+					<th>Cost per piece</th>
 					<th>Supplier</th>
 					<th>Notes</th>
 					<th>Edit</th>
@@ -26,9 +27,10 @@
 			foreach($item_costs as $row){
 				echo "<tr><td>".$row->cost_date."</td>";
 				echo "<td> P".number_format($row->cost, 2, ".", "")." / ".$row->sku_name."</td>";
+				echo "<td> P".number_format(round($row->cost/$row->sku_count, 2) ,2, ".", "" )."</td>";
 				echo "<td>".$row->supplier_name."</td>";
 				echo "<td><textarea readonly>".$row->notes."</textarea></td>";
-				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->cost_id."', '".$row->notes."'], editCostNotes);\" >Edit Notes</button>";
+				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->cost_id."', '".str_ireplace("\n", "&#92n", $row->notes)."', '".$row->item_id."', '".$itemName."'], editCostNotes);\" >Edit Notes</button>";
 				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->cost_id."', '".$row->item_id."', '".$itemName."'], deleteCost);\">Delete</button>";
 				echo "</td>";
 				echo "</tr>";

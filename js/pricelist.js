@@ -3,6 +3,11 @@
 					$(table).DataTable();
 				});
 			}
+	    	function showCostPrice(itemId, itemName){
+	    		$("#items").load('pricelist/showCostPrice', {'itemId':itemId, 'itemName':itemName}, function(){
+	    			$("#costs_table").DataTable();
+	    		});
+	    	}				
 			function newEntry_form(title, folder, view){
 				modalOn(title, 'pricelist/newForm/'+folder+'/'+view);
 			}
@@ -37,10 +42,10 @@
 					{'itemId':itemId, 'itemName':itemName, 'itemCategory':itemCategory, 'itemDesc':itemDesc});
 				$('#main_modal').modal('show');			    		
 	    	}	    	
-	    	function editCostNotes(costId, notes){
+	    	function editCostNotes(costId, notes, itemId, itemName){
 				$('#main_modal .modal-title').html("Edit Cost Notes");
 				$('#main_modal .modal-body').load('pricelist/editCostNotes', 
-					{'costId':costId, 'notes':notes});
+					{'costId':costId, 'notes':notes, 'itemId':itemId, 'itemName':itemName});
 				$('#main_modal').modal('show');		    		
 	    	}	   	
 	    	function updateSku(skuId, skuName, skuCount, skuDesc){
@@ -158,6 +163,7 @@
 	    			});
 	    		}					
 			}
+			
 	    	function deleteSku(skuId, skuName){
 	    		if(confirm("Delete this SKU '"+skuName+"'?") == false){
 	    			return false;
@@ -445,11 +451,7 @@
 	    		}
 	    	}
 	    	
-	    	function showCostPrice(itemId, itemName){
-	    		$("#items").load('pricelist/showCostPrice', {'itemId':itemId, 'itemName':itemName}, function(){
-	    			$("#costs_table").DataTable();
-	    		});
-	    	}	  
+  
 			function newItemCost_form(itemId, itemName){
 				$("#main_modal .modal-body").load('pricelist/newItemCost_form', {'itemId':itemId, 'itemName':itemName}, function(){
 					$("#main_modal .modal-title").html("Add cost for '"+itemName+"'");
@@ -514,5 +516,22 @@
 	    						}	    					
 	    			});
 	    		}	    		
-	    	}	   	    	
+	    	}	   	   
+			function updateCostNotes(costId, notes, itemId, itemName){
+	    			$.ajax({
+	    				url: 'pricelist/updateCostNotes',
+	    				type: 'post',
+	    				dataType: 'text',
+	    				data:{'costId':costId, 'notes':notes}
+	    			}).done(function(data){
+	    				if(data){
+	    					$("#main_modal").modal('hide');
+	    					showCostPrice(itemId, itemName);
+	    					mainAlert("Successfully updated item cost notes !");
+	    				}
+	    				else{
+	    					modalAlert("Failed updating item cost notes!");
+	    				}
+	    			});
+	   		}			    	 	
 	    		    	

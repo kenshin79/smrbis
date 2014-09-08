@@ -238,6 +238,14 @@ class Pricelist extends CI_Controller {
 		$updated = $this->Items_model->updateItem($itemId, $itemName, $itemCategory, $itemDesc);
 		echo $updated;
 	}			
+	public function updateCostNotes(){
+		$this->load->library('Smrbis');
+		$costId = $this->input->post('costId', TRUE);
+		$notes = $this->smrbis->cleanString($this->input->post('notes', TRUE));
+		$this->load->model('Costs_model');
+		$updated = $this->Costs_model->updateCostNotes($costId, $notes);
+		echo $updated;
+	}
 	public function showCostPrice(){
 		$itemId = $this->input->post('itemId', TRUE);
 		$data['itemId'] = $itemId;
@@ -248,8 +256,10 @@ class Pricelist extends CI_Controller {
 	}
 	public function editCostNotes(){
 		$data['costId'] = $this->input->post('costId', TRUE);
-		$data['notes'] = $this->input->post('notes', TRUE);
-		$this->load->view('items/editCostNotes_form', $data);
+		$data['notes'] = str_ireplace("&#92n", '\n', $this->input->post('notes', TRUE));
+		$data['itemId'] = $this->input->post('itemId', TRUE);
+		$data['itemName'] = $this->input->post('itemName', TRUE);
+		$this->load->view('pricelist/items/editCostNotes_form', $data);
 	}
 }		
 	

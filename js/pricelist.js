@@ -6,6 +6,7 @@
 	    	function showCostPrice(itemId, itemName){
 	    		$("#items").load('pricelist/showCostPrice', {'itemId':itemId, 'itemName':itemName}, function(){
 	    			$("#costs_table").DataTable();
+	    			$("#prices_table").DataTable();
 	    		});
 	    	}				
 			function newEntry_form(title, folder, view){
@@ -452,14 +453,15 @@
 	    	}
 	    	
   
-			function newItemCost_form(itemId, itemName){
-				$("#main_modal .modal-body").load('pricelist/newItemCost_form', {'itemId':itemId, 'itemName':itemName}, function(){
-					$("#main_modal .modal-title").html("Add cost for '"+itemName+"'");
+			function newItemCost_form(itemId, itemName, title, controller){
+				$("#main_modal .modal-body").load( controller, {'itemId':itemId, 'itemName':itemName}, function(){
+					$("#main_modal .modal-title").html("Add "+title+" for '"+itemName+"'");
 					$(".datepicker").datepicker();
 					$("#main_modal").modal('show');		
 				});			
 								
-			}	    		    	
+			}	
+  		    	
 	    	function addItemCost(itemId, itemName, skuId, supplierId, cost, costDate, notes){
 	    		if($.isNumeric(cost)){
 	    		$.ajax({
@@ -481,10 +483,10 @@
 	    					if(data){
 	    						$("#main_modal").modal('hide');	    						
 	    						showCostPrice(itemId, itemName);
-	    						mainAlert("Success added Item cost for '"+itemName+"'!");    		    						
+	    						mainAlert("Success added cost for '"+itemName+"'!");    		    						
 	    					}
 	    					else{
-	    						modalAlert("Failed to add Item cost for '"+itemName+"'!");    				    						
+	    						modalAlert("Failed to add cost for '"+itemName+"'!");    				    						
 	    					}
 	    				});
 				
@@ -496,6 +498,43 @@
 	    		}
 
 
+	    	}
+	    	function addItemPrice(itemId, itemName, skuId, rprice, wprice, priceDate, notes){
+	    		if($.isNumeric(rprice) && ($.isNumeric(wprice))){
+	    		$.ajax({
+	    			url:'pricelist/itemPriceUnique',
+	    			type:'post',
+	    			dataType:'text',
+	    			data: {'itemId':itemId, 'skuId':skuId}
+	    		}).done(function(duplicate){
+	    			if(duplicate == 1){
+	    				modalAlert("Item price per unit is duplicate!");	    				
+	    			}
+	    			else{
+	    				$.ajax({
+	    					url: 'pricelist/addItemPrice',
+	    					type: 'post',
+	    					dataType: 'text',
+	    					data: {'itemId':itemId, 'skuId':skuId, 'rprice':rprice, 'wprice':wprice, 'priceDate':priceDate, 'notes':notes}
+	    				}).done(function(data){
+	    					if(data){
+	    						$("#main_modal").modal('hide');	    						
+	    						showCostPrice(itemId, itemName);
+	    						mainAlert("Success added price for '"+itemName+"'!");    		    						
+	    					}
+	    					else{
+	    						modalAlert("Failed to add price for '"+itemName+"'!");    				    						
+	    					}
+	    				});
+				
+	    			}
+	    		});	    			
+	    		}
+	    		else{
+	    				modalAlert("Cost is not valid!");	    		    			
+	    		}
+
+	    		
 	    	}
 	    	function deleteCost(costId, itemId, itemName){
 	    		if(confirm("Delete this entry?") == false){

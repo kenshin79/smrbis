@@ -5,7 +5,42 @@
 <br />
 <div class="row">
 	<div class="col-md-1"></div>
-	<div class="col-md-10"><button class="btn btn-default" onclick="checkAccess(['<?php echo $itemId; ?>', '<?php echo $itemName; ?>'], newItemCost_form);">Add Item Cost</button></div>
+	<div class="col-md-10"><h3>PRICES <button class="btn btn-default" onclick="checkAccess(['<?php echo $itemId; ?>', '<?php echo $itemName; ?>', 'price', 'pricelist/newItemPrice_form'], newItemCost_form)">Add Price</button></h3></div>
+</div>
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<table id="prices_table" class="display">
+			<thead>
+				<tr>
+					<th>Date</th>
+					<th>SKU</th>
+					<th>Retail</th>
+					<th>Wholesale</th>
+					<th>Notes</th>
+					<th>Edit</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+				foreach ($item_prices as $row) {
+					echo "<tr><td>".$row->price_date."</td>";
+					echo "<td>".$row->sku_name."</td>";
+					echo "<td>".$row->rprice."</td>";
+					echo "<td>".$row->wprice."</td>";
+					echo "<td><textarea class=\"form_control\" readonly=\"readonly\">".$row->notes."</textarea></td>";
+					echo "<td><button class=\"btn btn-default\">Edit</button></td></tr>";
+					
+				}	
+				
+				?>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10"><h3>COSTS <button class="btn btn-default" onclick="checkAccess(['<?php echo $itemId; ?>', '<?php echo $itemName; ?>', 'cost', 'pricelist/newItemCost_form'], newItemCost_form);">Add Cost</button></h3></div>
 </div>
 <br />
 <div class="row">

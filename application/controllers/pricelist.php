@@ -36,6 +36,18 @@ class Pricelist extends CI_Controller {
 			echo "0";
 		}
 	}
+	public function itemPriceUnique(){
+		$itemId = $this->input->post('itemId', TRUE);
+		$skuId = $this->input->post('skuId', TRUE);
+		$this->load->model('Prices_model');
+		$duplicate = $this->Prices_model->itemPriceUnique($itemId, $skuId);
+		if($duplicate){
+			echo "1";
+		}
+		else{
+			echo "0";
+		}				
+	}
 	public function showMain(){
 		$model = $this->input->post('model', TRUE);
 		$main_page = $this->input->post('main_page');
@@ -94,6 +106,13 @@ class Pricelist extends CI_Controller {
 		$data['all_sku'] = $this->Sku_model->getAll();
 		$this->load->view('pricelist/items/newItemCost_form', $data);
 	}
+	public function newItemPrice_form(){
+		$data['itemId'] = $this->input->post('itemId', TRUE);
+		$data['itemName'] = $this->input->post('itemName', TRUE);		
+		$this->load->model('Sku_model');
+		$data['all_sku'] = $this->Sku_model->getAll();		
+		$this->load->view('pricelist/items/newItemPrice_form', $data);
+	}
 	public function addSku(){
 		$this->load->library('Smrbis');
 		$skuName = strtoupper($this->smrbis->cleanString($this->input->post('skuName', TRUE)));
@@ -147,6 +166,11 @@ class Pricelist extends CI_Controller {
 		$costAdded = $this->Costs_model->insertCost();
 		echo $costAdded;
 	}
+	public function addItemPrice(){
+		$this->load->model('Prices_model');
+		$priceAdded = $this->Prices_model->insertPrice();
+		echo $costAdded;
+	} 
 	public function editSku(){
 		$data['skuId'] = $this->input->post('skuId', TRUE);
 		$data['skuName'] = $this->input->post('skuName', TRUE);
@@ -252,6 +276,8 @@ class Pricelist extends CI_Controller {
 		$data['itemName'] = $this->input->post('itemName', TRUE);
 		$this->load->model('Costs_model');
 		$data['item_costs'] = $this->Costs_model->getItemCosts($itemId);
+		$this->load->model('Prices_model');
+		$data['item_prices'] = $this->Prices_model->getItemPrices($itemId);
 		$this->load->view('pricelist/items/itemCostPrice_form', $data);
 	}
 	public function editCostNotes(){

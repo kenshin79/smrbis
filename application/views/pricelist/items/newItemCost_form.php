@@ -1,9 +1,9 @@
 <form role="form">
 	<div class="row">
-		<div class="col-md-2"><label for="cost">Cost/Unit:</label></div>
-		<div class="col-md-4"><input class="form-control" id="cost" placeholder="0.00" /></div>
+		<div class="col-md-3"><label for="cost">Cost per Unit:</label> P </div>
+		<div class="col-md-3"><input class="form-control" id="cost" placeholder="0.00" /></div>
 		<div class="col-md-1">/</div>
-		<div class="col-md-5">
+		<div class="col-md-3">
 			<select class="form-control" id="skuId">
 			<?php
 			foreach($all_sku as $row){

@@ -29,7 +29,7 @@
 					echo "<td>".$row->rprice."</td>";
 					echo "<td>".$row->wprice."</td>";
 					echo "<td><textarea class=\"form_control\" readonly=\"readonly\">".$row->notes."</textarea></td>";
-					echo "<td><button class=\"btn btn-default\">Edit</button></td></tr>";
+					echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->price_id."', '".$row->rprice."', '".$row->wprice."', '".str_ireplace("\n", "&#92n", $row->notes)."', '".$itemId."', '".$itemName."', '".$row->sku_name."'], editPrice)\">Edit</button></td></tr>";
 					
 				}	
 				

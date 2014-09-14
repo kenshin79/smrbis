@@ -13,6 +13,7 @@
 			</select>					
 		</div>		
 	</div>
+	<br />
 	<div class="row">
 		<div class="col-md-6">SKU not in list? <span class="btn btn-default" onclick="checkAccess(['Add New SKU', 'sku', 'newSku_form'], newEntry_form);">Add SKU</span></div>
 	</div>
@@ -42,5 +43,6 @@
 	<label for="notes">Notes:</label>
 	<textarea class="form-control" id="notes" placeholder="Your notes here."></textarea>
 </form>	
+	<br />
        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
        	<button type="button" class="btn btn-default" onclick="checkAccess(['<?php echo $itemId; ?>', '<?php echo $itemName; ?>', document.getElementById('skuId').value, document.getElementById('rprice').value, document.getElementById('wprice').value, document.getElementById('priceDate').value, document.getElementById('notes').value], addItemPrice)" >Save</button>

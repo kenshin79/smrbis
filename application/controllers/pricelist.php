@@ -270,6 +270,11 @@ class Pricelist extends CI_Controller {
 		$updated = $this->Costs_model->updateCostNotes($costId, $notes);
 		echo $updated;
 	}
+	public function updatePrice(){
+		$this->load->model('Prices_model');
+		$updated = $this->Prices_model->updatePrice();
+		echo $updated;
+	}
 	public function showCostPrice(){
 		$itemId = $this->input->post('itemId', TRUE);
 		$data['itemId'] = $itemId;
@@ -286,6 +291,15 @@ class Pricelist extends CI_Controller {
 		$data['itemId'] = $this->input->post('itemId', TRUE);
 		$data['itemName'] = $this->input->post('itemName', TRUE);
 		$this->load->view('pricelist/items/editCostNotes_form', $data);
+	}
+	public function editPrice(){
+		$data['priceId'] = $this->input->post('priceId', TRUE);
+		$data['rprice'] = $this->input->post('rprice', TRUE);
+		$data['wprice'] = $this->input->post('wprice', TRUE);
+		$data['notes'] = str_ireplace("&#92n", '\n', $this->input->post('notes', TRUE));
+		$data['itemId'] = $this->input->post('itemId', TRUE);
+		$data['itemName'] = $this->input->post('itemName', TRUE);
+		$this->load->view('pricelist/items/editPrice_form', $data);		
 	}
 }		
 	

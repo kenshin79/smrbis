@@ -48,7 +48,13 @@
 				$('#main_modal .modal-body').load('pricelist/editCostNotes', 
 					{'costId':costId, 'notes':notes, 'itemId':itemId, 'itemName':itemName});
 				$('#main_modal').modal('show');		    		
-	    	}	   	
+	    	}	
+	    	function editPrice(priceId, rprice, wprice, notes, itemId, itemName, skuName){
+				$('#main_modal .modal-title').html("Edit Price per "+skuName+" (SKU)");
+				$('#main_modal .modal-body').load('pricelist/editPrice', 
+					{'priceId':priceId, 'rprice':rprice, 'wprice':wprice, 'notes':notes, 'itemId':itemId, 'itemName':itemName});
+				$('#main_modal').modal('show');			    		
+	    	}   	
 	    	function updateSku(skuId, skuName, skuCount, skuDesc){
 				if(skuName=="" || skuCount==""){
 					modalAlert("SKU and Quantity cannot be empty!");
@@ -572,5 +578,22 @@
 	    					modalAlert("Failed updating item cost notes!");
 	    				}
 	    			});
+	   		}
+	   		function updatePrice(itemId, itemName, priceId, rprice, wprice, notes, priceDate){
+	    			$.ajax({
+	    				url: 'pricelist/updatePrice',
+	    				type: 'post',
+	    				dataType: 'text',
+	    				data:{'priceId':priceId, 'rprice':rprice, 'wprice':wprice, 'notes':notes, 'priceDate':priceDate}
+	    			}).done(function(data){
+	    				if(data){
+	    					$("#main_modal").modal('hide');
+	    					showCostPrice(itemId, itemName);
+	    					mainAlert("Successfully updated item price !");
+	    				}
+	    				else{
+	    					modalAlert("Failed updating item price!");
+	    				}
+	    			});	   			
 	   		}			    	 	
 	    		    	

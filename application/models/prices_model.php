@@ -24,15 +24,28 @@ Class Prices_model extends CI_Model{
 		return $query->result();
 	}
 	function insertPrice(){
+		$this->load->library('Smrbis');		
 		$itemId = $this->input->post('itemId', TRUE);
 		$skuId = $this->input->post('skuId', TRUE);
-		$rprice = $this->input->post('rprice', TRUE);
-		$wprice = $this->input->post('wprice', TRUE);
-		$notes = $this->input->post('notes', TRUE);
+		$rprice = $this->smrbis->cleanString($this->input->post('rprice', TRUE));
+		$wprice = $this->smrbis->cleanString($this->input->post('wprice', TRUE));
+		$notes = $this->smrbis->cleanString($this->input->post('notes', TRUE));
 		$priceDate = $this->input->post('priceDate', TRUE);
 		$data = array('item_id'=>$itemId, 'sku_id'=>$skuId, 'rprice'=>$rprice, 'wprice'=>$wprice, 'price_date'=>$priceDate, 'notes'=>$notes);
 		$this->db->insert('prices', $data);
 		return $this->db->insert_id();
+	}
+	function updatePrice(){
+		$this->load->library('Smrbis');		
+		$priceId = $this->input->post('priceId', TRUE);
+		$rprice = $this->smrbis->cleanString($this->input->post('rprice', TRUE));
+		$wprice = $this->smrbis->cleanString($this->input->post('wprice', TRUE));
+		$notes = $this->smrbis->cleanString($this->input->post('notes', TRUE));		
+		$priceDate = $this->input->post('priceDate', TRUE);
+		$data = array('rprice'=>$rprice, 'wprice'=>$wprice, 'notes'=>$notes, 'price_date'=>$priceDate);
+		$this->db->where('price_id', $priceId);
+		$this->db->update('prices', $data);
+		return $this->db->affected_rows();
 	}
 }
 

@@ -11,7 +11,7 @@
 				header('Location:'.base_url().'index.php/log_in/changePword');
 			}
 			else{			
-				header('Location:'.base_url().'index.php/welcome/frontpage');
+				header('Location:'.base_url().'index.php/frontpage');
 			}
 		}
 		else{

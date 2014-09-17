@@ -38,4 +38,10 @@ $config['icon']['pricelist'] = $config['app_root'].'/img/pricelist.png';
 $config['icon']['search'] = $config['app_root'].'/img/edit_find.png';
 $config['icon']['user'] = $config['app_root'].'/img/users.png';
 $config['icon']['log_out'] = $config['app_root'].'/img/log_out.png';
+$config['icon']['sales'] = $config['app_root'].'/img/sales.png';
 
+$config['saletype']['0'] = "Wholesale";
+$config['saletype']['1'] = "Retail";
+
+$config['salestatus']['0'] = "Open";
+$config['salestatus']['1'] = "Closed";

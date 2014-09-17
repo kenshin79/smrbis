@@ -8,6 +8,8 @@ class Admin extends CI_Controller {
 			$data['icon3'] = $this->config->item('search', 'icon');
 			$data['icon4'] = $this->config->item('pricelist', 'icon');
 			$data['icon5'] = $this->config->item('log_out', 'icon');
+			$data['icon7'] = $this->config->item('sales', 'icon');
+			$data['current'] = "Admin Page";
 			$this->load->view('admin_panel', $data);
 		}
 		

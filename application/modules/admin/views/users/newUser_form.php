@@ -22,4 +22,4 @@
 </form>
 		<br />
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				
-				<span class="btn btn-default" onclick="checkAccess4(document.getElementById('uname').value, document.getElementById('pword1').value, document.getElementById('pword2').value, document.getElementById('access').value, addUser )">Save</span>						
+				<span class="btn btn-default" onclick="checkAccess([document.getElementById('uname').value, document.getElementById('pword1').value, document.getElementById('pword2').value, document.getElementById('access').value], addUser )">Save</span>						

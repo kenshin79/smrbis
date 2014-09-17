@@ -26,5 +26,5 @@
 						alert('Please log in again with the proper privileges.');
 						window.location.replace('log_in/log_out');	    	
 					}
-				});									
+				});										
 			}

@@ -8,6 +8,8 @@ class Pricelist extends CI_Controller {
 		$data['icon3'] = $this->config->item('search', 'icon');
 		$data['icon6'] = $this->config->item('admin', 'icon');
 		$data['icon5'] = $this->config->item('log_out', 'icon');
+		$data['icon7'] = $this->config->item('sales', 'icon');
+		$data['current'] = "Pricelist Manager";
 		$this->load->view('pricelist/pricelist_main', $data);
 	} 		
 	public function nameUnique(){
@@ -301,5 +303,6 @@ class Pricelist extends CI_Controller {
 		$data['itemName'] = $this->input->post('itemName', TRUE);
 		$this->load->view('pricelist/items/editPrice_form', $data);		
 	}
+	
 }		
 	

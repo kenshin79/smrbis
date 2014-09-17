@@ -15,14 +15,14 @@
 		<script src="<?php echo $this->config->item('datatables_js');?>"></script>
 		<script src="<?php echo $this->config->item('datepicker_js');?>"></script>			
 		<script src="<?php echo $this->config->item('common_js');?>"></script>		
-	    <script src="<?php echo $this->config->item('pricelist_js');?>"></script>			    
+	    <script src="<?php echo $this->config->item('pricelist_js');?>"></script>		
 	    <script>
 	    	$(document).ready(function(){
-	    		showMain('#items', '#items_table', 'items/items_main', 'Items_model');
+	    		showOrders();
 	    	});
-	    </script>
-		<title>Manage Pricelist</title>
-	</head>
+	    </script>	
+	    <title>Sales Order</title>
+	</head>    
 	<body>
 		<div class="alert alert-info hide" id="main_alert" role="alert">
 			<button type="button" class="close" onclick="$('#admin_alert').addClass('hide');" ><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -42,7 +42,7 @@
       				<div class="modal-body"></div>
     			</div><!-- /.modal-content -->
   			</div><!-- /.modal-dialog -->
-		</div><!-- /.modal -->		
+		</div><!-- /.modal -->			
 	<div class="container-fluid">
 		<div class="row">
 		<?php
@@ -52,7 +52,7 @@
 		<div class="col-md-5"></div>
 		<?php
 			if($this->session->userdata('session_access') == 0){
-				include 'application/views/includes/headers/sales_header.php';
+				include 'application/views/includes/headers/manager_header.php';
 				include 'application/views/includes/headers/admin_header.php';
 			}
 			else{
@@ -62,29 +62,24 @@
 			include 'application/views/includes/headers/search_header.php';			
 			include 'application/views/includes/headers/logout_header.php';
 		?>
-		</div>
+		</div>	
+		<br />
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<ul class="nav nav-tabs" role="tablist">
-  					<li class="active" ><a href="#items" data-toggle="tab" onclick="checkAccess(['#items', '#items_table', 'items/items_main', 'Items_model'], showMain)">Items</a></li>
-  					<li><a href="#sku" data-toggle="tab" onclick = "checkAccess(['#sku', '#sku_table', 'sku/sku_main', 'Sku_model'], showMain);">SKU</a></li>
-  					<li><a href="#categories" data-toggle="tab" onclick = "checkAccess(['#categories', '#categories_table', 'categories/categories_main', 'Categories_model'], showMain);">Categories</a></li>
-  					<li><a href="#suppliers" data-toggle="tab" onclick="checkAccess(['#suppliers', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model'], showMain);">Suppliers</a></li>
-					<li><a href="#customers" data-toggle="tab" onclick="checkAccess(['#customers', '#customers_table', 'customers/customers_main', 'Customers_model'], showMain);">Customers</a></li>	
-				</ul>							
+				<button class="btn btn-default" onclick="checkAccess([], newOrder_form);">New Sales Order Form</button>
+										
+			</div>
+			<div class="col-md-1"></div>			
+		</div>	
+		<br />
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10" id="sales_target">
+				
 			</div>
 			<div class="col-md-1"></div>
 		</div>
-		<div class="row">
-			<div class="tab-content">
-				<div id="items" class="tab-pane active"></div>
-				<div id="sku" class="tab-pane"></div>
-				<div id="categories" class="tab-pane"></div>
-				<div id="suppliers" class="tab-pane"></div>
-				<div id="customers" class="tab-pane"></div>
-			</div>
-		</div>		
-	</div>
+	</div>	
 	</body>
-</html>
+</html>	

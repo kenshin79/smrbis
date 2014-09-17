@@ -23,14 +23,7 @@ class Welcome extends CI_Controller {
 		$this->load->view('log_in/login_page', $data);
 	}
 	
-	public function frontpage(){
-		$data['icon1'] = $this->config->item('search', 'icon');
-		$data['icon2'] = $this->config->item('user', 'icon');
-		$data['icon4'] = $this->config->item('pricelist', 'icon');
-		$data['icon6'] = $this->config->item('admin', 'icon');
-		$data['icon5'] = $this->config->item('log_out', 'icon');		
-		$this->load->view('main_search', $data);
-	}
+
 	
 	public function checkAccess(){
 		$access = $this->session->userdata('session_access');

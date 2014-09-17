@@ -596,4 +596,60 @@
 	    				}
 	    			});	   			
 	   		}			    	 	
-	    		    	
+	    	function searchItem(search_term){
+	    		if(search_term.length >= 3){
+	    			$("#search_results").load('frontpage/searchTerm', {'search_term':search_term}, function(){
+	    				$("#search_table").DataTable();
+	    				
+	    			});
+	    		}
+	    	}
+	    	function showOrders(){
+	    		$("#sales_target").load('sales/showAll', function(){
+	    			$("#orders_table").DataTable(
+	    				{'order':[0, 'desc']}
+	    			);
+	    		});
+	    	}
+	    	function newOrder_form(){
+	    		$("#main_modal .modal-title").html("New Order Form");
+	    		$("#main_modal .modal-body").load('sales/newOrder');
+	    		$("#main_modal").modal('show');	    	    		
+	    	}
+			function addOrder(customerId, saleType){
+				$.ajax({
+					url: 'sales/addOrder',
+					type: 'post',
+					dataType:'text',
+					data:{'customerId':customerId, 'saleType':saleType}
+				}).done(function(data){
+	    				if(data){
+	    					$("#main_modal").modal('hide');
+	 						showOrders();
+	    					mainAlert("Successfully created new sales order no. "+data+"!");
+	    				}
+	    				else{
+	    					modalAlert("Failed to create new sales order!");
+	    				}
+	    			});	   					
+			}
+	    	function deleteOrder(salesorderId){
+	    		if(confirm("Delete sales order no. "+salesorderId+"?")== true ){
+				$.ajax({
+					url: 'sales/deleteOrder',
+					type: 'post',
+					dataType:'text',
+					data:{'salesorderId':salesorderId}
+				}).done(function(data){
+	    				if(data){
+	    					$("#main_modal").modal('hide');
+	 						showOrders();
+	    					mainAlert("Successfully deleted sales order no. "+salesorderId+"!");
+	    				}
+	    				else{
+	    					modalAlert("Failed to delete sales order!");
+	    				}
+	    			});	  	    			
+	    		}
+	    		
+	    	}	    	

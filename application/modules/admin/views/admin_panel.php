@@ -50,8 +50,9 @@
 			include 'application/views/includes/headers/currentpage_header.php';
 			include 'application/views/includes/headers/username_header.php';
 		?>				
-			<div class="col-md-6"></div>
+			<div class="col-md-5"></div>
 		<?php
+			include 'application/views/includes/headers/sales_header.php';
 			include 'application/views/includes/headers/search_header.php';
 			include 'application/views/includes/headers/manager_header.php';
 			include 'application/views/includes/headers/logout_header.php';

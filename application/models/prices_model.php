@@ -47,5 +47,16 @@ Class Prices_model extends CI_Model{
 		$this->db->update('prices', $data);
 		return $this->db->affected_rows();
 	}
+	function searchTerm($term){
+
+		$sql = "SELECT item_name, item_category, sku_name, rprice 
+					FROM prices, items, sku
+					WHERE (items.item_name LIKE ? OR items.item_category LIKE ?)
+				 	AND items.item_id = prices.item_id				 	
+					AND prices.sku_id = sku.sku_id
+					ORDER BY item_category ASC ";
+		$search = $this->db->query($sql, array("%".$term."%", "%".$term."%"));
+		return $search->result();
+	}	
 }
 

@@ -67,7 +67,8 @@
 		<div class="row">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-				<button class="btn btn-default" onclick="checkAccess([], newOrder_form);">New Sales Order Form</button>
+				<button class="btn btn-default" onclick="checkAccess([], newOrder_form);">New Sales Order Form</button> 
+				<button class="btn btn-default" onclick="checkAccess([], showOrders);" >Refresh Sales Orders</button>
 										
 			</div>
 			<div class="col-md-1"></div>			

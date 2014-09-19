@@ -26,10 +26,10 @@
 				foreach ($item_prices as $row) {
 					echo "<tr><td>".$row->price_date."</td>";
 					echo "<td>".$row->sku_name."</td>";
-					echo "<td>".$row->rprice."</td>";
-					echo "<td>".$row->wprice."</td>";
-					echo "<td><textarea class=\"form_control\" readonly=\"readonly\">".$row->notes."</textarea></td>";
-					echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->price_id."', '".$row->rprice."', '".$row->wprice."', '".str_ireplace("\n", "&#92n", $row->notes)."', '".$itemId."', '".$itemName."', '".$row->sku_name."'], editPrice)\">Edit</button></td></tr>";
+					echo "<td>P ".$row->rprice."</td>";
+					echo "<td>P ".$row->wprice."</td>";
+					echo "<td><textarea cols=\"30\" class=\"form_control\" readonly=\"readonly\">".$row->notes."</textarea></td>";
+					echo "<td><button class=\"btn btn-info\" onclick=\"checkAccess(['".$row->price_id."', '".$row->rprice."', '".$row->wprice."', '".str_ireplace("\n", "&#92n", $row->notes)."', '".$itemId."', '".$itemName."', '".$row->sku_name."'], editPrice)\">Edit</button></td></tr>";
 					
 				}	
 				
@@ -65,8 +65,8 @@
 				echo "<td> P".number_format(round($row->cost/$row->sku_count, 2) ,2, ".", "" )."</td>";
 				echo "<td>".$row->supplier_name."</td>";
 				echo "<td><textarea readonly>".$row->notes."</textarea></td>";
-				echo "<td><button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->cost_id."', '".str_ireplace("\n", "&#92n", $row->notes)."', '".$row->item_id."', '".$itemName."'], editCostNotes);\" >Edit Notes</button>";
-				echo "<button class=\"btn btn-default\" onclick=\"checkAccess(['".$row->cost_id."', '".$row->item_id."', '".$itemName."'], deleteCost);\">Delete</button>";
+				echo "<td><button class=\"btn btn-info\" onclick=\"checkAccess(['".$row->cost_id."', '".str_ireplace("\n", "&#92n", $row->notes)."', '".$row->item_id."', '".$itemName."'], editCostNotes);\" >Edit Notes</button>";
+				echo " <button class=\"btn btn-danger\" onclick=\"checkAccess(['".$row->cost_id."', '".$row->item_id."', '".$itemName."'], deleteCost);\">Delete</button>";
 				echo "</td>";
 				echo "</tr>";
 			}	

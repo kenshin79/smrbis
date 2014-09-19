@@ -8,6 +8,7 @@ Class Prices_model extends CI_Model{
 	var $price_date="";
 	var $notes="";
 	
+
 	function getItemPrices($itemId){
 		$sql = "SELECT price_id, sku_name, sku_count, rprice, wprice, price_date, notes 
 				FROM prices, sku
@@ -16,6 +17,22 @@ Class Prices_model extends CI_Model{
 		$query = $this->db->query($sql, array($itemId));
 		return $query->result();
 	}	
+	function priceDropDown($clue){
+		$sql = "SELECT price_id, item_name, item_category, sku_name
+				FROM prices, items, sku 
+				WHERE (item_name LIKE ? OR item_category LIKE ?) AND
+					  prices.item_id = items.item_id AND
+					  prices.sku_id = sku.sku_id
+				ORDER BY item_name ASC";
+		$query = $this->db->query($sql, array('%'.$clue.'%', '%'.$clue.'%'));
+		return $query->result();		
+	}
+	function wrDropDown($priceId){
+		$this->db->select('wprice, rprice');
+		$this->db->where('price_id', $priceId);
+		$query = $this->db->get('prices');
+		return $query->result();
+	}
 	function itemPriceUnique($itemId, $skuId){
 		$this->db->select('price_id');
 		$this->db->where('item_id', $itemId);

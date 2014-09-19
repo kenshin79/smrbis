@@ -39,6 +39,9 @@ $config['icon']['search'] = $config['app_root'].'/img/edit_find.png';
 $config['icon']['user'] = $config['app_root'].'/img/users.png';
 $config['icon']['log_out'] = $config['app_root'].'/img/log_out.png';
 $config['icon']['sales'] = $config['app_root'].'/img/sales.png';
+$config['logo']['software'] = $config['app_root'].'/img/my_logo.png';
+$config['logo']['store_logo'] = $config['app_root'].'/img/store_logo.png';
+$config['logo']['store_name'] = $config['app_root'].'/img/store_name.png';
 
 $config['saletype']['0'] = "Wholesale";
 $config['saletype']['1'] = "Retail";

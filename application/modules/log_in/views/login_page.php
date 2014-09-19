@@ -29,7 +29,11 @@
 		<title>Log-IN to <?php echo $this->config->item('app_name'); ?></title>		
 	</head>
 	<body>
+		<br />
 		<div class="container">
+			<div class="text-center">
+				<img src="<?php echo $this->config->item('software', 'logo'); ?>" width="600px" height="200px" />
+			</div>
 			<div class="row">
 				<div class="col-md-4"></div>
 				<div class="col-md-4">

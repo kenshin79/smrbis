@@ -5,7 +5,7 @@
 	    	}
 	    	function modalOn(title, controller){
 	    		$("#main_modal .modal-title").html(title);
-	    		$("#main_modal .modal-body").load(controller);
+	    		$("#main_modal .modal-body").load(controller, function(){$("label").addClass('label label-default');});
 	    		$("#main_modal").modal('show');	    		
 	    	}
 	    	function mainAlert(message){

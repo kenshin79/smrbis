@@ -7,7 +7,7 @@
 	<br />
 	<div class="row">
 		<div>
-			<h3><label class="label label-default" for="customerId">Customer:</label></h3>		
+			<h3><label class="label label-default" for="customerId">Customer</label> New customer?<span class="btn btn-default" onclick="checkAccess(['Add New Customer', 'customers','newCustomer_form'], newEntry_form);">New Customer</span></h3>		
 			<select class="form-control" id="customerId">
 		<?php
 			foreach($customers as $row){
@@ -16,13 +16,8 @@
 		?>
 			</select>					
 		</div>
-	
 	</div>	
-		<br />	
-	<div class="row">
-		New customer?<span class="btn btn-default" onclick="checkAccess(['Add New Customer', 'customers','newCustomer_form'], newEntry_form);">New Customer</span>
-	</div>
 </form>
 <br />
 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				
-	<span class="btn btn-default" onclick="checkAccess([document.getElementById('customerId').value, $('form input:radio:checked').val()], addOrder )">Save</span>						
+	<span class="btn btn-success" onclick="checkAccess([document.getElementById('customerId').value, $('form input:radio:checked').val()], addOrder )">Save</span>						

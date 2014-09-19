@@ -12,5 +12,5 @@
 </form>
 <br />
        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       	<button type="button" class="btn btn-default" onclick="checkAccess([document.getElementById('skuName').value, document.getElementById('skuCount').value, document.getElementById('skuDesc').value], addSku)" >Save</button>
+       	<button type="button" class="btn btn-success" onclick="checkAccess([document.getElementById('skuName').value, document.getElementById('skuCount').value, document.getElementById('skuDesc').value], addSku)" >Save</button>
 

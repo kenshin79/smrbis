@@ -18,4 +18,4 @@
 </form>
 <br />
        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       	<button type="button" class="btn btn-default" onclick="checkAccess(['<?php echo $supplierId; ?>', document.getElementById('supplierName').value, document.getElementById('supplierAddress').value, document.getElementById('supplierTelephone').value, document.getElementById('supplierMobile').value, document.getElementById('supplierEmail').value], updateSupplier);" >Save</button>
+       	<button type="button" class="btn btn-success" onclick="checkAccess(['<?php echo $supplierId; ?>', document.getElementById('supplierName').value, document.getElementById('supplierAddress').value, document.getElementById('supplierTelephone').value, document.getElementById('supplierMobile').value, document.getElementById('supplierEmail').value], updateSupplier);" >Save</button>

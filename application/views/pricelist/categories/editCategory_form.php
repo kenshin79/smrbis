@@ -9,4 +9,4 @@
 </form>
 <br />
 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>	
-	<button type="button" class="btn btn-default" onclick="checkAccess(['<?php echo $categoryId;?>' , document.getElementById('categoryName').value, document.getElementById('categoryDesc').value], updateCategory);" >Save</button>
+	<button type="button" class="btn btn-success" onclick="checkAccess(['<?php echo $categoryId;?>' , document.getElementById('categoryName').value, document.getElementById('categoryDesc').value], updateCategory);" >Save</button>

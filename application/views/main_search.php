@@ -48,12 +48,8 @@
 
 	 	</div>
 	 	<br />
-		<div class="row">
-			<div class="col-md-3"></div>
-			<div class="col-md-6">
-				<img src="" width="700px" height="100px" />
-			</div>
-			<div class="col-md-3"></div> 
+		<div class="row text-center">
+				<img src="<?php echo $this->config->item('software', 'logo'); ?>" width="600px" height="150px" />
 		</div>
 		<br />
 		<div class="row">

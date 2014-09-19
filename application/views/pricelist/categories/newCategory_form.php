@@ -9,5 +9,5 @@
 </form>
 <br />
        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       	<button type="button" class="btn btn-default" onclick="checkAccess([document.getElementById('categoryName').value, document.getElementById('categoryDesc').value], addCategory)" >Save</button>
+       	<button type="button" class="btn btn-success" onclick="checkAccess([document.getElementById('categoryName').value, document.getElementById('categoryDesc').value], addCategory)" >Save</button>
 

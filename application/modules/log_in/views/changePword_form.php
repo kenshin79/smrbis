@@ -44,7 +44,7 @@
 			echo "</script>";
 		}
 		else{
-			echo "<a href=\"".base_url()."index.php/welcome/frontpage"."\"><img src=\"".base_url()."/img/back.png"."\" width=\"50px\" height=\"50px\" />Return to Home Page</a>";
+			echo "<a href=\"".base_url()."index.php/frontpage"."\"><img src=\"".base_url()."/img/back.png"."\" width=\"50px\" height=\"50px\" />Return to Home Page</a>";
 		}
 	?>	
 		

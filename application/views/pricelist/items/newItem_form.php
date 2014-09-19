@@ -24,4 +24,4 @@
 </form>
 <br />
        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       	<button type="button" class="btn btn-default" onclick="checkAccess([document.getElementById('itemName').value, document.getElementById('itemCategory').value, document.getElementById('itemDesc').value], addItem)" >Save</button>
+       	<button type="button" class="btn btn-success" onclick="checkAccess([document.getElementById('itemName').value, document.getElementById('itemCategory').value, document.getElementById('itemDesc').value], addItem)" >Save</button>

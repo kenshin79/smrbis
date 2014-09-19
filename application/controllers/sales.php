@@ -33,5 +33,73 @@ class Sales extends CI_Controller {
 		$deleted = $this->Salesorders_model->deleteOrder();
 		echo $deleted;
 	}
+	public function getOrderItems(){
+		$salesorderId = $this->input->post('salesorderId', TRUE);	
+		$data['salesorderId'] = $salesorderId;
+		$this->load->model('Salesorders_model');
+		$data['order_details'] = $this->Salesorders_model->getOrderDetails($salesorderId);
+		$this->load->model('Soitems_model');
+		$data['order_items'] = $this->Soitems_model->getAll($salesorderId);
+		$this->load->view('sales/open_order_form', $data);
+	}
+	public function newOrderItem(){
+		$data['salesorderId'] = $this->input->post('salesorderId', TRUE);
+		$this->load->view('sales/newOrderItem_form', $data);
+	}
+	public function priceDropDown(){
+		$clue = $this->input->post('clue', TRUE); 
+		$this->load->model('Prices_model');
+		$data['pricedrop'] = $this->Prices_model->priceDropDown($clue);
+		$this->load->view('sales/price_dropdown', $data);
+	}
+	public function wrDropDown(){
+		$priceId = $this->input->post('priceId', TRUE);
+		$this->load->model('Prices_model');
+		$data['itemPrices'] = $this->Prices_model->wrDropDown($priceId);
+		$this->load->view('sales/wr_dropdown', $data);
+	}
+	public function addOrderItem(){
+		$salesorderId = $this->input->post('salesorderId', TRUE);			
+		$this->load->model('Soitems_model');
+		$added = $this->Soitems_model->insertOrderItem($salesorderId);
+		$this->load->model('Salesorders_model');
+		$this->Salesorders_model->updateTimestamp($salesorderId);
+		echo $added;
+	}
+	public function orderItemUnique(){
+		$salesorderId = $this->input->post('salesorderId', TRUE);
+		$priceId = $this->input->post('priceId', TRUE);
+		$this->load->model('Soitems_model');
+		$duplicate = $this->Soitems_model->uniqueOrderItem($salesorderId, $priceId);
+		if($duplicate){
+			echo "1";
+		}
+		else{
+			echo "0";
+		};
+	}
+	public function removeOrderItem(){
+		$salesorderId = $this->input->post('salesorderId', TRUE);
+		$priceId = $this->input->post('priceId', TRUE);
+		$this->load->model('Soitems_model');
+		$removed = $this->Soitems_model->removeOrderItem($salesorderId, $priceId);
+		$this->load->model('Salesorders_model');
+		$this->Salesorders_model->updateTimestamp($salesorderId);		
+		echo $removed;
+		
+	}
+	public function finalizeOrder(){
+		$salesorderId = $this->input->post('salesorderId', TRUE);
+		$this->load->model('Salesorders_model');
+		$finalized = $this->Salesorders_model->finalizeOrder($salesorderId);
+		echo $finalized;
+	}
+	public function printSalesOrder($salesorderId){
+		$this->load->model('Salesorders_model');
+		$data['order_details'] = $this->Salesorders_model->getOrderDetails($salesorderId);
+		$this->load->model('Soitems_model');
+		$data['order_items'] = $this->Soitems_model->getAll($salesorderId);
+		$this->load->view('sales/printSalesOrder', $data);	
+	}
 }		
 	

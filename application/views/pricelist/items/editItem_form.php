@@ -23,4 +23,4 @@
 </form>
 <br />
        	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-       	<button type="button" class="btn btn-default" onclick="checkAccess(['<?php echo $itemId; ?>', document.getElementById('itemName').value, document.getElementById('itemCategory').value, document.getElementById('itemDesc').value], updateItem);" >Save</button>
+       	<button type="button" class="btn btn-success" onclick="checkAccess(['<?php echo $itemId; ?>', document.getElementById('itemName').value, document.getElementById('itemCategory').value, document.getElementById('itemDesc').value], updateItem);" >Save</button>

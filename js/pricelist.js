@@ -1,12 +1,15 @@
 			function showMain(tab, table, main_page, model){
 				$(tab).load('pricelist/showMain', {'main_page':main_page, 'model':model}, function(){
 					$(table).DataTable();
+					$("th, td").addClass('text-center');
+					
 				});
 			}
 	    	function showCostPrice(itemId, itemName){
 	    		$("#items").load('pricelist/showCostPrice', {'itemId':itemId, 'itemName':itemName}, function(){
 	    			$("#costs_table").DataTable();
 	    			$("#prices_table").DataTable();
+	    			$("th, td").addClass('text-center');
 	    		});
 	    	}				
 			function newEntry_form(title, folder, view){
@@ -16,43 +19,44 @@
 	    	function editSku(skuId, skuName, skuCount, skuDesc){
 				$('#main_modal .modal-title').html("Edit SKU");
 				$('#main_modal .modal-body').load('pricelist/editSku', 
-					{'skuId':skuId, 'skuName':skuName, 'skuCount':skuCount, 'skuDesc':skuDesc});
+					{'skuId':skuId, 'skuName':skuName, 'skuCount':skuCount, 'skuDesc':skuDesc}, function(){$("label").addClass('label label-default');});
 				$('#main_modal').modal('show');		    		
 	    	}
 	    	function editCategory(categoryId, categoryName, categoryDesc){
 				$('#main_modal .modal-title').html("Edit Category");
 				$('#main_modal .modal-body').load('pricelist/editCategory', 
-					{'categoryId':categoryId, 'categoryName':categoryName, 'categoryDesc':categoryDesc});
+					{'categoryId':categoryId, 'categoryName':categoryName, 'categoryDesc':categoryDesc}, function(){$("label").addClass('label label-default');});
 				$('#main_modal').modal('show');			    		
 	    	}
 	    	function editSupplier(supplierId, supplierName, supplierAddress, supplierTelephone, supplierMobile, supplierEmail){
 				$('#main_modal .modal-title').html("Edit Supplier");
 				$('#main_modal .modal-body').load('pricelist/editSupplier', 
-					{'supplierId':supplierId, 'supplierName':supplierName, 'supplierAddress':supplierAddress, 'supplierTelephone':supplierTelephone, 'supplierMobile':supplierMobile, 'supplierEmail':supplierEmail});
+					{'supplierId':supplierId, 'supplierName':supplierName, 'supplierAddress':supplierAddress, 'supplierTelephone':supplierTelephone, 'supplierMobile':supplierMobile, 'supplierEmail':supplierEmail}, function(){$("label").addClass('label label-default');});
 				$('#main_modal').modal('show');			    		
 	    	}	 
 	    	function editCustomer(customerId, customerName, customerAddress, customerTelephone, customerMobile, customerEmail){
 				$('#main_modal .modal-title').html("Edit Customer");
 				$('#main_modal .modal-body').load('pricelist/editCustomer', 
-					{'customerId':customerId, 'customerName':customerName, 'customerAddress':customerAddress, 'customerTelephone':customerTelephone, 'customerMobile':customerMobile, 'customerEmail':customerEmail});
+					{'customerId':customerId, 'customerName':customerName, 'customerAddress':customerAddress, 'customerTelephone':customerTelephone, 'customerMobile':customerMobile, 'customerEmail':customerEmail}, function(){$("label").addClass('label label-default');});
 				$('#main_modal').modal('show');			    		
 	    	}		    
 	    	function editItem(itemId, itemName, itemCategory, itemDesc){
 				$('#main_modal .modal-title').html("Edit Item");
 				$('#main_modal .modal-body').load('pricelist/editItem', 
-					{'itemId':itemId, 'itemName':itemName, 'itemCategory':itemCategory, 'itemDesc':itemDesc});
+					{'itemId':itemId, 'itemName':itemName, 'itemCategory':itemCategory, 'itemDesc':itemDesc}, function(){$("label").addClass('label label-default');});
 				$('#main_modal').modal('show');			    		
 	    	}	    	
 	    	function editCostNotes(costId, notes, itemId, itemName){
 				$('#main_modal .modal-title').html("Edit Cost Notes");
 				$('#main_modal .modal-body').load('pricelist/editCostNotes', 
-					{'costId':costId, 'notes':notes, 'itemId':itemId, 'itemName':itemName});
+					{'costId':costId, 'notes':notes, 'itemId':itemId, 'itemName':itemName}, function(){$("label").addClass('label label-default');});
 				$('#main_modal').modal('show');		    		
 	    	}	
 	    	function editPrice(priceId, rprice, wprice, notes, itemId, itemName, skuName){
 				$('#main_modal .modal-title').html("Edit Price per "+skuName+" (SKU)");
 				$('#main_modal .modal-body').load('pricelist/editPrice', 
-					{'priceId':priceId, 'rprice':rprice, 'wprice':wprice, 'notes':notes, 'itemId':itemId, 'itemName':itemName});
+					{'priceId':priceId, 'rprice':rprice, 'wprice':wprice, 'notes':notes, 'itemId':itemId, 'itemName':itemName}, 
+					function(){$("label").addClass('label label-default');});
 				$('#main_modal').modal('show');			    		
 	    	}   	
 	    	function updateSku(skuId, skuName, skuCount, skuDesc){
@@ -463,6 +467,7 @@
 				$("#main_modal .modal-body").load( controller, {'itemId':itemId, 'itemName':itemName}, function(){
 					$("#main_modal .modal-title").html("Add "+title+" for '"+itemName+"'");
 					$(".datepicker").datepicker();
+					$("label").addClass('label label-default');
 					$("#main_modal").modal('show');		
 				});			
 								
@@ -609,6 +614,7 @@
 	    			$("#orders_table").DataTable(
 	    				{'order':[0, 'desc']}
 	    			);
+	    			$("th, td").addClass('text-center');
 	    		});
 	    	}
 	    	function newOrder_form(){
@@ -634,7 +640,7 @@
 	    			});	   					
 			}
 	    	function deleteOrder(salesorderId){
-	    		if(confirm("Delete sales order no. "+salesorderId+"?")== true ){
+	    		if(confirm("Delete Sales Order no. "+salesorderId+"?")== true ){
 				$.ajax({
 					url: 'sales/deleteOrder',
 					type: 'post',
@@ -644,7 +650,7 @@
 	    				if(data){
 	    					$("#main_modal").modal('hide');
 	 						showOrders();
-	    					mainAlert("Successfully deleted sales order no. "+salesorderId+"!");
+	    					mainAlert("Successfully deleted Sales Order no. "+salesorderId+"!");
 	    				}
 	    				else{
 	    					modalAlert("Failed to delete sales order!");
@@ -652,4 +658,101 @@
 	    			});	  	    			
 	    		}
 	    		
-	    	}	    	
+	    	}
+	    	function showThisOrder(salesorderId){
+	    		$("#sales_target").load('sales/getOrderItems', {'salesorderId':salesorderId}, function(){
+	    			$("th, td").addClass('text-center');
+	    		});
+	    	}	
+	    	function newOrderItem_form(salesorderId){
+				$("#main_modal .modal-body").load( 'sales/newOrderItem', {'salesorderId':salesorderId}, function(){
+					$("#main_modal .modal-title").html("Add Order Item");
+					$("#main_modal").modal('show');		
+				});		    		
+	    	} 
+	    	function priceDropDown(clue){
+	    		if(clue.length>=3){
+	    			$("#priceId").load('sales/priceDropDown', {'clue':clue}, function(){
+	    				$("#unitPrice").html("");
+	    			});
+	    		}
+	    	} 
+	    	function wrDropDown(priceId){
+	    		$("#unitPrice").load('sales/wrDropDown', {'priceId':priceId});
+	    	}  
+	    	function addOrderItem(salesorderId, priceId, unitPrice, quantity){
+	    		$.ajax({
+	    			url: 'sales/orderItemUnique',
+	    			type:'post',
+	    			dataType:'text',
+	    			data:{'salesorderId':salesorderId, 'priceId':priceId}
+	    		}).done(function (duplicate){
+	    			if(duplicate != 0){
+	    				modalAlert("Item already in Sales Order (duplicate)!");
+	    			}
+	    			else{
+						if($.isNumeric(quantity) && quantity > 0){
+	    					$.ajax({
+	    						url: 'sales/addOrderItem',
+	    						type:'post',
+	    						dataType: 'text',
+	    						data: {'salesorderId':salesorderId, 'priceId':priceId, 'unitPrice':unitPrice, 'quantity':quantity}
+	    					}).done(function(data){
+	    						if(data){
+	    							$("#main_modal").modal('hide');
+	 								showThisOrder(salesorderId);
+	    							mainAlert("Successfully added an item in Sales Order no. "+salesorderId+"!");	    							
+	    						}
+	    						else{
+	    							modalAlert("Failed to add item in Sales Order no."+salesorderId+"!");
+	    						}
+	    					});					
+						}
+						else{
+							modalAlert("Item Quantity should be a number > 0!");
+						}	    				
+	    			}
+	    		});
+
+
+	    	}
+	    	function removeOrderItem(salesorderId, priceId){
+	    		if(confirm("Remove this item from Sales Order?") == true){
+	    			$.ajax({
+	    				url: 'sales/removeOrderItem',
+	    				type: 'post',
+	    				dataType: 'text',
+	    				data: {'salesorderId':salesorderId, 'priceId':priceId}
+	    			}).done(function(removed){
+	    				if(removed){
+	    					showThisOrder(salesorderId);
+	    					mainAlert("Successfully removed item from Sales Order!");
+	    				}
+	    				else{
+	    					mainAlert("Failed to remove item from Sales Order!");
+	    				}
+	    			});	    			
+	    		}
+
+	    	}	
+			function finalizeOrder(salesorderId){
+				if(confirm("Finalize this Sales Order?") == true){
+					$.ajax({
+						url: 'sales/finalizeOrder',
+						type: 'post',
+						dataType: 'text',
+						data: {'salesorderId':salesorderId}
+					}).done(function(finalized){
+						if(finalized){
+							showOrders();
+							mainAlert("Successfully finalized Sales Order no. "+salesorderId+"!");
+						}
+						else{
+							mainAlert("Failed to finalize Sales Order no. "+salesorderId+"!");
+						}
+					});
+				}
+			}	    	
+			function printSalesOrder(salesorderId){
+				window.open('sales/printSalesOrder/'+salesorderId );
+			}

@@ -54,8 +54,8 @@
 		<br />
 		<div class="row">
 			<div class="col-md-3"></div>
-			<div class="col-md-5"><input type="text" class="form-control input-lg" id="search_term"  placeholder="Search for item or category." /></div>
-			<div class="col-md-1" ><button class="btn btn-success btn-lg" onclick="searchItem(document.getElementById('search_term').value);">Search</button></div>	
+			<div class="col-md-5"><input type="text" class="form-control input-lg text-right" id="search_term" onkeyup="searchItem(document.getElementById('search_term').value);"  placeholder="Search for item or category." /></div>
+			<div class="col-md-1" ><img class="img-rounded" src="<?php echo $this->config->item('maglens', 'logo'); ?>" width="50px" height="50px" /></div>	
 			<div class="col-md-3"></div>	
 		</div>
 		<br />

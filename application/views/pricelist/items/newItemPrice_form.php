@@ -4,7 +4,7 @@
 			<select class="form-control" id="skuId">
 			<?php
 			foreach($all_sku as $row){
-			echo "<option value=\"".$row->sku_id."\">".$row->sku_name."</option>";
+			echo "<option value=\"".$row->sku_id."\">".$row->sku_name." - ".$row->sku_count."</option>";
 			}	
 			?>
 			</select>						

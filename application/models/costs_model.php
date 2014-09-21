@@ -10,7 +10,7 @@ Class Costs_model extends CI_Model{
 	var $notes="";
 	
 	function getItemCosts($itemId){
-		$sql = "SELECT cost_id, costs.item_id, costs.supplier_id, costs.sku_id,
+		$sql = "SELECT cost_id, costs.item_id, costs.supplier_id, costs.sku_id, 
 				item_name, supplier_name, sku_name, sku_count,
 				cost, cost_date, notes FROM
 				costs, items, suppliers, sku WHERE

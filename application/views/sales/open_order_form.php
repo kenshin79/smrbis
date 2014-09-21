@@ -30,7 +30,7 @@ $total = 0;
 foreach($order_items as $row){
 	echo "<tr><td>".$x."</td>";
 	echo "<td>".$row->quantity."</td>";
-	echo "<td><h4>".$row->item_name." (".$row->sku_name.")</h4></td>";
+	echo "<td><h4>".$row->item_name." (".$row->sku_name." - ".$row->sku_count.")</h4></td>";
 	echo "<td>".$row->unit_price."</td>";
 	echo "<td>".number_format($row->quantity*$row->unit_price, 2)."</td>";
 	echo "<td><button class=\"btn btn-danger\" onclick=\"checkAccess(['".$row->salesorder_id."', '".$row->price_id."'], removeOrderItem);\">Remove</button>";

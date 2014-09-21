@@ -57,13 +57,19 @@ class Pricelist extends CI_Controller {
 		$data['all_list'] = $this->{$model}->getAll();
 		$this->load->view('pricelist/'.$main_page, $data);
 	}
-	public function deleteEntry(){
-		
-	}
 	public function deleteSku(){
 		$skuId = $this->input->post('skuId', TRUE);
 		$this->load->model('Sku_model');
 		$deleted = $this->Sku_model->deleteSku($skuId);
+		$username = $this->session->userdata('session_user');		
+		if($deleted){
+			$activity = "Success: deleted SKU";
+		}
+		else{
+			$activity = "Failed: delete SKU";
+		}
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);		
 		echo $deleted;
 	}
 	public function deleteCategory(){

@@ -51,7 +51,7 @@
 			$total = 0;
 			foreach($order_items as $row){
 				echo "<tr><td class=\"text-center\">".$row->quantity."</td>";
-				echo "<td class=\"text-center\">".$row->item_name." (".$row->sku_name.")</td>";
+				echo "<td class=\"text-center\">".$row->item_name." (".$row->sku_name." - ".$row->sku_count.")</td>";
 				echo "<td class=\"text-right\">P ".$row->unit_price."</td>";
 				echo "<td class=\"text-right\">P ".number_format($row->unit_price*$row->quantity, 2)."</td></tr>";
 				$total = $total + $row->quantity*$row->unit_price;

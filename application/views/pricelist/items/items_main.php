@@ -21,7 +21,7 @@
 				echo "<tr>";
 				echo "<td>".$x."</td>";
 				echo "<td>".$row->item_name."</td>";
-				echo "<td>".$row->item_category."</td>";
+				echo "<td>".$row->category_name."</td>";
 				echo "<td>".$row->description."</td>";
 				echo "<td>";
 				echo "<button class=\"btn btn-info\" onclick=\"checkAccess(['".$row->item_id."', '".$row->item_name."','".$row->item_category."', '".$row->description."'], editItem );\" >Edit</button>";

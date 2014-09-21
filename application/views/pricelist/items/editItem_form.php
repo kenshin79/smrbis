@@ -5,13 +5,15 @@
 		<br />
 		<label for="itemCategory">Category:</label>
 		<select class="form-control" id="itemCategory">
-			<option value="<?php echo $itemCategory;?>"><?php echo $itemCategory; ?></option>
 			<?php
 				$this->load->model('Categories_model');
 				$all_categories = $this->Categories_model->getAll();
 				foreach ($all_categories as $row) {
-					if(strcmp($row->category_name, $itemCategory)){
-							echo "<option value=\"$row->category_name\">".$row->category_name."</option>";
+					if(!strcmp($row->category_id, $itemCategory)){
+							echo "<option value=\"$row->category_id\" selected>".$row->category_name."</option>";
+					}
+					else{
+						echo "<option value=\"$row->category_id\" >".$row->category_name."</option>";
 					}
 				}
 			?>

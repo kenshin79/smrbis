@@ -18,13 +18,15 @@ Class Prices_model extends CI_Model{
 		return $query->result();
 	}	
 	function priceDropDown($clue){
-		$sql = "SELECT price_id, item_name, item_category, sku_name
-				FROM prices, items, sku 
-				WHERE (item_name LIKE ? OR item_category LIKE ?) AND
-					  prices.item_id = items.item_id AND
-					  prices.sku_id = sku.sku_id
-				ORDER BY item_name ASC";
-		$query = $this->db->query($sql, array('%'.$clue.'%', '%'.$clue.'%'));
+		$this->db->select('price_id, item_name, category_name, sku_name, sku_count');
+		$this->db->from('prices');
+		$this->db->join('items', 'prices.item_id = items.item_id');
+		$this->db->join('categories', 'items.item_category = categories.category_id');
+		$this->db->join('sku', 'prices.sku_id = sku.sku_id');
+		$this->db->like('item_name', $clue);
+		$this->db->or_like('category_name', $clue);
+		$this->db->order_by('item_name', 'asc');		
+		$query = $this->db->get();
 		return $query->result();		
 	}
 	function wrDropDown($priceId){
@@ -65,15 +67,15 @@ Class Prices_model extends CI_Model{
 		return $this->db->affected_rows();
 	}
 	function searchTerm($term){
-
-		$sql = "SELECT item_name, item_category, sku_name, rprice 
-					FROM prices, items, sku
-					WHERE (items.item_name LIKE ? OR items.item_category LIKE ?)
-				 	AND items.item_id = prices.item_id				 	
-					AND prices.sku_id = sku.sku_id
-					ORDER BY item_category ASC ";
-		$search = $this->db->query($sql, array("%".$term."%", "%".$term."%"));
-		return $search->result();
+		$this->db->select('item_name, category_name, sku_name, rprice, wprice, sku_count');
+		$this->db->from('prices');
+		$this->db->join('items', 'prices.item_id = items.item_id');		
+		$this->db->join('categories', 'item_category = category_id');
+		$this->db->join('sku', 'prices.sku_id = sku.sku_id');				
+		$this->db->like('item_name', $term);
+		$this->db->or_like('category_name', $term);		
+		$query = $this->db->get();
+		return $query->result();
 	}	
 }
 

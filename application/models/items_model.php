@@ -6,7 +6,8 @@ Class Items_model extends CI_Model{
 	var $description="";
 	
 	function getAll(){
-		$this->db->select('item_id, item_name, item_category, description');
+		$this->db->select('item_id, item_name, item_category, items.description, category_name');
+		$this->db->join('categories', 'item_category = category_id');
 		$this->db->order_by('item_name ASC');		
 		$query = $this->db->get('items');
 		return $query->result();

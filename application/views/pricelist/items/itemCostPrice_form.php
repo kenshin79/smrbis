@@ -25,7 +25,7 @@
 				<?php
 				foreach ($item_prices as $row) {
 					echo "<tr><td>".$row->price_date."</td>";
-					echo "<td>".$row->sku_name."</td>";
+					echo "<td>".$row->sku_name." - ".$row->sku_count."</td>";
 					echo "<td>P ".$row->rprice."</td>";
 					echo "<td>P ".$row->wprice."</td>";
 					echo "<td><textarea cols=\"30\" class=\"form_control\" readonly=\"readonly\">".$row->notes."</textarea></td>";
@@ -61,7 +61,7 @@
 			<?php
 			foreach($item_costs as $row){
 				echo "<tr><td>".$row->cost_date."</td>";
-				echo "<td> P".number_format($row->cost, 2, ".", "")." / ".$row->sku_name."</td>";
+				echo "<td> P".number_format($row->cost, 2, ".", "")." / ".$row->sku_name." - ".$row->sku_count."</td>";
 				echo "<td> P".number_format(round($row->cost/$row->sku_count, 2) ,2, ".", "" )."</td>";
 				echo "<td>".$row->supplier_name."</td>";
 				echo "<td><textarea readonly>".$row->notes."</textarea></td>";

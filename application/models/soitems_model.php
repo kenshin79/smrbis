@@ -6,7 +6,7 @@ Class Soitems_model extends CI_Model{
 	var $unit_price="";
 	
 	function getAll($salesorderId){		
-		$this->db->select('soitems.salesorder_id AS salesorder_id, soitems.price_id AS price_id, item_name, quantity, unit_price, sku_name');
+		$this->db->select('soitems.salesorder_id AS salesorder_id, soitems.price_id AS price_id, item_name, quantity, unit_price, sku_name, sku_count');
 		$this->db->join('salesorders','soitems.salesorder_id = salesorders.salesorder_id');		
 		$this->db->join('prices', 'soitems.price_id = prices.price_id');
 		$this->db->join('customers', 'salesorders.customer_id = customers.customer_id');

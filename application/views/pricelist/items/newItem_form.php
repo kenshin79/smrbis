@@ -11,7 +11,7 @@
 				<select class="form-control" id="itemCategory">
 <?php
 			foreach($all_categories as $row){
-				echo "<option value = \"".$row->category_name."\">".$row->category_name."</option>";
+				echo "<option value = \"".$row->category_id."\">".$row->category_name."</option>";
 			}
 ?>
 				</select>	

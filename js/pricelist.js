@@ -668,7 +668,7 @@
 				$("#main_modal .modal-body").load( 'sales/newOrderItem', {'salesorderId':salesorderId}, function(){
 					$("#main_modal .modal-title").html("Add Order Item");
 					$("#main_modal").modal('show');		
-				});		    		
+				});		    				    		
 	    	} 
 	    	function priceDropDown(clue){
 	    		if(clue.length>=3){
@@ -680,7 +680,11 @@
 	    	function wrDropDown(priceId){
 	    		$("#unitPrice").load('sales/wrDropDown', {'priceId':priceId});
 	    	}  
-	    	function addOrderItem(salesorderId, priceId, unitPrice, quantity){
+	    	function addOrderItem(salesorderId, priceId, unitPrice, quantity, repeat){
+	    		if(priceId === "" || unitPrice ===""){
+	    			modalAlert("No item and/or price chosen!");
+	    		}
+	    		else{
 	    		$.ajax({
 	    			url: 'sales/orderItemUnique',
 	    			type:'post',
@@ -701,7 +705,10 @@
 	    						if(data){
 	    							$("#main_modal").modal('hide');
 	 								showThisOrder(salesorderId);
-	    							mainAlert("Successfully added an item in Sales Order no. "+salesorderId+"!");	    							
+	    							mainAlert("Successfully added an item in Sales Order no. "+salesorderId+"!");
+	    							if(repeat){
+	    								newOrderItem_form(salesorderId);
+	    							}	    							
 	    						}
 	    						else{
 	    							modalAlert("Failed to add item in Sales Order no."+salesorderId+"!");
@@ -712,7 +719,9 @@
 							modalAlert("Item Quantity should be a number > 0!");
 						}	    				
 	    			}
-	    		});
+	    		});	    			
+	    		}
+
 
 
 	    	}

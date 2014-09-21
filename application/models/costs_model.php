@@ -10,16 +10,15 @@ Class Costs_model extends CI_Model{
 	var $notes="";
 	
 	function getItemCosts($itemId){
-		$sql = "SELECT cost_id, costs.item_id, costs.supplier_id, costs.sku_id, 
-				item_name, supplier_name, sku_name, sku_count,
-				cost, cost_date, notes FROM
-				costs, items, suppliers, sku WHERE
-				costs.item_id = ? AND items.item_id = ? 
-				AND costs.sku_id = sku.sku_id 
-				AND costs.supplier_id = suppliers.supplier_id 
-				ORDER BY supplier_name ASC, 
-				cost_date ASC";
-		$query = $this->db->query($sql, array($itemId, $itemId));		
+		$this->db->select('cost_id, costs.item_id, costs.supplier_id, costs.sku_id, item_name, supplier_name, sku_name, sku_count, cost, cost_date, notes');
+		$this->db->from('costs');
+		$this->db->join('suppliers', 'costs.supplier_id = suppliers.supplier_id');
+		$this->db->join('sku', 'costs.sku_id = sku.sku_id');
+		$this->db->join('items', 'costs.item_id = items.item_id');
+		$this->db->where('costs.item_id', $itemId);
+		$this->db->order_by('supplier_name', 'asc');
+		$this->db->order_by('cost_date', 'asc');
+		$query = $this->db->get();		
 		return $query->result();		
 	}
 	

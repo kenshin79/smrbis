@@ -60,14 +60,14 @@ class Pricelist extends CI_Controller {
 	public function deleteSku(){
 		$skuId = $this->input->post('skuId', TRUE);
 		$this->load->model('Sku_model');
-		$deleted = $this->Sku_model->deleteSku($skuId);
-		$username = $this->session->userdata('session_user');		
+		$deleted = $this->Sku_model->deleteSku($skuId);	
 		if($deleted){
 			$activity = "Success: deleted SKU";
 		}
 		else{
 			$activity = "Failed: delete SKU";
 		}
+		$username = $this->session->userdata('session_user');			
 		$this->load->model('admin/Activitylog_model');
 		$this->Activitylog_model->recordActivity($username, $activity);		
 		echo $deleted;
@@ -123,19 +123,37 @@ class Pricelist extends CI_Controller {
 	}
 	public function addSku(){
 		$this->load->library('Smrbis');
-		$skuName = strtoupper($this->smrbis->cleanString($this->input->post('skuName', TRUE)));
+		$skuName = $this->smrbis->cleanString($this->input->post('skuName', TRUE));
 		$skuCount = $this->input->post('skuCount', TRUE);
 		$skuDesc = $this->smrbis->cleanString($this->input->post('skuDesc', TRUE));
 		$this->load->model('Sku_model');
 		$skuAdded = $this->Sku_model->insertSku($skuName, $skuCount, $skuDesc);
+		if($skuAdded){
+			$activity = "Success: Added SKU ".$skuName." - ".$skuCount;
+		}
+		else{
+			$activity = "Failed: Add SKU ".$skuName." - ".$skuCount;
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);				
 		echo $skuAdded;
 	}
 	public function addCategory(){
 		$this->load->library('Smrbis');
-		$categoryName = strtoupper($this->smrbis->cleanString($this->input->post('categoryName', TRUE)));
+		$categoryName = $this->smrbis->cleanString($this->input->post('categoryName', TRUE));
 		$categoryDesc = $this->smrbis->cleanString($this->input->post('categoryDesc', TRUE));
 		$this->load->model('Categories_model');
 		$categoryAdded = $this->Categories_model->insertCategory($categoryName, $categoryDesc);
+		if($categoryAdded){
+			$activity = "Success: Added Category ".$categoryName;
+		}
+		else{
+			$activity = "Failed: Add Category ".$categoryName;
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $categoryAdded;
 	}
 	public function addSupplier(){
@@ -147,6 +165,15 @@ class Pricelist extends CI_Controller {
 		$supplierEmail = $this->smrbis->cleanString($this->input->post('supplierEmail', TRUE));
 		$this->load->model('Suppliers_model');
 		$supplierAdded = $this->Suppliers_model->insertSupplier($supplierName, $supplierAddress, $supplierTelephone, $supplierMobile, $supplierEmail);
+		if($supplierAdded){
+			$activity = "Success: Added Supplier ".$supplierName;
+		}
+		else{
+			$activity = "Failed: Add Supplier ".$supplierName;
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);	
 		echo $supplierAdded;
 	}
 	public function addCustomer(){
@@ -158,6 +185,15 @@ class Pricelist extends CI_Controller {
 		$customerEmail = $this->smrbis->cleanString($this->input->post('customerEmail', TRUE));
 		$this->load->model('Customers_model');
 		$customerAdded = $this->Customers_model->insertCustomer($customerName, $customerAddress, $customerTelephone, $customerMobile, $customerEmail);
+		if($customerAdded){
+			$activity = "Success: Added Customer ".$customerName;
+		}
+		else{
+			$activity = "Failed: Add Customer ".$customerName;
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);	
 		echo $customerAdded;
 	}	
 	public function addItem(){
@@ -167,6 +203,15 @@ class Pricelist extends CI_Controller {
 		$itemDesc = $this->smrbis->cleanString($this->input->post('itemDesc', TRUE));
 		$this->load->model('Items_model');
 		$itemAdded = $this->Items_model->insertItem($itemName, $itemCategory, $itemDesc);
+		if($itemAdded){
+			$activity = "Success: Added Item ".$itemName;
+		}
+		else{
+			$activity = "Failed: Add Item ".$itemName;
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $itemAdded;
 	}	
 	public function addItemCost(){
@@ -180,47 +225,52 @@ class Pricelist extends CI_Controller {
 		echo $costAdded;
 	} 
 	public function editSku(){
+		$this->load->library('Smrbis');		
 		$data['skuId'] = $this->input->post('skuId', TRUE);
-		$data['skuName'] = $this->input->post('skuName', TRUE);
+		$data['skuName'] = $this->smrbis->cleanString($this->input->post('skuName', TRUE));
 		$data['skuCount'] = $this->input->post('skuCount', TRUE);
-		$data['skuDesc'] = $this->input->post('skuDesc', TRUE);		
+		$data['skuDesc'] = $this->smrbis->cleanString($this->input->post('skuDesc', TRUE));		
 		$this->load->view('pricelist/sku/editSku_form', $data);
 	}
 	public function editCategory(){
+		$this->load->library('Smrbis');		
 		$data['categoryId'] = $this->input->post('categoryId', TRUE);
-		$data['categoryName'] = $this->input->post('categoryName', TRUE);
-		$data['categoryDesc'] = $this->input->post('categoryDesc', TRUE);
+		$data['categoryName'] = $this->smrbis->cleanString($this->input->post('categoryName', TRUE));
+		$data['categoryDesc'] = $this->smrbis->cleanString($this->input->post('categoryDesc', TRUE));
 		$this->load->view('pricelist/categories/editCategory_form', $data);
 	}
 	public function editSupplier(){
+		$this->load->library('Smrbis');		
 		$data['supplierId'] = $this->input->post('supplierId', TRUE);
-		$data['supplierName'] = $this->input->post('supplierName', TRUE);
-		$data['supplierAddress'] = $this->input->post('supplierAddress', TRUE);
-		$data['supplierTelephone'] = $this->input->post('supplierTelephone', TRUE);
-		$data['supplierMobile'] = $this->input->post('supplierMobile', TRUE);
-		$data['supplierEmail'] = $this->input->post('supplierEmail', TRUE);
+		$data['supplierName'] = $this->smrbis->cleanString($this->input->post('supplierName', TRUE));
+		$data['supplierAddress'] = $this->smrbis->cleanString($this->input->post('supplierAddress', TRUE));
+		$data['supplierTelephone'] = $this->smrbis->cleanString($this->input->post('supplierTelephone', TRUE));
+		$data['supplierMobile'] = $this->smrbis->cleanString($this->input->post('supplierMobile', TRUE));
+		$data['supplierEmail'] = $this->smrbis->cleanString($this->input->post('supplierEmail', TRUE));
 		$this->load->view('pricelist/suppliers/editSupplier_form', $data);
 	}
 	public function editCustomer(){
+		$this->load->library('Smrbis');		
 		$data['customerId'] = $this->input->post('customerId', TRUE);
-		$data['customerName'] = $this->input->post('customerName', TRUE);
-		$data['customerAddress'] = $this->input->post('customerAddress', TRUE);
-		$data['customerTelephone'] = $this->input->post('customerTelephone', TRUE);
-		$data['customerMobile'] = $this->input->post('customerMobile', TRUE);
-		$data['customerEmail'] = $this->input->post('customerEmail', TRUE);
+		$data['customerName'] = $this->smrbis->cleanString($this->input->post('customerName', TRUE));
+		$data['customerAddress'] = $this->smrbis->cleanString($this->input->post('customerAddress', TRUE));
+		$data['customerTelephone'] = $this->smrbis->cleanString($this->input->post('customerTelephone', TRUE));
+		$data['customerMobile'] = $this->smrbis->cleanString($this->input->post('customerMobile', TRUE));
+		$data['customerEmail'] = $this->smrbis->cleanString($this->input->post('customerEmail', TRUE));
 		$this->load->view('pricelist/customers/editCustomer_form', $data);
 	}	
 	public function editItem(){
+		$this->load->library('Smrbis');		
 		$data['itemId'] = $this->input->post('itemId', TRUE);
-		$data['itemName'] = $this->input->post('itemName', TRUE);
+		$data['itemName'] = $this->smrbis->cleanString($this->input->post('itemName', TRUE));
 		$data['itemCategory'] = $this->input->post('itemCategory', TRUE);
-		$data['itemDesc'] = $this->input->post('itemDesc', TRUE);
+		$data['itemDesc'] = $this->smrbis->cleanString($this->input->post('itemDesc', TRUE));
 		$this->load->view('pricelist/items/editItem_form', $data);
 	}
 	public function updateSku(){
 		$this->load->library('Smrbis');
 		$skuId = $this->input->post('skuId', TRUE);
-		$skuName = strtoupper($this->smrbis->cleanString($this->input->post('skuName', TRUE)));
+		$skuName = $this->smrbis->cleanString($this->input->post('skuName', TRUE));
 		$skuCount = $this->input->post('skuCount', TRUE);
 		$skuDesc = $this->smrbis->cleanString($this->input->post('skuDesc', TRUE));
 		$this->load->model('Sku_model');
@@ -230,7 +280,7 @@ class Pricelist extends CI_Controller {
 	public function updateCategory(){
 		$this->load->library('Smrbis');
 		$categoryId = $this->input->post('categoryId', TRUE);
-		$categoryName = strtoupper($this->smrbis->cleanString($this->input->post('categoryName', TRUE)));
+		$categoryName = $this->smrbis->cleanString($this->input->post('categoryName', TRUE));
 		$categoryDesc = $this->smrbis->cleanString($this->input->post('categoryDesc', TRUE));
 		$this->load->model('Categories_model');
 		$updated = $this->Categories_model->updateCategory($categoryId, $categoryName, $categoryDesc);

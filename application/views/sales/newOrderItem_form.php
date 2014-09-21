@@ -20,4 +20,5 @@
 </form>
 	<br />
 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				
-	<span class="btn btn-default" onclick="checkAccess(['<?php echo $salesorderId; ?>', document.getElementById('priceId').value, document.getElementById('unitPrice').value, document.getElementById('quantity').value ], addOrderItem )">Save</span>						
+	<span class="btn btn-default" onclick="checkAccess(['<?php echo $salesorderId; ?>', document.getElementById('priceId').value, document.getElementById('unitPrice').value, document.getElementById('quantity').value, '1' ], addOrderItem )">Save and Add New Item Order</span>
+	<span class="btn btn-default" onclick="checkAccess(['<?php echo $salesorderId; ?>', document.getElementById('priceId').value, document.getElementById('unitPrice').value, document.getElementById('quantity').value, '0' ], addOrderItem )">Save and Close</span>													

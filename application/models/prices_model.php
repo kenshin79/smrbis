@@ -10,11 +10,12 @@ Class Prices_model extends CI_Model{
 	
 
 	function getItemPrices($itemId){
-		$sql = "SELECT price_id, sku_name, sku_count, rprice, wprice, price_date, notes 
-				FROM prices, sku
-				WHERE prices.item_id=? AND prices.sku_id=sku.sku_id
-				ORDER BY sku_count ASC";
-		$query = $this->db->query($sql, array($itemId));
+		$this->db->select('price_id, sku_name, sku_count, rprice, wprice, price_date, notes');
+		$this->db->from('prices');
+		$this->db->join('sku', 'prices.sku_id = sku.sku_id');
+		$this->db->where('prices.item_id', $itemId);
+		$this->db->order_by('sku_count', 'asc');
+		$query = $this->db->get();
 		return $query->result();
 	}	
 	function priceDropDown($clue){

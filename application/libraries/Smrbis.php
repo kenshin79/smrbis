@@ -10,7 +10,7 @@ class Smrbis{
 	}	
 
 	public function cleanString($string){
-		$cleaned = str_replace("'", "", $string);
+		$cleaned = str_replace("\"", "&ldquo;", str_replace("'", "&lsquo;", $string));
 		return $cleaned;
 	}
 

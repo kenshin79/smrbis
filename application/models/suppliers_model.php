@@ -9,13 +9,19 @@ class Suppliers_model extends CI_Model {
 	var $supplier_mobile="";
 	var $supplier_email="";
 	
-	function getAll(){
+	function getAll($clue){
 		$this->db->select('supplier_id, supplier_name, supplier_address, supplier_telephone, supplier_mobile, supplier_email');
+		$this->db->like('supplier_name', $clue);
 		$this->db->order_by('supplier_name ASC');
 		$query = $this->db->get('suppliers');
 		return $query->result();
 	}	
-	
+	function getAll2(){
+		$this->db->select('supplier_id, supplier_name, supplier_address, supplier_telephone, supplier_mobile, supplier_email');
+		$this->db->order_by('supplier_name ASC');
+		$query = $this->db->get('suppliers');
+		return $query->result();
+	}		
 	function checkName($name){
 		$this->db->select('supplier_id');
 		$this->db->where('supplier_name', $name);

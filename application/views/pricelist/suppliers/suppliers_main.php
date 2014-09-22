@@ -1,7 +1,4 @@
-<div class="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-10"><br /><button class="btn btn-default" onclick="checkAccess(['Add Supplier', 'suppliers', 'newSupplier_form'], newEntry_form)">Add Supplier</button></div>
-</div>
+
 <br />
 <div class="row">
 	<div class="col-md-1"></div>

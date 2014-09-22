@@ -1,7 +1,4 @@
-<div class="row">
-	<div class="col-md-1"></div>
-	<div class="col-md-10"><br /><button class="btn btn-default" onclick="checkAccess(['Add Customer', 'customers', 'newCustomer_form'], newEntry_form)">Add Customer</button></div>
-</div>
+
 <br />
 <div class="row">
 	<div class="col-md-1"></div>

@@ -1,12 +1,15 @@
-			function showMain(tab, table, main_page, model){
-				$(tab).load('pricelist/showMain', {'main_page':main_page, 'model':model}, function(){
+			function showMain(tab, table, main_page, model, clue){
+				if(clue.length >= 2){
+				$(tab).load('pricelist/showMain', {'main_page':main_page, 'model':model, 'clue':clue}, function(){
 					$(table).DataTable();
 					$("th, td").addClass('text-center');
 					
-				});
+				});					
+				}
+
 			}
 	    	function showCostPrice(itemId, itemName){
-	    		$("#items").load('pricelist/showCostPrice', {'itemId':itemId, 'itemName':itemName}, function(){
+	    		$("#items_results").load('pricelist/showCostPrice', {'itemId':itemId, 'itemName':itemName}, function(){
 	    			$("#costs_table").DataTable();
 	    			$("#prices_table").DataTable();
 	    			$("th, td").addClass('text-center');
@@ -703,11 +706,15 @@
 	    						data: {'salesorderId':salesorderId, 'priceId':priceId, 'unitPrice':unitPrice, 'quantity':quantity}
 	    					}).done(function(data){
 	    						if(data){
-	    							$("#main_modal").modal('hide');
-	 								showThisOrder(salesorderId);
-	    							mainAlert("Successfully added an item in Sales Order no. "+salesorderId+"!");
-	    							if(repeat){
+	    							if(repeat == 1){
+	 									showThisOrder(salesorderId);   								
 	    								newOrderItem_form(salesorderId);
+	    								modalAlert("Successfully added an item in Sales Order no. "+salesorderId+"!");	 	    								
+	    							}
+	    							else{
+	    		    					$("#main_modal").modal('hide');		
+	 									showThisOrder(salesorderId);
+	    								mainAlert("Successfully added an item in Sales Order no. "+salesorderId+"!");	    		    										
 	    							}	    							
 	    						}
 	    						else{

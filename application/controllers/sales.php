@@ -20,7 +20,7 @@ class Sales extends CI_Controller {
 	public function newOrder(){
 		
 		$this->load->model('Customers_model');
-		$data['customers'] = $this->Customers_model->getAll();
+		$data['customers'] = $this->Customers_model->getAll2();
 		$this->load->view('sales/newOrder_form', $data);
 	}	
 	public function addOrder(){

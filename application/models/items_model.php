@@ -5,9 +5,11 @@ Class Items_model extends CI_Model{
 	var $item_category="";
 	var $description="";
 	
-	function getAll(){
+	function getAll($clue){
 		$this->db->select('item_id, item_name, item_category, items.description, category_name');
 		$this->db->join('categories', 'item_category = category_id');
+		$this->db->like('item_name', $clue);
+		$this->db->or_like('category_name', $clue);
 		$this->db->order_by('item_name ASC');		
 		$query = $this->db->get('items');
 		return $query->result();

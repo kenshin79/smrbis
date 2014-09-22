@@ -16,11 +16,7 @@
 		<script src="<?php echo $this->config->item('datepicker_js');?>"></script>			
 		<script src="<?php echo $this->config->item('common_js');?>"></script>		
 	    <script src="<?php echo $this->config->item('pricelist_js');?>"></script>			    
-	    <script>
-	    	$(document).ready(function(){
-	    		showMain('#items', '#items_table', 'items/items_main', 'Items_model');
-	    	});
-	    </script>
+
 		<title>Manage Pricelist</title>
 	</head>
 	<body>
@@ -67,22 +63,103 @@
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
 				<ul class="nav nav-tabs" role="tablist">
-  					<li class="active" ><a href="#items" data-toggle="tab" onclick="checkAccess(['#items', '#items_table', 'items/items_main', 'Items_model'], showMain)">Items</a></li>
-  					<li><a href="#sku" data-toggle="tab" onclick = "checkAccess(['#sku', '#sku_table', 'sku/sku_main', 'Sku_model'], showMain);">SKU</a></li>
-  					<li><a href="#categories" data-toggle="tab" onclick = "checkAccess(['#categories', '#categories_table', 'categories/categories_main', 'Categories_model'], showMain);">Categories</a></li>
-  					<li><a href="#suppliers" data-toggle="tab" onclick="checkAccess(['#suppliers', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model'], showMain);">Suppliers</a></li>
-					<li><a href="#customers" data-toggle="tab" onclick="checkAccess(['#customers', '#customers_table', 'customers/customers_main', 'Customers_model'], showMain);">Customers</a></li>	
+  					<li class="active" ><a href="#items" data-toggle="tab" >Items</a></li>
+  					<li><a href="#sku" data-toggle="tab" >SKU</a></li>
+  					<li><a href="#categories" data-toggle="tab" >Categories</a></li>
+  					<li><a href="#suppliers" data-toggle="tab" >Suppliers</a></li>
+					<li><a href="#customers" data-toggle="tab" >Customers</a></li>	
 				</ul>							
 			</div>
 			<div class="col-md-1"></div>
 		</div>
 		<div class="row">
 			<div class="tab-content">
-				<div id="items" class="tab-pane active"></div>
-				<div id="sku" class="tab-pane"></div>
-				<div id="categories" class="tab-pane"></div>
-				<div id="suppliers" class="tab-pane"></div>
-				<div id="customers" class="tab-pane"></div>
+				<div id="items" class="tab-pane active">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							Search: <input type="text" class="form-control input-lg" id="items_clue" placeholder="Enter at least 3 characters." onkeyup ="checkAccess(['#items_results', '#items_table', 'items/items_main', 'Items_model', document.getElementById('items_clue').value], showMain);" />
+						</div>
+						<div class="col-md-1"></div>
+					</div>
+					
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<br />
+		<button class="btn btn-default" onclick="checkAccess(['Add Item', 'items', 'newItem_form'], newEntry_form);">Add Item</button>
+	</div>
+	<div class="col-md-1"></div>
+</div>					
+					<div id="items_results"></div>
+				</div>
+				<div id="sku" class="tab-pane">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							Search: <input type="text" class="form-control input-lg" id="sku_clue" placeholder="Enter at least 3 characters." onkeyup = "checkAccess(['#sku_results', '#sku_table', 'sku/sku_main', 'Sku_model', document.getElementById('sku_clue').value], showMain);" />
+						</div>
+						<div class="col-md-1"></div>
+					</div>					
+					
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<br />
+		<button class="btn btn-default" onclick="checkAccess(['Add SKU','sku', 'newSku_form'], newEntry_form);">Add SKU</button>
+	</div>
+	<div class="col-md-1"></div>
+</div>				
+				<div id="sku_results"></div>	
+				</div>
+				<div id="categories" class="tab-pane">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							Search: <input type="text" class="form-control input-lg" id="categories_clue" placeholder="Enter at least 3 characters." onkeyup = "checkAccess(['#categories_results', '#categories_table', 'categories/categories_main', 'Categories_model', document.getElementById('categories_clue').value], showMain);" />
+						</div>
+						<div class="col-md-1"></div>
+					</div>					
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10">
+		<br />
+		<button class="btn btn-default" onclick="checkAccess(['Add Category', 'categories', 'newCategory_form'], newEntry_form);">Add Category</button>
+	</div>
+	<div class="col-md-1"></div>
+</div>					
+					<div id="categories_results"></div>
+				</div>
+				<div id="suppliers" class="tab-pane">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							Search: <input type="text" class="form-control input-lg" id="suppliers_clue" placeholder="Enter at least 3 characters." onkeyup="checkAccess(['#suppliers_results', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model', document.getElementById('suppliers_clue').value], showMain);" />
+						</div>
+						<div class="col-md-1"></div>
+					</div>					
+					
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10"><br /><button class="btn btn-default" onclick="checkAccess(['Add Supplier', 'suppliers', 'newSupplier_form'], newEntry_form)">Add Supplier</button></div>
+</div>			
+				<div id="suppliers_results"></div>						
+				</div>
+				<div id="customers" class="tab-pane">
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							Search: <input type="text" class="form-control input-lg" id="customers_clue" placeholder="Enter at least 3 characters." onkeyup="checkAccess(['#customers_results', '#customers_table', 'customers/customers_main', 'Customers_model', document.getElementById('customers_clue').value], showMain);" />
+						</div>
+						<div class="col-md-1"></div>
+					</div>					
+					
+<div class="row">
+	<div class="col-md-1"></div>
+	<div class="col-md-10"><br /><button class="btn btn-default" onclick="checkAccess(['Add Customer', 'customers', 'newCustomer_form'], newEntry_form)">Add Customer</button></div>
+</div>	
+				<div id="customers_results"></div>						
+				</div>
 			</div>
 		</div>		
 	</div>

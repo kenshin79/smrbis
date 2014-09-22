@@ -53,8 +53,9 @@ class Pricelist extends CI_Controller {
 	public function showMain(){
 		$model = $this->input->post('model', TRUE);
 		$main_page = $this->input->post('main_page');
+		$clue = $this->input->post('clue', TRUE);
 		$this->load->model($model);
-		$data['all_list'] = $this->{$model}->getAll();
+		$data['all_list'] = $this->{$model}->getAll($clue);
 		$this->load->view('pricelist/'.$main_page, $data);
 	}
 	public function deleteSku(){
@@ -109,16 +110,16 @@ class Pricelist extends CI_Controller {
 		$data['itemId'] = $this->input->post('itemId', TRUE);
 		$data['itemName'] = $this->input->post('itemName', TRUE);
 		$this->load->model('Suppliers_model');
-		$data['all_suppliers'] = $this->Suppliers_model->getAll();
+		$data['all_suppliers'] = $this->Suppliers_model->getAll2();
 		$this->load->model('Sku_model');
-		$data['all_sku'] = $this->Sku_model->getAll();
+		$data['all_sku'] = $this->Sku_model->getAll2();
 		$this->load->view('pricelist/items/newItemCost_form', $data);
 	}
 	public function newItemPrice_form(){
 		$data['itemId'] = $this->input->post('itemId', TRUE);
 		$data['itemName'] = $this->input->post('itemName', TRUE);		
 		$this->load->model('Sku_model');
-		$data['all_sku'] = $this->Sku_model->getAll();		
+		$data['all_sku'] = $this->Sku_model->getAll2();		
 		$this->load->view('pricelist/items/newItemPrice_form', $data);
 	}
 	public function addSku(){

@@ -5,8 +5,9 @@ class Categories_model extends CI_Model {
 	var $category_name="";
 	var $description="";
 	
-	function getAll(){
+	function getAll($clue){
 		$this->db->select('category_id, category_name, description');
+		$this->db->like('category_name', $clue);
 		$this->db->order_by('category_name ASC');
 		$query = $this->db->get('categories');
 		return $query->result();

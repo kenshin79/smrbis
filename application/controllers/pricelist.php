@@ -77,30 +77,75 @@ class Pricelist extends CI_Controller {
 		$categoryId = $this->input->post('categoryId', TRUE);
 		$this->load->model('Categories_model');
 		$deleted = $this->Categories_model->deleteCategory($categoryId);
+		if($deleted){
+			$activity = "Success: deleted category";
+		}
+		else{
+			$activity = "Failed: delete category";
+		}
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);				
 		echo $deleted;
 	}
 	public function deleteItem(){
 		$itemId = $this->input->post('itemId', TRUE);
 		$this->load->model('Items_model');
 		$deleted = $this->Items_model->deleteItem($itemId);
+		if($deleted){
+			$activity = "Success: deleted item";
+		}
+		else{
+			$activity = "Failed: delete item";
+		}
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);				
 		echo $deleted;
 	}
 	public function deleteSupplier(){
 		$supplierId = $this->input->post('supplierId', TRUE);
 		$this->load->model('Suppliers_model');
 		$deleted = $this->Suppliers_model->deleteSupplier($supplierId);
+		if($deleted){
+			$activity = "Success: deleted supplier";
+		}
+		else{
+			$activity = "Failed: delete supplier";
+		}
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);				
 		echo $deleted;
 	}
 	public function deleteCustomer(){
 		$customerId = $this->input->post('customerId', TRUE);
 		$this->load->model('Customers_model');
 		$deleted = $this->Customers_model->deleteCustomer($customerId);
+		if($deleted){
+			$activity = "Success: deleted customer";
+		}
+		else{
+			$activity = "Failed: delete customer";
+		}
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);				
 		echo $deleted;
 	}	
 	public function deleteCost(){
 		$costId = $this->input->post('costId', TRUE);
 		$this->load->model('Costs_model');
 		$deleted = $this->Costs_model->deleteCost($costId);
+		if($deleted){
+			$activity = "Success: deleted cost";
+		}
+		else{
+			$activity = "Failed: delete cost";
+		}
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);				
 		echo $deleted;
 	}
 	public function newForm($folder, $view){
@@ -218,12 +263,31 @@ class Pricelist extends CI_Controller {
 	public function addItemCost(){
 		$this->load->model('Costs_model');
 		$costAdded = $this->Costs_model->insertCost();
+		if($costAdded){
+			$activity = "Success: Added Item cost";
+		}
+		else{
+			$activity = "Failed: Add Item cost";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $costAdded;
 	}
 	public function addItemPrice(){
 		$this->load->model('Prices_model');
 		$priceAdded = $this->Prices_model->insertPrice();
-		echo $costAdded;
+		if($priceAdded){
+			$activity = "Success: Added Item price";
+		}
+		else{
+			$activity = "Failed: Add Item price";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
+		echo $priceAdded;
+		
 	} 
 	public function editSku(){
 		$this->load->library('Smrbis');		
@@ -276,6 +340,15 @@ class Pricelist extends CI_Controller {
 		$skuDesc = $this->smrbis->cleanString($this->input->post('skuDesc', TRUE));
 		$this->load->model('Sku_model');
 		$updated = $this->Sku_model->updateSku($skuId, $skuName, $skuCount, $skuDesc);
+		if($updated){
+			$activity = "Success: updated SKU ";
+		}
+		else{
+			$activity = "Failed: update SKU ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $updated;
 	}
 	public function updateCategory(){
@@ -285,6 +358,15 @@ class Pricelist extends CI_Controller {
 		$categoryDesc = $this->smrbis->cleanString($this->input->post('categoryDesc', TRUE));
 		$this->load->model('Categories_model');
 		$updated = $this->Categories_model->updateCategory($categoryId, $categoryName, $categoryDesc);
+		if($updated){
+			$activity = "Success: updated category ";
+		}
+		else{
+			$activity = "Failed: update category ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $updated;
 	}
 	public function updateSupplier(){
@@ -297,6 +379,15 @@ class Pricelist extends CI_Controller {
 		$supplierEmail = $this->smrbis->cleanString($this->input->post('supplierEmail', TRUE));
 		$this->load->model('Suppliers_model');
 		$updated = $this->Suppliers_model->updateSupplier($supplierId, $supplierName, $supplierAddress, $supplierTelephone, $supplierMobile, $supplierEmail);
+		if($updated){
+			$activity = "Success: updated supplier ";
+		}
+		else{
+			$activity = "Failed: update supplier ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);	
 		echo $updated;
 	}	
 	public function updateCustomer(){
@@ -309,6 +400,15 @@ class Pricelist extends CI_Controller {
 		$customerEmail = $this->smrbis->cleanString($this->input->post('customerEmail', TRUE));
 		$this->load->model('Customers_model');
 		$updated = $this->Customers_model->updateCustomer($customerId, $customerName, $customerAddress, $customerTelephone, $customerMobile, $customerEmail);
+		if($updated){
+			$activity = "Success: updated customer ";
+		}
+		else{
+			$activity = "Failed: update customer ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);	
 		echo $updated;
 	}	
 	public function updateItem(){
@@ -319,6 +419,15 @@ class Pricelist extends CI_Controller {
 		$itemDesc = $this->smrbis->cleanString($this->input->post('itemDesc', TRUE));
 		$this->load->model('Items_model');
 		$updated = $this->Items_model->updateItem($itemId, $itemName, $itemCategory, $itemDesc);
+		if($updated){
+			$activity = "Success: updated item ";
+		}
+		else{
+			$activity = "Failed: update item ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $updated;
 	}			
 	public function updateCostNotes(){
@@ -327,11 +436,29 @@ class Pricelist extends CI_Controller {
 		$notes = $this->smrbis->cleanString($this->input->post('notes', TRUE));
 		$this->load->model('Costs_model');
 		$updated = $this->Costs_model->updateCostNotes($costId, $notes);
+		if($updated){
+			$activity = "Success: updated cost notes ";
+		}
+		else{
+			$activity = "Failed: update cost notes ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $updated;
 	}
 	public function updatePrice(){
 		$this->load->model('Prices_model');
 		$updated = $this->Prices_model->updatePrice();
+		if($updated){
+			$activity = "Success: updated price ";
+		}
+		else{
+			$activity = "Failed: update price ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $updated;
 	}
 	public function showCostPrice(){

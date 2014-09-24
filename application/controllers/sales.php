@@ -26,11 +26,32 @@ class Sales extends CI_Controller {
 	public function addOrder(){
 		$this->load->model('Salesorders_model');
 		$added = $this->Salesorders_model->insertOrder();
+		if($added){
+			$activity = "Success: Added order";
+		}
+		else{
+			$activity = "Failed: Add order";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $added;
 	}
 	public function deleteOrder(){
+		$salesorderId = $this->input->post('salesorderId', TRUE);		
 		$this->load->model('Salesorders_model');
-		$deleted = $this->Salesorders_model->deleteOrder();
+		$deleted = $this->Salesorders_model->deleteOrder($salesorderId);
+		$this->load->model('Soitems_model');
+		$deletedItems = $this->Soitems_model->deleteSoitems($salesorderId);
+		if($deletedItems){
+			$activity = "Success: Deleted order ";
+		}
+		else{
+			$activity = "Failed: Delete order ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $deleted;
 	}
 	public function getOrderItems(){
@@ -64,6 +85,15 @@ class Sales extends CI_Controller {
 		$added = $this->Soitems_model->insertOrderItem($salesorderId);
 		$this->load->model('Salesorders_model');
 		$this->Salesorders_model->updateTimestamp($salesorderId);
+		if($added){
+			$activity = "Success: Added Order Item ";
+		}
+		else{
+			$activity = "Failed: Add Order Item ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $added;
 	}
 	public function orderItemUnique(){
@@ -83,6 +113,15 @@ class Sales extends CI_Controller {
 		$priceId = $this->input->post('priceId', TRUE);
 		$this->load->model('Soitems_model');
 		$removed = $this->Soitems_model->removeOrderItem($salesorderId, $priceId);
+		if($removed){
+			$activity = "Success: Removed Order Item ";
+		}
+		else{
+			$activity = "Failed: Remove Order Item ";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		$this->load->model('Salesorders_model');
 		$this->Salesorders_model->updateTimestamp($salesorderId);		
 		echo $removed;
@@ -92,6 +131,15 @@ class Sales extends CI_Controller {
 		$salesorderId = $this->input->post('salesorderId', TRUE);
 		$this->load->model('Salesorders_model');
 		$finalized = $this->Salesorders_model->finalizeOrder($salesorderId);
+		if($finalized){
+			$activity = "Success: Finalized order";
+		}
+		else{
+			$activity = "Failed: Finalize order";
+		}		
+		$username = $this->session->userdata('session_user');			
+		$this->load->model('admin/Activitylog_model');
+		$this->Activitylog_model->recordActivity($username, $activity);			
 		echo $finalized;
 	}
 	public function printSalesOrder($salesorderId){

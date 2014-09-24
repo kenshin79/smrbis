@@ -78,7 +78,7 @@
 	    			}).done(function(data){
 	    				if(data){
 	    					$("#main_modal").modal('hide');
-	    					showMain('#sku', '#sku_table', 'sku/sku_main', 'Sku_model');
+	    					showMain('#sku_results', '#sku_table', 'sku/sku_main', 'Sku_model', skuName);
 	    					mainAlert("Successfully updated SKU - '"+skuName+"'!");
 	    				}
 	    				else{
@@ -100,7 +100,7 @@
 	    			}).done(function(data){
 	    				if(data){
 	    					$("#main_modal").modal('hide');
-	    					showMain('#categories', '#categories_table', 'categories/categories_main', 'Categories_model');
+	    					showMain('#categories_results', '#categories_table', 'categories/categories_main', 'Categories_model', categoryName);
 	    					mainAlert("Successfully updated Category - '"+categoryName+"'!");
 	    				}
 	    				else{
@@ -122,7 +122,7 @@
 	    			}).done(function(data){
 	    				if(data){
 	    					$("#main_modal").modal('hide');
-	    					showMain('#suppliers', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model');
+	    					showMain('#suppliers_results', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model', supplierName);
 	    					mainAlert("Successfully updated Supplier - '"+supplierName+"'!");
 	    				}
 	    				else{
@@ -145,7 +145,7 @@
 	    			}).done(function(data){
 	    				if(data){
 	    					$("#main_modal").modal('hide');
-	    					showMain('#customers', '#customers_table', 'customers/customers_main', 'Customers_model');
+	    					showMain('#customers_results', '#customers_table', 'customers/customers_main', 'Customers_model', customerName);
 	    					mainAlert("Successfully updated Customer - '"+customerName+"'!");
 	    				}
 	    				else{
@@ -168,7 +168,7 @@
 	    			}).done(function(data){
 	    				if(data){
 	    					$("#main_modal").modal('hide');
-	    					showMain('#items', '#items_table', 'items/items_main', 'Items_model');
+	    					showMain('#items_results', '#items_table', 'items/items_main', 'Items_model', itemName);
 	    					mainAlert("Successfully updated Item - '"+itemName+"'!");
 	    				}
 	    				else{
@@ -189,7 +189,7 @@
 	    					data: {'skuId': skuId}
 	    					}).done(function(data){
 	    						if(data){
-	    							showMain('#sku', '#sku_table', 'sku/sku_main', 'Sku_model');
+	    							showMain('#sku_results', '#sku_table', 'sku/sku_main', 'Sku_model', skuName);
 	    							mainAlert("Successfully deleted SKU - '"+skuName+"'!");
 	    						}
 	    						else{
@@ -209,7 +209,7 @@
 	    					data: {'categoryId': categoryId}
 	    					}).done(function(data){
 	    						if(data){
-	    							showMain('#categories', '#categories_table', 'categories/categories_main', 'Categories_model');
+	    							showMain('#categories_results', '#categories_table', 'categories/categories_main', 'Categories_model', categoryName);
 	    							mainAlert("Successfully deleted Category - '"+categoryName+"'!");
 	    						}
 	    						else{
@@ -229,7 +229,7 @@
 	    					data: {'itemId': itemId}
 	    					}).done(function(data){
 	    						if(data){
-	    							showMain('#items', '#items_table', 'items/items_main', 'Items_model');
+	    							showMain('#items_results', '#items_table', 'items/items_main', 'Items_model', itemName);
 	    							mainAlert("Successfully deleted Item - '"+itemName+"'!");
 	    						}
 	    						else{
@@ -249,7 +249,7 @@
 	    					data: {'supplierId': supplierId}
 	    					}).done(function(data){
 	    						if(data){
-	    							showMain('#suppliers', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model');
+	    							showMain('#suppliers_results', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model', supplierName);
 	    							mainAlert("Successfully deleted Supplier - '"+supplierName+"'!");
 	    						}
 	    						else{
@@ -269,7 +269,7 @@
 	    					data: {'customerId': customerId}
 	    					}).done(function(data){
 	    						if(data){
-	    							showMain('#customers', '#customers_table', 'customers/customers_main', 'Customers_model');
+	    							showMain('#customers_results', '#customers_table', 'customers/customers_main', 'Customers_model', customerName);
 	    							mainAlert("Successfully deleted Customer - '"+customerName+"'!");
 	    						}
 	    						else{
@@ -306,7 +306,7 @@
 	    				}).done(function(data){
 	    					if(data){
 	    						$("#main_modal").modal('hide');
-	    						showMain('#sku', '#sku_table', 'sku/sku_main', 'Sku_model');
+	    						showMain('#sku_results', '#sku_table', 'sku/sku_main', 'Sku_model', skuName);
 	    						mainAlert("Success added SKU - '"+skuName+"'!");    						
 	    					}
 	    					else{
@@ -343,7 +343,7 @@
 	    				}).done(function(data){
 	    					if(data){
 	    						$("#main_modal").modal('hide');
-	    						showMain('#categories', '#categories_table', 'categories/categories_main', 'Categories_model');
+	    						showMain('#categories_results', '#categories_table', 'categories/categories_main', 'Categories_model', categoryName);
 	    						mainAlert("Success added Category - '"+categoryName+"'!");    						
 	    					}
 	    					else{
@@ -380,7 +380,7 @@
 	    				}).done(function(data){
 	    					if(data){
 	    						$("#main_modal").modal('hide');
-	    						showMain('#suppliers', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model');
+	    						showMain('#suppliers_results', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model', supplierName);
 	    						mainAlert("Success added Supplier - '"+supplierName+"'!");    						
 	    					}
 	    					else{
@@ -416,7 +416,7 @@
 	    				}).done(function(data){
 	    					if(data){
 	    						$("#main_modal").modal('hide');
-	    						showMain('#customers', '#customers_table', 'customers/customers_main', 'Customers_model');
+	    						showMain('#customers_results', '#customers_table', 'customers/customers_main', 'Customers_model', customerName);
 	    						mainAlert("Success added Customer - '"+customerName+"'!");    						
 	    					}
 	    					else{
@@ -452,7 +452,7 @@
 	    				}).done(function(data){
 	    					if(data){
 	    						$("#main_modal").modal('hide');
-	    						showMain('#items', '#items_table', 'items/items_main', 'Items_model');
+	    						showMain('#items_results', '#items_table', 'items/items_main', 'Items_model', itemName);
 	    						mainAlert("Success added Item - '"+itemName+"'!");    						
 	    					}
 	    					else{

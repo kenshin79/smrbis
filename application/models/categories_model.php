@@ -12,6 +12,12 @@ class Categories_model extends CI_Model {
 		$query = $this->db->get('categories');
 		return $query->result();
 	}
+	function getAll2(){
+		$this->db->select('category_id, category_name, description');
+		$this->db->order_by('category_name ASC');
+		$query = $this->db->get('categories');
+		return $query->result();
+	}	
 	function deleteCategory($categoryId){
 		$this->db->where('category_id', $categoryId);
 		$this->db->delete('categories');

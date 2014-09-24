@@ -73,16 +73,9 @@
 			<div class="col-md-1"></div>
 		</div>
 		<div class="row">
-			<div class="tab-content">
+			<div class="tab-content">				
 				<div id="items" class="tab-pane active">
-					<div class="row">
-						<div class="col-md-1"></div>
-						<div class="col-md-10">
-							Search: <input type="text" class="form-control input-lg" id="items_clue" placeholder="Enter at least 3 characters." onkeyup ="checkAccess(['#items_results', '#items_table', 'items/items_main', 'Items_model', document.getElementById('items_clue').value], showMain);" />
-						</div>
-						<div class="col-md-1"></div>
-					</div>
-					
+					<br />
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
@@ -90,18 +83,19 @@
 		<button class="btn btn-default" onclick="checkAccess(['Add Item', 'items', 'newItem_form'], newEntry_form);">Add Item</button>
 	</div>
 	<div class="col-md-1"></div>
-</div>					
-					<div id="items_results"></div>
-				</div>
-				<div id="sku" class="tab-pane">
+</div>									
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-10">
-							Search: <input type="text" class="form-control input-lg" id="sku_clue" placeholder="Enter at least 3 characters." onkeyup = "checkAccess(['#sku_results', '#sku_table', 'sku/sku_main', 'Sku_model', document.getElementById('sku_clue').value], showMain);" />
+							<label class="label label-default" for="items_clue">Search</label><input type="text" class="form-control input-lg" id="items_clue" placeholder="Enter at least 3 characters." onkeyup ="checkAccess(['#items_results', '#items_table', 'items/items_main', 'Items_model', document.getElementById('items_clue').value], showMain);" />
 						</div>
 						<div class="col-md-1"></div>
-					</div>					
-					
+					</div>
+					<div id="items_results"></div>
+				</div>
+				
+				<div id="sku" class="tab-pane">
+					<br />
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
@@ -109,17 +103,19 @@
 		<button class="btn btn-default" onclick="checkAccess(['Add SKU','sku', 'newSku_form'], newEntry_form);">Add SKU</button>
 	</div>
 	<div class="col-md-1"></div>
-</div>				
-				<div id="sku_results"></div>	
-				</div>
-				<div id="categories" class="tab-pane">
+</div>														
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-10">
-							Search: <input type="text" class="form-control input-lg" id="categories_clue" placeholder="Enter at least 3 characters." onkeyup = "checkAccess(['#categories_results', '#categories_table', 'categories/categories_main', 'Categories_model', document.getElementById('categories_clue').value], showMain);" />
+							<label class="label label-default" for="sku_clue">Search</label><input type="text" class="form-control input-lg" id="sku_clue" placeholder="Enter at least 3 characters." onkeyup = "checkAccess(['#sku_results', '#sku_table', 'sku/sku_main', 'Sku_model', document.getElementById('sku_clue').value], showMain);" />
 						</div>
 						<div class="col-md-1"></div>
 					</div>					
+				<div id="sku_results"></div>	
+				</div>
+				
+				<div id="categories" class="tab-pane">
+					<br />
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
@@ -127,39 +123,49 @@
 		<button class="btn btn-default" onclick="checkAccess(['Add Category', 'categories', 'newCategory_form'], newEntry_form);">Add Category</button>
 	</div>
 	<div class="col-md-1"></div>
-</div>					
-					<div id="categories_results"></div>
-				</div>
-				<div id="suppliers" class="tab-pane">
+</div>							
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-10">
-							Search: <input type="text" class="form-control input-lg" id="suppliers_clue" placeholder="Enter at least 3 characters." onkeyup="checkAccess(['#suppliers_results', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model', document.getElementById('suppliers_clue').value], showMain);" />
+							<label class="label label-default" for="categories_clue">Search</label><input type="text" class="form-control input-lg" id="categories_clue" placeholder="Enter at least 3 characters." onkeyup = "checkAccess(['#categories_results', '#categories_table', 'categories/categories_main', 'Categories_model', document.getElementById('categories_clue').value], showMain);" />
 						</div>
 						<div class="col-md-1"></div>
 					</div>					
-					
+					<div id="categories_results"></div>
+				</div>
+				
+				<div id="suppliers" class="tab-pane">
+					<br />
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10"><br /><button class="btn btn-default" onclick="checkAccess(['Add Supplier', 'suppliers', 'newSupplier_form'], newEntry_form)">Add Supplier</button></div>
-</div>			
-				<div id="suppliers_results"></div>						
-				</div>
-				<div id="customers" class="tab-pane">
+</div>						
 					<div class="row">
 						<div class="col-md-1"></div>
 						<div class="col-md-10">
-							Search: <input type="text" class="form-control input-lg" id="customers_clue" placeholder="Enter at least 3 characters." onkeyup="checkAccess(['#customers_results', '#customers_table', 'customers/customers_main', 'Customers_model', document.getElementById('customers_clue').value], showMain);" />
+							<label class="label label-default" for="suppliers_clue">Search</label><input type="text" class="form-control input-lg" id="suppliers_clue" placeholder="Enter at least 3 characters." onkeyup="checkAccess(['#suppliers_results', '#suppliers_table', 'suppliers/suppliers_main', 'Suppliers_model', document.getElementById('suppliers_clue').value], showMain);" />
 						</div>
 						<div class="col-md-1"></div>
 					</div>					
-					
+				<div id="suppliers_results"></div>						
+				</div>
+				
+				<div id="customers" class="tab-pane">
+					<br />
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10"><br /><button class="btn btn-default" onclick="checkAccess(['Add Customer', 'customers', 'newCustomer_form'], newEntry_form)">Add Customer</button></div>
-</div>	
+</div>						
+					<div class="row">
+						<div class="col-md-1"></div>
+						<div class="col-md-10">
+							<label class="label label-default" for="customers_clue">Search</label><input type="text" class="form-control input-lg" id="customers_clue" placeholder="Enter at least 3 characters." onkeyup="checkAccess(['#customers_results', '#customers_table', 'customers/customers_main', 'Customers_model', document.getElementById('customers_clue').value], showMain);" />
+						</div>
+						<div class="col-md-1"></div>
+					</div>					
 				<div id="customers_results"></div>						
 				</div>
+				
 			</div>
 		</div>		
 	</div>

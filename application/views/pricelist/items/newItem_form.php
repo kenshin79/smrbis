@@ -5,7 +5,7 @@
 				<br />
 <?php
 	$this->load->model('Categories_model');
-	$all_categories = $this->Categories_model->getAll();
+	$all_categories = $this->Categories_model->getAll2();
 ?>				
 				<label for="itemCategory">Category:</label>
 				<select class="form-control" id="itemCategory">

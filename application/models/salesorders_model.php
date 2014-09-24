@@ -32,8 +32,7 @@ Class Salesorders_model extends CI_Model{
 		$this->db->insert('salesorders', $data);
 		return $this->db->insert_id();
 	}
-	function deleteOrder(){
-		$salesorderId = $this->input->post('salesorderId', TRUE);
+	function deleteOrder($salesorderId){
 		$this->db->where('salesorder_id', $salesorderId);
 		$this->db->delete('salesorders');
 		return $this->db->affected_rows();

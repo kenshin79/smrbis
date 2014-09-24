@@ -39,4 +39,9 @@ Class Soitems_model extends CI_Model{
 		$this->db->delete('soitems');
 		return $this->db->affected_rows();
 	}
+	function deleteSoitems($salesorderId){
+		$this->db->where('salesorder_id', $salesorderId);
+		$this->db->delete('soitems');
+		return $this->db->affected_rows();
+	}
 }

@@ -16,7 +16,7 @@
 				echo "<td>".$row->category_name."</td>";
 				echo "<td>".$row->description."</td>";
 				echo "<td><button class=\"btn btn-info\" onclick=\"checkAccess(['".$row->category_id."', '".$row->category_name."','".$row->description."'], editCategory );\" >Edit</button>";
-				echo "<button class=\"btn btn-danger\" onclick=\"checkAccess(['".$row->category_id."', '".$row->category_name."'], deleteCategory);\">Delete</button></td>";
+				echo " <button class=\"btn btn-danger\" disabled onclick=\"checkAccess(['".$row->category_id."', '".$row->category_name."'], deleteCategory);\">Delete</button></td>";
 				echo "</tr>";
 				$x++;
 			}

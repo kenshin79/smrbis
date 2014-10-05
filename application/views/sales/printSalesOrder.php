@@ -9,20 +9,36 @@
     	<meta name="viewport" content="width=device-width, initial-scale=1">
 	    <link href="<?php echo $this->config->item('bootstrap_css');?>" rel="stylesheet">   
 		<script src="<?php echo $this->config->item('jquery');?>"></script>	    
-		<script src="<?php echo $this->config->item('bootstrap_js');?>"></script>		
+		<script src="<?php echo $this->config->item('bootstrap_js');?>"></script>
+                <script>
+                    $(document).ready(function(){
+                            $("td").css("text-transform", "uppercase");                   
+                        }
+                    );                
+                </script>
+                <style>
+                    @media print{
+                        td {
+                            padding:0px;
+                            text-transform: uppercase;
+                            font-size:xx-small;
+                        }
+                    }
+                </style>
 		<title>Print Sales Order</title>        			
 	</head>
 	<body>
-		<br />
 		<div class="row text-center">
-			<img src="<?php echo $this->config->item('store_logo', 'logo'); ?>" width="100px" height="100px" /><img src="<?php echo $this->config->item('store_name', 'logo'); ?>" width="600px" height="100px" />
+			<img src="<?php echo $this->config->item('store_logo', 'logo'); ?>" width="100px" height="80px" /><img src="<?php echo $this->config->item('store_name', 'logo'); ?>" width="600px" height="80px" />
 		</div>
 		<br />
 		<div class="row text-center">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-		<table class="table table-bordered">
-			<thead>
+		<table class="table table-bordered table-condensed">
+			<thead>			
+			</thead>
+			<tbody>
 		<?php
 			foreach($order_details as $row){
 				echo "<tr><th>Date: ".date('M d, Y', strtotime($row->timestamp))."</th><th class=\"text-right\">Finalized by: ".$row->finalizer."</th></tr>";
@@ -30,15 +46,11 @@
 				echo "<tr><th colspan=\"2\">Address: ".$row->customer_address."</th></tr>";
 
 			}
-		?>				
-			</thead>
-			<tbody>
-				
+		?>					
 			</tbody>
 		</table>
-		<h2 class="text-center">Sales Order</h2>	
-		<br />
-		<table class="table table-bordered">
+		<h3 class="text-center">Sales Order</h3>	
+		<table class="table table-bordered table-condensed">
 			<thead>
 				<th class="text-center col-md-2">Qty</th>
 				<th class="text-center">Item Name</th>

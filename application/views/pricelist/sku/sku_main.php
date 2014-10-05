@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-		<table id="sku_table" class="display">
+		<table id="sku_table" class="display compact">
 			<thead>
 				<tr><th>No.</th><th>SKU</th><th>Quantity</th><th>Description</th><th>Edit</th></tr>
 			</thead>

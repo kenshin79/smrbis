@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-		<table class="display" id="suppliers_table">
+		<table class="display compact" id="suppliers_table">
 			<thead>
 				<tr>
 					<th>No.</th>

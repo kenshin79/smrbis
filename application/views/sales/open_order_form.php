@@ -13,7 +13,7 @@ foreach($order_details as $row){
 <br />
 <br />
 <?php echo "Total of ".count($order_items)." items"; ?>
-<table class="table table-bordered">
+<table class="table table-bordered table-condensed">
 	<thead>
 		<tr><th>Item#</th>
 			<th>Qty</th>

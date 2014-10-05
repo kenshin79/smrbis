@@ -1,6 +1,6 @@
 <hr />
 <h3>Sales Orders</h3>
-<table class="display" id="orders_table">
+<table class="display compact" id="orders_table">
 	<thead>
 		<tr>
 			<th>Last Edited</th>

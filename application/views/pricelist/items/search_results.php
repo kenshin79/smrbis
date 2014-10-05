@@ -1,6 +1,6 @@
 <hr />
 <h3>Search results for "<?php echo $term; ?>"</h3>
-<table class="table table-bordered" id="search_table">
+<table class="table table-bordered table-condensed" id="search_table">
 	<thead>
 		<tr>
 			<th>Category</th>

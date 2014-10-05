@@ -4,8 +4,10 @@
 		if($valid_user){		
 			foreach($valid_user as $row){
 				$this->session->set_userdata('session_user', $row->uname);
+                                $this->session->set_userdata('app_session_user', $this->config->item('app_name').$row->uname);
 				$this->session->set_userdata('session_access', $row->access_type);
-				$this->session->set_userdata('pwchanged', $row->pw_changed);							
+				$this->session->set_userdata('pwchanged', $row->pw_changed);	
+                                
 			}
 			if($this->session->userdata('pwchanged') == 0){
 				header('Location:'.base_url().'index.php/log_in/changePword');

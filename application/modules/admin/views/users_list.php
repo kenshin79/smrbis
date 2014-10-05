@@ -10,7 +10,7 @@
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-<table id="users_table" class="display">
+<table id="users_table" class="display compact">
 	<thead>
 		<tr>
 			<th>No.</th>

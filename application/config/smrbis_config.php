@@ -43,6 +43,7 @@ $config['logo']['software'] = $config['app_root'].'/img/my_logo.png';
 $config['logo']['store_logo'] = $config['app_root'].'/img/store_logo.png';
 $config['logo']['store_name'] = $config['app_root'].'/img/store_name.png';
 $config['logo']['maglens'] = $config['app_root'].'/img/maglens.png';
+$config['logo']['all_prices'] = $config['app_root'].'/img/all_prices.png';
 
 $config['saletype']['0'] = "Wholesale";
 $config['saletype']['1'] = "Retail";

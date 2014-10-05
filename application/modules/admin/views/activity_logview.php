@@ -23,7 +23,7 @@
 <div class="row">
 	<div class="col-md-1"></div>
 	<div class="col-md-10">
-<table class="display" id="logs_table">
+<table class="display compact" id="logs_table">
 	<thead>
 		<tr>
 			<th>Date/Time</th>

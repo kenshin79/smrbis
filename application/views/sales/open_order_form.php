@@ -1,19 +1,29 @@
 <hr />
+<div class="row">
+    <div class="col-md-10">
+        <h4>
 <?php
 foreach($order_details as $row){
-	echo "<h3><label class=\"label label-default\">Date (Last Edit)</label> ".date($row->timestamp)."</h3>";
-    echo "<h3><label class=\"label label-default\">Customer</label> ".$row->customer_name."</h3>";
-	echo "<h3><label class=\"label label-default\">Sale Type</label> ".$this->config->item($row->sale_type, 'saletype')."</h3>";
+    echo "<label class=\"label label-default\">Customer</label> ".$row->customer_name;
+    echo " <label class=\"label label-default\">Sale Type</label> ".$this->config->item($row->sale_type, 'saletype');
+    echo " <label class=\"label label-default\">Date (Last Edit)</label> ".date($row->timestamp);
+    
 	
 }
 ?>
+        </h4>
+    </div>
+    <div class="col-md-2">
+        <button class="btn btn-success" onclick="checkAccess(['<?php echo $salesorderId; ?>'], finalizeOrder);">Finalize</button>
+    </div>    
+</div>    
 <br />
 <button class="btn btn-default" onclick="checkAccess(['<?php echo $salesorderId; ?>'], newOrderItem_form);">Add Order Item</button>
- <button class="btn btn-success" onclick="checkAccess(['<?php echo $salesorderId; ?>'], finalizeOrder);">Finalize</button>
+ 
 <br />
 <br />
 <?php echo "Total of ".count($order_items)." items"; ?>
-<table class="table table-bordered table-condensed">
+<table class="table table-bordered table-condensed table-striped">
 	<thead>
 		<tr><th>Item#</th>
 			<th>Qty</th>
@@ -41,7 +51,7 @@ foreach($order_items as $row){
 ?>
 	<tr><td></td><td></td><td></td>
 		<td><h4>GRAND TOTAL</h4></td>
-		<td><h4><?php echo number_format($total, 2);  ?></h4></td>
+		<td><h4><?php echo number_format($total, 2,".", ",");  ?></h4></td>
 		<td></td>
 	</tr>		
 	</tbody>

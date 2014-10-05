@@ -1,4 +1,4 @@
-<table id="all_table" class="display condensed">
+<table id="all_table" class="display compact stripe">
     <thead>
         <tr>
             <th>No.</th>

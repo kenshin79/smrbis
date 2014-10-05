@@ -35,7 +35,7 @@
 		<div class="row text-center">
 			<div class="col-md-1"></div>
 			<div class="col-md-10">
-		<table class="table table-bordered table-condensed">
+		<table class="table table-bordered table-condensed table-striped">
 			<thead>			
 			</thead>
 			<tbody>
@@ -50,8 +50,9 @@
 			</tbody>
 		</table>
 		<h3 class="text-center">Sales Order</h3>	
-		<table class="table table-bordered table-condensed">
+		<table class="table table-bordered table-condensed table-striped">
 			<thead>
+                                <th class="text-center col-md-1">Item No.</th>
 				<th class="text-center col-md-2">Qty</th>
 				<th class="text-center">Item Name</th>
 				<th class="col-md-2 text-center">Unit Price</th>
@@ -61,16 +62,17 @@
 		<?php
 			$x=1;	
 			$total = 0;
-			foreach($order_items as $row){
-				echo "<tr><td class=\"text-center\">".$row->quantity."</td>";
+			foreach($order_items as $row){      
+				echo "<tr><td>".$x."</td>";
+                                echo "<td class=\"text-center\">".$row->quantity."</td>";
 				echo "<td class=\"text-center\">".$row->item_name." (".$row->sku_name." - ".$row->sku_count.")</td>";
 				echo "<td class=\"text-right\">P ".$row->unit_price."</td>";
-				echo "<td class=\"text-right\">P ".number_format($row->unit_price*$row->quantity, 2)."</td></tr>";
+				echo "<td class=\"text-right\">P ".number_format($row->unit_price*$row->quantity, 2, ".", ",")."</td></tr>";
 				$total = $total + $row->quantity*$row->unit_price;
 				$x++;
 			}
 		?>		
-			<tr><td class="text-center"><h4>Items: <?php echo $x-1;?></h4></td><td></td><td class="text-right"><h4>Grand Total:</h4></td><td class="text-right"><h4>P <?php echo number_format($total, 2); ?></h4></td></tr>
+                            <tr><td class="text-center">Items: <?php echo $x-1;?></td><td></td><td></td><td class="text-right"><h4>Grand Total:</h4></td><td class="text-right"><h4>P <?php echo number_format($total, 2, ".", ","); ?></h4></td></tr>
 			</tbody>
 		</table>					
 			</div>

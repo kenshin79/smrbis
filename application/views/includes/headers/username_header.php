@@ -1,5 +1,5 @@
 <div class="col-md-2">
-	<img src="<?php echo $icon2; ?>" width="50px" height="50px" />
+	<img src="<?php echo $icon2; ?>" width="30px" height="30px" />
 	<br />
 	<span>User: <?php echo $this->session->userdata('session_user'); ?></span>
 	<br />

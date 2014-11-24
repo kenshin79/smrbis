@@ -66,7 +66,7 @@
 				<ul class="nav nav-tabs" role="tablist">
   					<li class="active" ><a href="#users" data-toggle="tab" onclick="checkAccess([], load_users);">Users</a></li>
   					<li><a href="#ulog" data-toggle="tab" onclick="checkAccess([], load_logs);">User Log</a></li>
-  					<li><a href="#bb" data-toggle="tab">Bulletin Board</a></li>
+
 				</ul>										
 				</div>
 				<div class="col-md-1"></div>
@@ -75,7 +75,7 @@
 				<div class="tab-content">
 				<div id="users" class="tab-pane active fade in"></div>
 				<div id="ulog" class="tab-pane"></div>
-				<div id="bb" class="tab-pane"></div>
+
 				</div>
 			</div>
 		</div>

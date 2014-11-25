@@ -58,7 +58,7 @@
                             echo "<td>" . $row->supplier_name . "</td>";
                             echo "<td><textarea cols=\"8\" readonly>" . $row->notes . "</textarea></td>";
                             echo "<td><button class=\"btn btn-info\" onclick=\"checkAccess(['" . $row->cost_id . "', '" . str_ireplace("\n", "&#92n", $row->notes) . "', '" . $row->cost . "', '" . $row->sku_name . "', '" . $row->sku_count . "','" . $row->item_id . "', '" . $itemName . "'], editCostNotes);\" >Edit</button>";
-                            echo "<br /><button class=\"btn btn-danger\" onclick=\"checkAccess(['" . $row->cost_id . "', '" . $row->item_id . "', '" . $itemName . "'], deleteCost);\">Delete</button>";
+                            echo "<br /><br /><button class=\"btn btn-danger\" onclick=\"checkAccess(['" . $row->cost_id . "', '" . $row->item_id . "', '" . $itemName . "'], deleteCost);\">Delete</button>";
                             echo "</td>";
                             echo "</tr>";
                         }

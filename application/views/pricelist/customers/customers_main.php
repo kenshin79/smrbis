@@ -27,8 +27,8 @@
 						echo "<td>".$row->customer_mobile."</td>";
 						echo "<td>".$row->customer_email."</td>";
 						echo "<td><button class=\"btn btn-info\" onclick=\"checkAccess(['".$row->customer_id."', '".$row->customer_name."', '".$row->customer_address."', '".$row->customer_telephone."', '".$row->customer_mobile."', '".$row->customer_email."'] , editCustomer );\" >Edit</button>";
-						echo " <button class=\"btn btn-danger\" disabled onclick=\"checkAccess(['".$row->customer_id."', '".$row->customer_name."'], deleteCustomer);\">Delete</button></td>";						
-						echo "</tr>";
+						//echo " <button class=\"btn btn-danger\" disabled onclick=\"checkAccess(['".$row->customer_id."', '".$row->customer_name."'], deleteCustomer);\">Delete</button>";						
+						echo "</td></tr>";
 						$x++;
 					}
 				?>

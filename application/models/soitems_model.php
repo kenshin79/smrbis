@@ -24,7 +24,7 @@ Class Soitems_model extends CI_Model{
 		$unitPrice = $this->input->post('unitPrice', TRUE);
 		$data = array('salesorder_id'=>$salesorderId, 'price_id'=>$priceId, 'quantity'=>$quantity, 'unit_price'=>$unitPrice);
 		$this->db->insert('soitems', $data);
-		return $this->db->insert_id();
+		return $this->db->affected_rows();
 	}
 	function uniqueOrderItem($salesorderId, $priceId){
 		$this->db->select('salesorder_id, price_id');

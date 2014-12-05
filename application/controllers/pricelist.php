@@ -438,7 +438,7 @@ class Pricelist extends CI_Controller {
         if ($updated) {
             $activity = "Success: updated item ";
         } else {
-            $activity = "Failed: update item ";
+            $activity = "Failed: no new updates to item ";
         }
         $username = $this->session->userdata('session_user');
         $this->load->model('admin/Activitylog_model');

@@ -47,11 +47,16 @@ include 'application/views/includes/check_login.php';
                 ?>				
                 <div class="col-md-5"></div>
                 <?php
+                if ($this->session->userdata('session_access') == 0 || $this->session->userdata('session_access') == 1){
+                    include 'application/views/includes/headers/sales_header.php';	
+                }
+				else {
+					echo "<div class=\"col-md-1\"></div>";
+				}
                 if ($this->session->userdata('session_access') == 0) {
-                    include 'application/views/includes/headers/sales_header.php';
                     include 'application/views/includes/headers/admin_header.php';
                 } else {
-                    echo "<div class=\"col-md-2\"></div>";
+                    echo "<div class=\"col-md-1\"></div>";
                 }
                 include 'application/views/includes/headers/search_header.php';
                 include 'application/views/includes/headers/logout_header.php';
